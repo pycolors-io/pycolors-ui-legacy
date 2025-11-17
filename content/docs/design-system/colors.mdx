@@ -1,0 +1,244 @@
+---
+title: Colors
+description: Color tokens, roles, and theming architecture used in PyColors UI.
+---
+
+PyColors UI uses an **OKLCH-based color system** to guarantee high contrast, predictable light/dark behavior, and fully themeable experiences.
+
+All core colors are defined as CSS variables in
+`app/global.css`
+and mapped to Tailwind’s internal design tokens via:
+
+```css
+@theme inline {
+  --color-background: var(--background);
+  --color-primary: var(--primary);
+  --color-muted-foreground: var(--muted-foreground);
+  /* ... */
+}
+```
+
+This ensures the entire UI stays consistent while allowing full customization through CSS variables alone.
+
+## Semantic tokens
+
+PyColors UI exposes high-level tokens instead of raw colors.
+These tokens represent roles, not visual values.
+
+### Surfaces
+
+- --background / --foreground
+- --card / --card-foreground
+- --popover / --popover-foreground
+- --sidebar, --sidebar-*
+
+### Brand / Component backgrounds
+
+- --primary / --primary-foreground
+- --secondary / --secondary-foreground
+- --accent / --accent-foreground
+- --muted / --muted-foreground
+
+### States
+
+- --destructive
+- --destructive-foreground
+
+### Borders / Input / Ring
+
+- --border
+- --input
+- --ring
+
+### Charts
+
+- --chart-1 … --chart-5
+
+These roles ensure each component uses the correct meaning, regardless of theme or brand adaptation.
+
+## Light & Dark mode
+
+Light mode is applied on `:root`, dark mode on `.dark`.
+
+```css
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+
+  --primary: oklch(0.21 0.006 285.885);
+  --primary-foreground: oklch(0.985 0 0);
+  /* ... */
+}
+
+.dark {
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+
+  --primary: oklch(0.92 0.004 286.32);
+  --primary-foreground: oklch(0.21 0.006 285.885);
+  /* ... */
+}
+```
+
+The theme ensures:
+
+- correct contrast ratios
+- warm/cool adjustments between modes
+- consistent elevation and layering
+
+## Visual palette preview
+
+### Core semantic colors
+
+<Preview>
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+
+   {/* background */}
+    <div className="rounded-md border p-4 bg-background text-foreground">
+      <div className="text-xs font-medium mb-2 text-muted-foreground">background</div>
+      <div className="h-10 rounded bg-background border" />
+    </div>
+
+    {/* card */}
+    <div className="rounded-md border p-4 bg-card text-card-foreground">
+      <div className="text-xs font-medium mb-2 text-muted-foreground">card</div>
+      <div className="h-10 rounded bg-card border" />
+    </div>
+
+    {/* primary */}
+    <div className="rounded-md border p-4">
+      <div className="text-xs font-medium mb-2 text-muted-foreground">primary</div>
+      <div className="h-10 rounded bg-primary" />
+    </div>
+
+    {/* secondary */}
+    <div className="rounded-md border p-4">
+      <div className="text-xs font-medium mb-2 text-muted-foreground">secondary</div>
+      <div className="h-10 rounded bg-secondary" />
+    </div>
+
+    {/* accent */}
+    <div className="rounded-md border p-4">
+      <div className="text-xs font-medium mb-2 text-muted-foreground">accent</div>
+      <div className="h-10 rounded bg-accent" />
+    </div>
+
+    {/* muted */}
+    <div className="rounded-md border p-4">
+      <div className="text-xs font-medium mb-2 text-muted-foreground">muted</div>
+      <div className="h-10 rounded bg-muted" />
+    </div>
+
+    {/* destructive */}
+    <div className="rounded-md border p-4">
+      <div className="text-xs font-medium mb-2 text-muted-foreground">destructive</div>
+      <div className="h-10 rounded bg-destructive" />
+    </div>
+
+    {/* border */}
+    <div className="rounded-md border p-4">
+      <div className="text-xs font-medium mb-2 text-muted-foreground">border</div>
+      <div className="h-10 rounded border border-border bg-background" />
+    </div>
+
+  </div>
+</Preview>
+
+## Usage in components
+
+Components consume semantic utilities, not raw colors:
+
+```tsx
+export function ExampleCard() {
+  return (
+    <div className="rounded-lg border bg-card text-card-foreground p-4">
+      <h2 className="text-sm font-medium text-muted-foreground">Example</h2>
+      <p className="mt-2 text-sm">
+        This card uses the PyColors UI semantic color tokens.
+      </p>
+    </div>
+  );
+}
+```
+
+Advantages:
+
+- automatic dark mode
+- consistent roles
+- full theme override from global.css only
+- no inline custom colors
+
+## Brand palette
+
+PyColors UI v1 defines a neutral / cool slate brand palette with subtle saturation, optimized for calm, professional interfaces.
+
+This palette guides:
+
+- primary actions (`bg-primary`, `text-primary-foreground`)
+- accent elements (links, pills, highlights)
+- chart colors and data visualizations
+- focus rings and interactive feedback
+
+Future iterations (PyColors Brand v2) will add:
+
+- multibrand theming
+- product themes
+- tenant theming
+
+---
+## Roles
+
+PyColors UI follows a role-based color architecture, similar to Radix Themes, Vercel UI, and Shopify Polaris.
+
+| Role category | Tokens |
+|--------------|--------|
+| Surfaces | background, card, popover, sidebar |
+| Text | foreground, muted-foreground, card-foreground |
+| Components | primary, secondary, accent, muted |
+| States | destructive, destructive-foreground |
+| Inputs | border, input, ring |
+| Data Viz | chart-1 → chart-5 |
+
+Every component in the system uses these roles—never raw OKLCH colors.
+
+## Variables table
+
+A quick reference to all available tokens:
+
+| Token | Purpose |
+|-------|---------|
+| --background | Base surface |
+| --foreground | Primary text |
+| --card / --card-foreground | Cards & surfaces |
+| --primary / --primary-foreground | Brand action |
+| --secondary | Secondary sections |
+| --muted | Subtle UI parts |
+| --accent | Highlights |
+| --destructive | Dangerous actions |
+| --border | Border color |
+| --input | Input fields |
+| --ring | Focus ring |
+| --sidebar-* | Sidebar theming |
+| --chart-1 → --chart-5 | Data visualization |
+
+This table grows automatically as the DS evolves.
+
+## Guidelines
+
+- Always use semantic color utilities (`bg-card`, `text-muted-foreground`)
+- Never use raw OKLCH values in components
+- Modify design tokens only in `global.css` → all components update automatically
+- Keep contrast ratios above WCAG AA for text and interactive states
+- Prefer role-based choices (“this is a surface”, “this is a state”) over purely aesthetic choices
+
+---
+
+## Related guides
+
+- Typography
+- Radius
+- Button
+- Theming
+- Layout
+- Forms (RHF + Zod)
+- Patterns
