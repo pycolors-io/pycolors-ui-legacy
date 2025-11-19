@@ -3,6 +3,10 @@ title: Button
 description: Action button component used across PyColors UI, built on shadcn/ui. Includes variants, sizes, and best practices.
 ---
 
+import { DocsPageShell } from "@/components/shells/docs-page-shell";
+
+<DocsPageShell>
+
 The **Button** component is one of the core interactive elements of PyColors UI.
 It provides consistent styling, variants, accessibility, and flexible composition across marketing pages, dashboards, and applications.
 
@@ -492,3 +496,31 @@ export type ButtonSize =
 - Use the default variant for primary actions on a page.
 - Use secondary or outline for less prominent or secondary actions.
 - Use destructive only for actions that are dangerous or irreversible.
+
+
+## Related guides
+
+<Cards>
+  <Card
+    title="Icons"
+    description="Best practices for leading and trailing icons."
+    href="/docs/design-system/icons"
+  />
+  <Card
+    title="Typography"
+    description="Ensure button labels stay on the type scale."
+    href="/docs/design-system/typography"
+  />
+  <Card
+    title="Forms"
+    description="Use buttons alongside RHF + Zod patterns."
+    href="/docs/ui/forms"
+  />
+  <Card
+    title="Patterns"
+    description="Real-world flows that compose button states."
+    href="/docs/patterns"
+  />
+</Cards>
+
+</DocsPageShell>

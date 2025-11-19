@@ -1,9 +1,12 @@
 ---
 title: Shadows
-description: |
-  Shadow tokens used in PyColors UI. Provides a single, consistent drop-shadow scale
+description: Shadow tokens used in PyColors UI. Provides a single, consistent drop-shadow scale
   for subtle elevation across components.
 ---
+
+import { DocsPageShell } from "@/components/shells/docs-page-shell";
+
+<DocsPageShell>
 
 PyColors UI keeps elevation **subtle and purposeful**. A single drop-shadow scale covers every surface, from compact buttons to floating panels, making depth predictable across light and dark themes.
 
@@ -102,7 +105,27 @@ export function ShadowsPreview() {
 
 ## Related guides
 
-- Radius
-- Colors
-- Layout
-- Components
+<Cards>
+  <Card
+    title="Radius tokens"
+    description="Corner radii used across surfaces."
+    href="/docs/design-system/tokens/radius"
+  />
+  <Card
+    title="Color roles"
+    description="Semantic OKLCH palette & usage."
+    href="/docs/design-system/colors"
+  />
+  <Card
+    title="Layout"
+    description="Spacing, containers, and page shells."
+    href="/docs/design-system/layout"
+  />
+  <Card
+    title="Components"
+    description="UI primitives powered by the tokens."
+    href="/docs/ui/button"
+  />
+</Cards>
+
+</DocsPageShell>

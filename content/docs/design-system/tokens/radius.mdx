@@ -3,6 +3,10 @@ title: Radius
 description: Corner radius tokens used to create the PyColors UI visual style.
 ---
 
+import { DocsPageShell } from "@/components/shells/docs-page-shell";
+
+<DocsPageShell>
+
 PyColors UI defines a small set of radius tokens to keep corners consistent across components and layouts.
 
 ## Base radius
@@ -109,9 +113,37 @@ Need elevation guidance? See the dedicated [Shadows tokens](../tokens/shadows) p
 
 ## Related guides
 
-- Colors
-- Shadows
-- Typography
-- Button
-- Components
-- Theming
+<Cards>
+  <Card
+    title="Color roles"
+    description="Semantic OKLCH palette & usage."
+    href="/docs/design-system/colors"
+  />
+  <Card
+    title="Shadow tokens"
+    description="Elevation scale for buttons to modals."
+    href="/docs/design-system/tokens/shadows"
+  />
+  <Card
+    title="Typography"
+    description="Heading hierarchy, body styles, text roles."
+    href="/docs/design-system/typography"
+  />
+  <Card
+    title="Buttons"
+    description="UI primitives powered by these tokens."
+    href="/docs/ui/button"
+  />
+  <Card
+    title="Components overview"
+    description="All reusable blocks built on PyColors UI."
+    href="/docs/ui/button"
+  />
+  <Card
+    title="Theming"
+    description="How to adapt the design system for brands."
+    href="/docs/design-system/colors"
+  />
+</Cards>
+
+</DocsPageShell>

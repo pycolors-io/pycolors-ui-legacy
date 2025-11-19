@@ -3,6 +3,10 @@ title: Colors
 description: Color tokens, roles, and theming architecture used in PyColors UI.
 ---
 
+import { DocsPageShell } from "@/components/shells/docs-page-shell";
+
+<DocsPageShell>
+
 PyColors UI uses an **OKLCH-based color system** to guarantee high contrast, predictable light/dark behavior, and fully themeable experiences.
 
 All core colors are defined as CSS variables in
@@ -235,10 +239,42 @@ This table grows automatically as the DS evolves.
 
 ## Related guides
 
-- Typography
-- Radius
-- Button
-- Theming
-- Layout
-- Forms (RHF + Zod)
-- Patterns
+<Cards>
+  <Card
+    title="Typography"
+    description="Font scale, weights, and semantic text roles."
+    href="/docs/design-system/typography"
+  />
+  <Card
+    title="Radius tokens"
+    description="Corner geometry for surfaces and components."
+    href="/docs/design-system/tokens/radius"
+  />
+  <Card
+    title="Buttons"
+    description="Interactive elements using PyColors tokens."
+    href="/docs/ui/button"
+  />
+  <Card
+    title="Theming"
+    description="Customize palettes, accents, and brand tokens."
+    href="/docs/design-system/colors"
+  />
+  <Card
+    title="Layout"
+    description="Spacing, containers, and responsive grid guidelines."
+    href="/docs/design-system/layout"
+  />
+  <Card
+    title="Forms"
+    description="RHF + Zod patterns for PyColors UI."
+    href="/docs/ui/forms"
+  />
+  <Card
+    title="Patterns"
+    description="Reusable flows built on components and tokens."
+    href="/docs/patterns"
+  />
+</Cards>
+
+</DocsPageShell>
