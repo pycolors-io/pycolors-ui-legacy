@@ -1,6 +1,20 @@
 import { HomeLayout } from 'fumadocs-ui/layouts/home';
 import { baseOptions } from '@/lib/layout.shared';
+import { SiteHeader } from '@/components/layout/site-header';
+import { getDocsNavLinks } from '@/lib/source';
 
 export default function Layout({ children }: LayoutProps<'/'>) {
-  return <HomeLayout {...baseOptions()}>{children}</HomeLayout>;
+  const docsLinks = getDocsNavLinks();
+
+  return (
+    <HomeLayout
+      {...baseOptions()}
+      nav={{
+        enabled: true,
+        component: <SiteHeader docsLinks={docsLinks} />,
+      }}
+    >
+      {children}
+    </HomeLayout>
+  );
 }

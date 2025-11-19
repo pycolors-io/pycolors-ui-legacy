@@ -1,6 +1,7 @@
 import { docs } from 'fumadocs-mdx:collections/server';
 import { type InferPageType, loader } from 'fumadocs-core/source';
 import { lucideIconsPlugin } from 'fumadocs-core/source/lucide-icons';
+import { flattenTree } from 'fumadocs-core/page-tree';
 
 // See https://fumadocs.dev/docs/headless/source-api for more info
 export const source = loader({
@@ -24,4 +25,18 @@ export async function getLLMText(page: InferPageType<typeof source>) {
   return `# ${page.data.title}
 
 ${processed}`;
+}
+
+export type DocsNavLink = {
+  label: string;
+  href: string;
+};
+
+export function getDocsNavLinks(): DocsNavLink[] {
+  const nodes = flattenTree(source.pageTree.children ?? []);
+
+  return nodes.map((item) => ({
+    label: typeof item.name === 'string' ? item.name : item.url,
+    href: item.url,
+  }));
 }

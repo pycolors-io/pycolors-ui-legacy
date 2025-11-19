@@ -73,6 +73,8 @@
 /* Light Theme – PyColors Theme v1 (Tech Minimal)                             */
 /* -------------------------------------------------------------------------- */
 :root {
+  --fd-nav-height: 64px !important;
+
   /* Base scale */
   --radius: 0.625rem;
 
