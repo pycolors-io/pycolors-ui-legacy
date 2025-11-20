@@ -8,6 +8,8 @@ import { LargeSearchToggle } from 'fumadocs-ui/components/layout/search-toggle';
 import { ThemeToggle } from 'fumadocs-ui/components/layout/theme-toggle';
 import { cn } from '@/lib/utils';
 import { PRIMARY_NAV_ITEMS } from '@/lib/layout.shared';
+import { Container } from '@/components/container';
+import { Logo } from '../logo';
 
 type DocsLink = {
   label: string;
@@ -37,20 +39,9 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border/70 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center gap-3 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-            PC
-          </span>
-          <span className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold tracking-tight">
-              PyColors UI
-            </span>
-            <span className="text-xs text-muted-foreground">
-              Design system & kit
-            </span>
-          </span>
-        </Link>
+      {/* ---- HEADER MAIN ---- */}
+      <Container className="flex h-16 items-center gap-3">
+        <Logo />
 
         <nav className="ml-6 hidden flex-1 items-center gap-1 text-sm font-medium md:flex">
           {PRIMARY_NAV_ITEMS.map((item) => (
@@ -99,10 +90,11 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
             )}
           </button>
         </div>
-      </div>
+      </Container>
 
+      {/* ---- MOBILE MENU ---- */}
       {isMenuOpen ? (
-        <div className="md:hidden border-t border-border bg-background/95 px-4 pb-6 pt-3 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <Container className="md:hidden px-4 pb-6 pt-3 border-t border-border bg-background/95 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <nav className="flex flex-col gap-1">
             {PRIMARY_NAV_ITEMS.map((item) => (
               <Link
@@ -119,7 +111,7 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
           </nav>
 
           {docsLinks.length > 0 && (
-            <div className="mt-5 =">
+            <div className="mt-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Documentation
               </p>
@@ -159,7 +151,7 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
               GitHub
             </a>
           </div>
-        </div>
+        </Container>
       ) : null}
     </header>
   );

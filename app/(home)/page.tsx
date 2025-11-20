@@ -40,35 +40,6 @@ export default function HomePage() {
           </a>
         </div>
       </section>
-
-      <section className="mt-12 grid gap-6 sm:mt-16 sm:grid-cols-3">
-        <div className="rounded-lg border border-border bg-card p-5 text-left">
-          <h2 className="text-sm font-semibold">
-            Design system first
-          </h2>
-          <p className="mt-2 text-xs text-muted-foreground">
-            Tokens for colors, radius, shadows, and typography form a
-            coherent foundation for apps, dashboards, and marketing
-            pages.
-          </p>
-        </div>
-        <div className="rounded-lg border border-border bg-card p-5 text-left">
-          <h2 className="text-sm font-semibold">Radix-based UI</h2>
-          <p className="mt-2 text-xs text-muted-foreground">
-            Components extend shadcn/ui primitives, keeping the API
-            familiar while adding PyColors-specific patterns and
-            theming.
-          </p>
-        </div>
-        <div className="rounded-lg border border-border bg-card p-5 text-left">
-          <h2 className="text-sm font-semibold">Ready for Pro</h2>
-          <p className="mt-2 text-xs text-muted-foreground">
-            The same foundation will power Pro blocks, templates, and
-            SaaS starters — reusable across client projects and
-            products.
-          </p>
-        </div>
-      </section>
     </MarketingShell>
   );
 }

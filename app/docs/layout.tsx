@@ -4,6 +4,7 @@ import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { getDocsNavLinks, source } from '@/lib/source';
 import { baseOptions } from '@/lib/layout.shared';
 import { SiteHeader } from '@/components/layout/site-header';
+import { Footer } from '@/components/footer';
 
 export default function Layout({
   children,
@@ -20,8 +21,10 @@ export default function Layout({
         enabled: true,
         component: <SiteHeader docsLinks={docsLinks} />,
       }}
+      sidebar={{}}
     >
       {children}
+      <Footer />
     </DocsLayout>
   );
 }
