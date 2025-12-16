@@ -7,6 +7,14 @@ import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
 import { Preview } from '@/components/docs/preview';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card';
 import { Input } from './components/ui/input';
 
 export function getMDXComponents(
@@ -26,6 +34,12 @@ export function getMDXComponents(
     Preview,
     Badge,
     Button,
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent,
+    CardFooter,
     Input,
     Tabs,
     Tab,

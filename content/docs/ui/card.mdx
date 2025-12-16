@@ -1,0 +1,350 @@
+---
+title: Card
+description: Surface component used for grouping content, actions, and metadata in PyColors UI.
+---
+
+import { DocsPageShell } from "@/components/shells/docs-page-shell";
+import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
+
+
+<DocsPageShell>
+
+The **Card** component is a foundational layout surface used to group related content:
+dashboards, pricing blocks, settings panels, and list items.
+
+It’s built with semantic tokens (`bg-card`, `border-border`, `text-card-foreground`) so it stays consistent across themes.
+
+---
+
+## Import
+
+```tsx
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+```
+
+---
+
+## Usage
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <Card className="max-w-sm">
+        <CardHeader>
+          <CardTitle>Account</CardTitle>
+          <CardDescription>Manage your profile settings.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="text-sm text-muted-foreground">
+            Update personal details, security preferences, and integrations.
+          </div>
+        </CardContent>
+        <CardFooter className="justify-end">
+          <Button variant="secondary">Cancel</Button>
+          <Button className="ml-2">Save</Button>
+        </CardFooter>
+      </Card>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Card>
+      <CardHeader>
+        <CardTitle>Account</CardTitle>
+        <CardDescription>Manage your profile settings.</CardDescription>
+      </CardHeader>
+      <CardContent>...</CardContent>
+      <CardFooter>...</CardFooter>
+    </Card>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import {
+      Card,
+      CardHeader,
+      CardTitle,
+      CardDescription,
+      CardContent,
+      CardFooter,
+    } from "@/components/ui/card";
+    import { Button } from "@/components/ui/button";
+
+    export default function Demo() {
+      return (
+        <Card className="max-w-sm">
+          <CardHeader>
+            <CardTitle>Account</CardTitle>
+            <CardDescription>Manage your profile settings.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="text-sm text-muted-foreground">
+              Update personal details, security preferences, and integrations.
+            </div>
+          </CardContent>
+          <CardFooter className="justify-end">
+            <Button variant="secondary">Cancel</Button>
+            <Button className="ml-2">Save</Button>
+          </CardFooter>
+        </Card>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Variants
+
+Cards support small semantic variants for different surfaces.
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="grid gap-4 sm:grid-cols-3">
+        <Card>
+          <CardHeader>
+            <CardTitle>Default</CardTitle>
+            <CardDescription>Standard surface.</CardDescription>
+          </CardHeader>
+        </Card>
+
+        <Card variant="muted">
+          <CardHeader>
+            <CardTitle>Muted</CardTitle>
+            <CardDescription>Subtle background.</CardDescription>
+          </CardHeader>
+        </Card>
+
+        <Card variant="transparent">
+          <CardHeader>
+            <CardTitle>Transparent</CardTitle>
+            <CardDescription>No background.</CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Card />
+    <Card variant="muted" />
+    <Card variant="transparent" />
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+
+    export default function CardVariantsExample() {
+      return (
+        <div className="grid gap-4 sm:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Default</CardTitle>
+              <CardDescription>Standard surface.</CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card variant="muted">
+            <CardHeader>
+              <CardTitle>Muted</CardTitle>
+              <CardDescription>Subtle background.</CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card variant="transparent">
+            <CardHeader>
+              <CardTitle>Transparent</CardTitle>
+              <CardDescription>No background.</CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Available variants
+
+| Variant       | Description                     |
+| ------------- | ------------------------------- |
+| default       | Main surface (`bg-card`)        |
+| muted         | Softer surface (`bg-muted/40`)  |
+| transparent   | No background                   |
+
+---
+
+## Interactive cards
+
+Use `interactive` for hover feedback on list items and grids.
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <Card interactive className="max-w-sm cursor-pointer">
+        <CardHeader>
+          <CardTitle>Clickable card</CardTitle>
+          <CardDescription>Hover to see the accent surface.</CardDescription>
+        </CardHeader>
+      </Card>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Card interactive className="cursor-pointer">...</Card>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+
+    export default function InteractiveCardExample() {
+      return (
+        <Card interactive className="max-w-sm cursor-pointer">
+          <CardHeader>
+            <CardTitle>Clickable card</CardTitle>
+            <CardDescription>Hover to see the accent surface.</CardDescription>
+          </CardHeader>
+        </Card>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## As child (Slot)
+
+Render the Card as another element (for example, a link) while keeping styles.
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <Card asChild interactive className="max-w-sm">
+        <a href="/docs" className="block">
+          <CardHeader>
+            <CardTitle>Read the docs</CardTitle>
+            <CardDescription>Go to documentation →</CardDescription>
+          </CardHeader>
+        </a>
+      </Card>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Card asChild interactive>
+      <a href="/docs">...</a>
+    </Card>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+
+    export default function CardAsChildExample() {
+      return (
+        <Card asChild interactive className="max-w-sm">
+          <a href="/docs" className="block">
+            <CardHeader>
+              <CardTitle>Read the docs</CardTitle>
+              <CardDescription>Go to documentation →</CardDescription>
+            </CardHeader>
+          </a>
+        </Card>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## API
+
+### Props
+
+| Prop        | Type        | Default    | Description                  |
+| ----------- | ----------- | ---------- | ---------------------------- |
+| variant     | CardVariant | "default"  | Visual surface style         |
+| interactive | boolean     | false      | Adds hover feedback          |
+| asChild     | boolean     | false      | Render via Radix Slot        |
+| className   | string      | —          | Additional Tailwind classes |
+
+The Card components extend standard HTML props:
+
+```ts
+React.HTMLAttributes<HTMLDivElement>
+```
+
+---
+
+## TypeScript types
+
+```ts
+export type CardVariant = "default" | "muted" | "transparent";
+```
+
+---
+
+## Accessibility
+
+- Prefer semantic structure: `CardHeader` → title/description → `CardContent` → `CardFooter`.
+- If the Card is clickable, render it as a link or button via `asChild`.
+- Avoid nesting interactive elements inside an interactive Card.
+- Keep only one interactive target per Card.
+
+---
+
+## Design guidelines
+
+- Use Cards for grouping and layout rhythm, not decoration.
+- Keep spacing consistent with the built-in `p-6` layout.
+- Use `muted` for secondary panels; `transparent` for inline layouts.
+- Use `interactive` only when the Card is a selectable item.
+
+## Related guides
+
+<LinkCards>
+  <LinkCard
+    title="Colors"
+    description="Use semantic tokens (bg-card, text-muted-foreground, border-border)."
+    href="/docs/design-system/colors#semantic-tokens"
+  />
+  <LinkCard
+    title="Radius"
+    description="Corner radius tokens used for cards, panels, and surfaces."
+    href="/docs/design-system/tokens/radius"
+  />
+  <LinkCard
+    title="Shadows"
+    description="Elevation scale for card surfaces (xs → lg)."
+    href="/docs/design-system/tokens/shadows"
+  />
+  <LinkCard
+    title="Typography"
+    description="Titles, descriptions, and content rhythm inside cards."
+    href="/docs/design-system/typography"
+  />
+</LinkCards>
+
+
+</DocsPageShell>
