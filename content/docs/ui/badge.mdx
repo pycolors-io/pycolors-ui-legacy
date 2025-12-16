@@ -1,0 +1,344 @@
+---
+title: Badge
+description: Small status and metadata component used to label, categorize, or highlight information in PyColors UI.
+---
+
+import { DocsPageShell } from "@/components/shells/docs-page-shell";
+
+<DocsPageShell>
+
+The **Badge** component is a compact UI element used to display short information such as
+status, category, count, or label.
+
+Badges are **non-interactive by default**, lightweight, and fully aligned with the
+PyColors design system tokens.
+
+---
+
+## Import
+
+```tsx
+import { Badge } from "@/components/ui/badge";
+```
+
+---
+
+## Usage
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <Badge>Default</Badge>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Badge>Default</Badge>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Badge } from "@/components/ui/badge";
+
+    export default function Demo() {
+      return <Badge>Default</Badge>;
+    }
+    ```
+  </Tab>
+</Tabs>
+
+Badges inherit their colors from semantic tokens and adapt automatically
+to light and dark mode.
+
+---
+
+## Variants
+
+Use variants to convey meaning or status.
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="flex flex-wrap gap-2">
+        <Badge>Default</Badge>
+        <Badge variant="secondary">Secondary</Badge>
+        <Badge variant="muted">Muted</Badge>
+        <Badge variant="outline">Outline</Badge>
+        <Badge variant="success">Success</Badge>
+        <Badge variant="warning">Warning</Badge>
+        <Badge variant="destructive">Destructive</Badge>
+      </div>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <div className="flex gap-2">
+      <Badge>Default</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="muted">Muted</Badge>
+      <Badge variant="outline">Outline</Badge>
+      <Badge variant="success">Success</Badge>
+      <Badge variant="warning">Warning</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+    </div>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Badge } from "@/components/ui/badge";
+
+    export default function BadgeVariantsExample() {
+      return (
+        <div className="flex gap-2">
+          <Badge>Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="muted">Muted</Badge>
+          <Badge variant="outline">Outline</Badge>
+          <Badge variant="success">Success</Badge>
+          <Badge variant="warning">Warning</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Available variants
+
+| Variant      | Description                 |
+| ------------ | --------------------------- |
+| default      | Primary or neutral label    |
+| secondary    | Secondary emphasis          |
+| muted        | Low-contrast metadata       |
+| outline      | Neutral bordered label      |
+| success      | Positive or completed state |
+| warning      | Caution or attention        |
+| destructive | Error or critical state     |
+
+---
+
+## Sizes
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="flex items-center gap-2">
+        <Badge size="sm">Small</Badge>
+        <Badge size="md">Default</Badge>
+        <Badge size="lg">Large</Badge>
+      </div>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Badge size="sm">Small</Badge>
+    <Badge size="md">Default</Badge>
+    <Badge size="lg">Large</Badge>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Badge } from "@/components/ui/badge";
+
+    export default function BadgeSizesExample() {
+      return (
+        <div className="flex gap-2">
+          <Badge size="sm">Small</Badge>
+          <Badge size="md">Default</Badge>
+          <Badge size="lg">Large</Badge>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Available sizes
+
+| Size | Description             |
+| ---- | ----------------------- |
+| sm   | Compact metadata        |
+| md   | Default badge size      |
+| lg   | Emphasized or prominent |
+
+---
+
+## With icon
+
+Badges can include icons when necessary (status, type, etc.).
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <Badge variant="success">
+        <svg
+          className="size-3"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M5 13l4 4L19 7" />
+        </svg>
+        Active
+      </Badge>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Badge variant="success">
+      <CheckIcon className="size-3" />
+      Active
+    </Badge>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Badge } from "@/components/ui/badge";
+
+    export default function BadgeWithIcon() {
+      return (
+        <Badge variant="success">
+          <svg className="size-3" viewBox="0 0 24 24">
+            <path d="M5 13l4 4L19 7" />
+          </svg>
+          Active
+        </Badge>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## As child (Slot)
+
+You can render a badge as another component (for example, a link).
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <Badge asChild>
+        <a href="/docs">Docs</a>
+      </Badge>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Badge asChild>
+      <a href="/docs">Docs</a>
+    </Badge>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Badge } from "@/components/ui/badge";
+
+    export default function BadgeAsChild() {
+      return (
+        <Badge asChild>
+          <a href="/docs">Docs</a>
+        </Badge>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## API
+
+### Props
+
+| Prop      | Type         | Default   | Description                  |
+| --------- | ------------ | --------- | ---------------------------- |
+| variant   | BadgeVariant | "default" | Visual style                 |
+| size      | BadgeSize    | "md"      | Badge size                   |
+| asChild   | boolean      | false     | Render via Radix Slot        |
+| className | string       | —         | Additional Tailwind classes |
+
+The Badge extends standard HTML span props:
+
+```ts
+React.HTMLAttributes<HTMLSpanElement>
+```
+
+---
+
+## TypeScript types
+
+```ts
+export type BadgeVariant =
+  | "default"
+  | "secondary"
+  | "muted"
+  | "outline"
+  | "success"
+  | "warning"
+  | "destructive";
+
+export type BadgeSize =
+  | "sm"
+  | "md"
+  | "lg";
+```
+
+---
+
+## Accessibility
+
+- Badges are decorative by default and should not replace buttons.
+- Do not rely on color alone to convey meaning.
+- When clickable, use `asChild` with a semantic element (`a`, `button`).
+- Icons must be supplementary and not the sole indicator.
+
+---
+
+## Design guidelines
+
+- Use `muted` or `outline` for metadata and low-emphasis labels.
+- Use `success`, `warning`, and `destructive` only for status indicators.
+- Avoid overusing badges—prefer clarity over decoration.
+- Keep badge text short (1–2 words whenever possible).
+
+---
+
+## Related guides
+
+<Cards>
+  <Card
+    title="Colors"
+    description="Understand semantic color tokens."
+    href="/docs/design-system/colors"
+  />
+  <Card
+    title="Typography"
+    description="Badge text sizing and weight."
+    href="/docs/design-system/typography"
+  />
+  <Card
+    title="Button"
+    description="Use buttons for actions, not badges."
+    href="/docs/ui/button"
+  />
+  <Card
+    title="Patterns"
+    description="Status labels and real-world flows."
+    href="/docs/patterns"
+  />
+</Cards>
+
+</DocsPageShell>

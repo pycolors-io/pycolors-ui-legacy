@@ -5,6 +5,7 @@ import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
 
 // Custom components available in .mdx
 import { Preview } from '@/components/docs/preview';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from './components/ui/input';
 
@@ -23,6 +24,7 @@ export function getMDXComponents(
     ),
 
     Preview,
+    Badge,
     Button,
     Input,
     Tabs,
