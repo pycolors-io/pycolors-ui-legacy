@@ -4,146 +4,202 @@ description: Corner radius tokens used to create the PyColors UI visual style.
 ---
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
+import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
 
 <DocsPageShell>
 
-PyColors UI defines a small set of radius tokens to keep corners consistent across components and layouts.
+PyColors UI defines a small set of **radius tokens** to keep corners consistent across components and layouts.
+
+All radiuses are derived from a **single base variable**, ensuring global consistency and easy theming.
+
+---
 
 ## Base radius
 
-All radiuses are derived from a single base variable:
+<Tabs items={["Code"]}>
+  <Tab value="Code">
+    ```css
+    :root {
+      --radius: 0.625rem;
+    }
+    ```
+  </Tab>
+</Tabs>
 
-```css
-:root {
-  --radius: 0.625rem;
-}
-```
+From this base, derived tokens are generated:
 
-From this base, we derive:
-```css
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
-```
+<Tabs items={["Code"]}>
+  <Tab value="Code">
+    ```css
+    @theme inline {
+      --radius-sm: calc(var(--radius) - 4px);
+      --radius-md: calc(var(--radius) - 2px);
+      --radius-lg: var(--radius);
+      --radius-xl: calc(var(--radius) + 4px);
+    }
+    ```
+  </Tab>
+</Tabs>
 
-These tokens are mapped to Tailwind’s border radius utilities in tailwind.config.ts:
-```css
-borderRadius: {
-  sm: "var(--radius-sm)",
-  DEFAULT: "var(--radius-md)",
-  md: "var(--radius-md)",
-  lg: "var(--radius-lg)",
-  xl: "var(--radius-xl)",
-},
-```
+These tokens are mapped to Tailwind’s `rounded-*` utilities:
 
-This ensures that all components using Tailwind’s rounded-* utilities remain aligned with the PyColors design system.
+<Tabs items={["Code"]}>
+  <Tab value="Code">
+    ```ts
+    borderRadius: {
+      sm: "var(--radius-sm)",
+      DEFAULT: "var(--radius-md)",
+      md: "var(--radius-md)",
+      lg: "var(--radius-lg)",
+      xl: "var(--radius-xl)",
+    },
+    ```
+  </Tab>
+</Tabs>
+
+This ensures all components using Tailwind’s radius utilities remain aligned with the PyColors design system.
 
 ---
 
 ## Radius tokens
 
-Defined once in `app/global.css` and consumed everywhere through Tailwind utilities:
+Defined once in `app/global.css` and consumed everywhere through Tailwind utilities.
 
-| Token         | Maps to                           |
-|---------------|-----------------------------------|
-| `--radius-sm` | Small cards, inputs, pills        |
-| `--radius-md` | Default UI radius (buttons, chips)|
-| `--radius-lg` | Large cards, panels               |
-| `--radius-xl` | Modals, overlays, featured blocks |
+| Token         | Maps to                                    |
+|---------------|--------------------------------------------|
+| `--radius-sm` | Compact elements, inputs, pills            |
+| `--radius-md` | Default UI radius (buttons, chips)         |
+| `--radius-lg` | Cards, panels, content containers          |
+| `--radius-xl` | Modals, overlays, featured surfaces        |
 
-When you use `rounded-sm/md/lg/xl`, Tailwind resolves the correct token automatically.
+When you use `rounded-sm`, `rounded-md`, `rounded-lg`, or `rounded-xl`, Tailwind resolves the correct token automatically.
 
 ---
 
 ## Visual examples
-### Basic radius scale
-<Preview> <div className="grid gap-4 sm:grid-cols-2"> <div className="rounded-sm border bg-card px-4 py-3 text-sm"> <div className="text-xs font-medium text-muted-foreground mb-1"> rounded-sm </div> <div>Small radius (token: <code>--radius-sm</code>)</div> </div> <div className="rounded-md border bg-card px-4 py-3 text-sm"> <div className="text-xs font-medium text-muted-foreground mb-1"> rounded-md </div> <div>Default radius (token: <code>--radius-md</code>)</div> </div> <div className="rounded-lg border bg-card px-4 py-3 text-sm"> <div className="text-xs font-medium text-muted-foreground mb-1"> rounded-lg </div> <div>Large radius (token: <code>--radius-lg</code>)</div> </div> <div className="rounded-xl border bg-card px-4 py-3 text-sm"> <div className="text-xs font-medium text-muted-foreground mb-1"> rounded-xl </div> <div>Extra large radius (token: <code>--radius-xl</code>)</div> </div> </div> </Preview>
 
-```tsx
-export function RadiusExample() {
-  return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      <div className="rounded-sm border bg-card px-4 py-3 text-sm">
-        <div className="text-xs font-medium text-muted-foreground mb-1">
-          rounded-sm
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="rounded-sm border bg-card px-4 py-3 text-sm">
+          <div className="text-xs font-medium text-muted-foreground mb-1">
+            rounded-sm
+          </div>
+          <div>Small radius (<code>--radius-sm</code>)</div>
         </div>
-        <div>Small radius (token: --radius-sm)</div>
-      </div>
-      <div className="rounded-md border bg-card px-4 py-3 text-sm">
-        <div className="text-xs font-medium text-muted-foreground mb-1">
-          rounded-md
+
+        <div className="rounded-md border bg-card px-4 py-3 text-sm">
+          <div className="text-xs font-medium text-muted-foreground mb-1">
+            rounded-md
+          </div>
+          <div>Default radius (<code>--radius-md</code>)</div>
         </div>
-        <div>Default radius (token: --radius-md)</div>
-      </div>
-      <div className="rounded-lg border bg-card px-4 py-3 text-sm">
-        <div className="text-xs font-medium text-muted-foreground mb-1">
-          rounded-lg
+
+        <div className="rounded-lg border bg-card px-4 py-3 text-sm">
+          <div className="text-xs font-medium text-muted-foreground mb-1">
+            rounded-lg
+          </div>
+          <div>Large radius (<code>--radius-lg</code>)</div>
         </div>
-        <div>Large radius (token: --radius-lg)</div>
-      </div>
-      <div className="rounded-xl border bg-card px-4 py-3 text-sm">
-        <div className="text-xs font-medium text-muted-foreground mb-1">
-          rounded-xl
+
+        <div className="rounded-xl border bg-card px-4 py-3 text-sm">
+          <div className="text-xs font-medium text-muted-foreground mb-1">
+            rounded-xl
+          </div>
+          <div>Extra-large radius (<code>--radius-xl</code>)</div>
         </div>
-        <div>Extra large radius (token: --radius-xl)</div>
       </div>
-    </div>
-  );
-}
-```
+    </Preview>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    export function RadiusExample() {
+      return (
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-sm border bg-card px-4 py-3 text-sm">
+            <div className="text-xs font-medium text-muted-foreground mb-1">
+              rounded-sm
+            </div>
+            <div>Small radius (--radius-sm)</div>
+          </div>
+
+          <div className="rounded-md border bg-card px-4 py-3 text-sm">
+            <div className="text-xs font-medium text-muted-foreground mb-1">
+              rounded-md
+            </div>
+            <div>Default radius (--radius-md)</div>
+          </div>
+
+          <div className="rounded-lg border bg-card px-4 py-3 text-sm">
+            <div className="text-xs font-medium text-muted-foreground mb-1">
+              rounded-lg
+            </div>
+            <div>Large radius (--radius-lg)</div>
+          </div>
+
+          <div className="rounded-xl border bg-card px-4 py-3 text-sm">
+            <div className="text-xs font-medium text-muted-foreground mb-1">
+              rounded-xl
+            </div>
+            <div>Extra large radius (--radius-xl)</div>
+          </div>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ---
 
 ## Usage guidelines
 
-- Use rounded-md as the default radius for most interactive elements (buttons, inputs, small cards).
-- Use rounded-lg for primary surfaces such as cards, panels, and important containers.
-- Use rounded-xl sparingly, for standout elements like featured cards, hero sections, or modals.
-- Use rounded-sm for subtle UI elements or compact, dense layouts.
+- Use `rounded-md` as the default radius for most interactive elements (buttons, inputs, small cards).
+- Use `rounded-lg` for primary surfaces such as cards, panels, and important containers.
+- Use `rounded-xl` sparingly for standout elements like modals, hero sections, or featured cards.
+- Use `rounded-sm` for dense UIs or subtle decorative elements.
 
-By limiting the number of radiuses and mapping them to a single base token, PyColors UI keeps visual consistency while remaining easy to adjust globally.
+By limiting radiuses to a small, semantic set derived from a single base token, PyColors UI maintains strong visual consistency while remaining easy to adapt globally.
 
-Need elevation guidance? See the dedicated [Shadows tokens](../tokens/shadows) page for the matching drop-shadow scale.
+Need elevation guidance? See the **Shadows tokens** page for the matching depth scale.
 
 ---
 
 ## Related guides
 
-<Cards>
-  <Card
-    title="Color roles"
-    description="Semantic OKLCH palette & usage."
+<LinkCards>
+  <LinkCard
+    title="Colors"
+    description="Semantic OKLCH palette and role-based color usage."
     href="/docs/design-system/colors"
   />
-  <Card
-    title="Shadow tokens"
-    description="Elevation scale for buttons to modals."
+  <LinkCard
+    title="Shadows"
+    description="Elevation scale aligned with surface radius."
     href="/docs/design-system/tokens/shadows"
   />
-  <Card
+  <LinkCard
     title="Typography"
-    description="Heading hierarchy, body styles, text roles."
+    description="Text hierarchy and rhythm inside rounded surfaces."
     href="/docs/design-system/typography"
   />
-  <Card
-    title="Buttons"
-    description="UI primitives powered by these tokens."
+  <LinkCard
+    title="Button"
+    description="Buttons inherit radius tokens for consistency."
     href="/docs/ui/button"
   />
-  <Card
-    title="Components overview"
-    description="All reusable blocks built on PyColors UI."
-    href="/docs/ui/button"
+  <LinkCard
+    title="Card"
+    description="Cards are the primary consumers of radius tokens."
+    href="/docs/ui/card"
   />
-  <Card
+  <LinkCard
     title="Theming"
-    description="How to adapt the design system for brands."
+    description="How to adapt radius and geometry across brands."
     href="/docs/design-system/colors"
   />
-</Cards>
+</LinkCards>
 
 </DocsPageShell>

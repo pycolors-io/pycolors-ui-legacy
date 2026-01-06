@@ -4,7 +4,8 @@ description: Form input component used across PyColors UI. Includes labels, help
 ---
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
-import { Eye, EyeOff, SearchIcon } from "lucide-react";
+import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
+import { Eye, Search } from "lucide-react";
 
 <DocsPageShell>
 
@@ -72,12 +73,7 @@ The default Input uses the PyColors theme tokens, adapts to light/dark mode, and
     import { Input } from "@/components/ui/input";
 
     export default function Example() {
-      return (
-        <Input
-          label="Email"
-          placeholder="you@domain.com"
-        />
-      );
+      return <Input label="Email" placeholder="you@domain.com" />;
     }
     ```
   </Tab>
@@ -129,7 +125,7 @@ Use `helperText` to provide optional context or hints below the field.
   </Tab>
 </Tabs>
 
-Helper text is always rendered with a smaller, muted style aligned to the typography scale.
+Helper text is rendered with a smaller, muted style aligned to the typography scale.
 
 ---
 
@@ -137,7 +133,7 @@ Helper text is always rendered with a smaller, muted style aligned to the typogr
 
 The `error` prop:
 
-- Toggles the `hasError` visual state.
+- Toggles the error visual state.
 - Sets `aria-invalid` on the input.
 - Updates `aria-describedby` to point to the error message.
 - Displays the error message below the field.
@@ -180,7 +176,7 @@ The `error` prop:
   </Tab>
 </Tabs>
 
-Use this pattern with **React Hook Form + Zod** to map server or schema validation errors directly to fields.
+Use this pattern with **React Hook Form + Zod** to map schema or server validation errors directly to fields.
 
 ---
 
@@ -195,34 +191,29 @@ Icons can be rendered on either side of the input using `leftIcon` and `rightIco
     <Preview>
       <Input
         placeholder="Search…"
-        leftIcon={
-          <SearchIcon className="size-4" />
-        }
+        leftIcon={<Search className="size-4" aria-hidden="true" />}
       />
     </Preview>
   </Tab>
 
   <Tab value="Usage">
     ```tsx
-    <Input
-      placeholder="Search…"
-      leftIcon={<SearchIcon className="size-4" />}
-    />
+    import { Search } from "lucide-react";
+
+    <Input placeholder="Search…" leftIcon={<Search className="size-4" aria-hidden />} />
     ```
   </Tab>
 
   <Tab value="Code">
     ```tsx
     import { Input } from "@/components/ui/input";
-    import { SearchIcon } from "lucide-react";
+    import { Search } from "lucide-react";
 
     export default function LeftIconExample() {
       return (
         <Input
           placeholder="Search…"
-          leftIcon={
-            <SearchIcon className="size-4" />
-          }
+          leftIcon={<Search className="size-4" aria-hidden="true" />}
         />
       );
     }
@@ -241,26 +232,25 @@ Often used for password reveal/hide toggles, loading states, or inline validatio
         type="password"
         label="Password"
         placeholder="••••••••"
-        rightIcon={
-          <Eye className="h-4 w-4" />
-        }
+        rightIcon={<Eye className="size-4 text-muted-foreground" aria-hidden="true" />}
       />
     </Preview>
   </Tab>
 
   <Tab value="Usage">
     ```tsx
+    import { Eye } from "lucide-react";
+
     <Input
       type="password"
       label="Password"
       placeholder="••••••••"
-      rightIcon={<Eye className="h-4 w-4 text-muted-foreground" />}
+      rightIcon={<Eye className="size-4 text-muted-foreground" aria-hidden />}
     />
     ```
   </Tab>
 
-
- <Tab value="Code">
+  <Tab value="Code">
     ```tsx
     "use client";
 
@@ -268,7 +258,7 @@ Often used for password reveal/hide toggles, loading states, or inline validatio
     import { Input } from "@/components/ui/input";
     import { Eye, EyeOff } from "lucide-react";
 
-    export function PasswordInput() {
+    export default function PasswordInput() {
       const [visible, setVisible] = React.useState(false);
 
       return (
@@ -279,27 +269,21 @@ Often used for password reveal/hide toggles, loading states, or inline validatio
           rightIcon={
             <button
               type="button"
-              onClick={() => setVisible(v => !v)}
+              onClick={() => setVisible((v) => !v)}
               className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground"
               aria-label={visible ? "Hide password" : "Show password"}
             >
-              {visible ? (
-                <EyeOff className="h-4 w-4" />
-              ) : (
-                <Eye className="h-4 w-4" />
-              )}
+              {visible ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
             </button>
           }
         />
       );
     }
-
-    export default PasswordInput;
     ```
   </Tab>
 </Tabs>
 
-Icons are wrapped with `pointer-events-none` inside the field container so they don’t interfere with focus or selection, while interactive controls (like the password toggle above) are rendered with proper semantics.
+Static icons should be decorative (`aria-hidden`). For interactive controls (like the password toggle), render a semantic element (button/link) so keyboard + screen readers work correctly.
 
 ---
 
@@ -355,58 +339,35 @@ Use the `size` prop to adapt the Input to different densities.
 
 ### Props
 
-| Prop        | Type                                    | Default | Description                                      |
-| ----------- | --------------------------------------- | ------- | ------------------------------------------------ |
-| `label`     | `string`                               | —       | Accessible label displayed above the input       |
-| `helperText`| `string`                               | —       | Optional helper text shown below the field       |
-| `error`     | `string`                               | —       | Validation error message                         |
-| `leftIcon`  | `React.ReactNode`                      | —       | Icon rendered inside the field, on the left      |
-| `rightIcon` | `React.ReactNode`                      | —       | Icon rendered inside the field, on the right     |
-| `size`      | `"sm" \| "md" \| "lg"`                 | `"md"`  | Controls input height and padding                |
-| `className` | `string`                               | —       | Additional Tailwind classes                      |
-| `...props`  | `React.InputHTMLAttributes<HTMLInputElement>` | — | Native input props (type, placeholder, etc.)     |
+| Prop        | Type                                     | Default | Description                                  |
+| ----------- | ---------------------------------------- | ------- | -------------------------------------------- |
+| `label`     | `string`                                 | —       | Accessible label displayed above the input   |
+| `helperText`| `string`                                 | —       | Optional helper text shown below the field   |
+| `error`     | `string`                                 | —       | Validation error message                     |
+| `leftIcon`  | `React.ReactNode`                        | —       | Icon rendered inside the field, on the left  |
+| `rightIcon` | `React.ReactNode`                        | —       | Icon/control rendered inside the field, right|
+| `size`      | `"sm" \| "md" \| "lg"`                  | `"md"`  | Controls input height and padding            |
+| `className` | `string`                                 | —       | Additional Tailwind classes                  |
 
-### TypeScript types
+The Input also accepts native input props (type, placeholder, autoComplete, etc.).
+
+---
+
+## TypeScript types
+
+These types define the public API of the Input component.
 
 ```ts
+export type InputSize = "sm" | "md" | "lg";
+
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
-  /**
-   * Accessible label displayed above the input.
-   * If omitted, ensure the field is still labeled
-   * via an external <label> or aria-label.
-   */
   label?: string;
-
-  /**
-   * Optional helper text rendered below the field.
-   * Use this for hints or non-critical guidance.
-   */
   helperText?: string;
-
-  /**
-   * Validation error message rendered below the field.
-   * When provided, the input is marked as invalid and
-   * the error message is linked via aria-describedby.
-   */
   error?: string;
-
-  /**
-   * Icon rendered inline on the left side of the field.
-   * Use for search icons, prefixes, or field context.
-   */
   leftIcon?: React.ReactNode;
-
-  /**
-   * Icon or control rendered inline on the right side of the field.
-   * Use for password toggles, clear buttons, or status indicators.
-   */
   rightIcon?: React.ReactNode;
-
-  /**
-   * Visual density of the field.
-   */
-  size?: "sm" | "md" | "lg";
+  size?: InputSize;
 }
 ```
 
@@ -416,7 +377,7 @@ export interface InputProps
 
 - Uses `aria-invalid` when `error` is present.
 - Automatically wires `aria-describedby` to helper/error text when available.
-- Icons are visually inline but ignored by screen readers when static.
+- Static icons should be decorative (`aria-hidden`).
 - Always pair `Input` with a visible label in forms for best accessibility.
 - Preserve focus rings and keyboard navigation (Tab, Shift+Tab).
 
@@ -427,29 +388,28 @@ export interface InputProps
 - Use clear, concise labels (1–3 words when possible).
 - Prefer placeholder text as an example, not the only label.
 - Keep helper text short; move complex explanations to adjacent content.
-- Align inputs to an 8px grid using the provided spacing scale.
 - Use icons with `className="size-4"` to stay consistent with the design system.
 
 ---
 
 ## Related guides
 
-<Cards>
-  <Card
-    title="Forms"
-    description="How to use Input with React Hook Form + Zod."
-    href="/docs/ui/forms"
-  />
-  <Card
+<LinkCards>
+  <LinkCard
     title="Button"
-    description="Actions that pair with input fields."
+    description="Primary actions that pair with input fields."
     href="/docs/ui/button"
   />
-  <Card
+  <LinkCard
     title="Typography"
-    description="How labels and helper text stay on the type scale."
+    description="Labels and helper text aligned to the type scale."
     href="/docs/design-system/typography"
   />
-</Cards>
+  <LinkCard
+    title="Colors"
+    description="Semantic tokens for borders, rings, and states."
+    href="/docs/design-system/colors#semantic-tokens"
+  />
+</LinkCards>
 
 </DocsPageShell>

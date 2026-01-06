@@ -4,6 +4,7 @@ description: Feedback surface for status messages, validation results, and syste
 ---
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
+import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
 
 <DocsPageShell>
 
@@ -149,12 +150,12 @@ Use variants to reflect the semantic meaning of the message.
 
 ### Available variants
 
-| Variant            | Purpose                                |
-| ------------------ | -------------------------------------- |
-| default / info     | Neutral information                    |
-| success            | Confirmation / positive feedback       |
-| warning            | Risk / attention required              |
-| destructive        | Error / critical message               |
+| Variant            | Purpose                          |
+| ------------------ | -------------------------------- |
+| default / info     | Neutral information              |
+| success            | Confirmation / positive feedback |
+| warning            | Risk / attention required        |
+| destructive        | Error / critical message         |
 
 ---
 
@@ -236,11 +237,11 @@ Ideal for icons (Lucide, Heroicons, or custom SVG).
 
 ### Props
 
-| Prop      | Type                                                         | Default     | Description                       |
-| --------- | ------------------------------------------------------------ | ----------- | --------------------------------- |
-| variant   | `"default" | "info" | "success" | "warning" | "destructive"` | `"default"` | Visual semantics                  |
-| ariaLive  | `"off" | "polite" | "assertive"`                             | `"polite"`  | Screen reader priority            |
-| className | `string`                                                     | —           | Tailwind override                 |
+| Prop      | Type                                                           | Default     | Description            |
+| --------- | -------------------------------------------------------------- | ----------- | ---------------------- |
+| `variant` | `"default" \| "info" \| "success" \| "warning" \| "destructive"` | `"default"` | Visual semantics       |
+| `ariaLive`| `"off" \| "polite" \| "assertive"`                            | `"polite"`  | Screen reader priority |
+| `className` | `string`                                                     | —           | Tailwind override      |
 
 The Alert components extend standard HTML props:
 
@@ -250,12 +251,29 @@ React.HTMLAttributes<HTMLDivElement>
 
 ---
 
+## TypeScript types
+
+These types define the public API of the Alert component.
+
+```ts
+export type AlertVariant =
+  | "default"
+  | "info"
+  | "success"
+  | "warning"
+  | "destructive";
+
+export type AlertAriaLive = "off" | "polite" | "assertive";
+```
+
+---
+
 ## Accessibility
 
 - Uses `role="alert"` by default for status messages.
 - Use `ariaLive="polite"` for non-blocking updates.
 - Use `ariaLive="assertive"` for critical errors.
-- Avoid placing multiple assertive alerts in the same view.
+- Avoid placing multiple `assertive` alerts in the same view.
 
 ---
 
@@ -265,5 +283,22 @@ React.HTMLAttributes<HTMLDivElement>
 - Prefer `success` only after a user action completes.
 - Prefer `warning` when the user can still proceed.
 - Use `destructive` for errors that block completion.
+
+---
+
+## Related guides
+
+<LinkCards>
+  <LinkCard
+    title="Colors"
+    description="Semantic tokens for borders, surfaces, and state colors."
+    href="/docs/design-system/colors#semantic-tokens"
+  />
+  <LinkCard
+    title="Typography"
+    description="Alert title/description rhythm and hierarchy."
+    href="/docs/design-system/typography"
+  />
+</LinkCards>
 
 </DocsPageShell>

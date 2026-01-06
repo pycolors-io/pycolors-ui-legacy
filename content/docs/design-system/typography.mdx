@@ -4,6 +4,7 @@ description: Typography scale, text roles, and visual hierarchy for PyColors UI.
 ---
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
+import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
 
 <DocsPageShell>
 
@@ -15,13 +16,17 @@ Typography underpins the entire system — headings, body, metadata, UI componen
 
 ## Font family
 
-PyColors UI uses a neutral, system-friendly sans-serif stack:
+PyColors UI uses a neutral, system-friendly sans-serif stack.
 
-```ts
-fontFamily: {
-  sans: ["system-ui", "ui-sans-serif", "sans-serif"],
-}
-```
+<Tabs items={["Code"]}>
+  <Tab value="Code">
+    ```ts
+    fontFamily: {
+      sans: ["system-ui", "ui-sans-serif", "sans-serif"],
+    }
+    ```
+  </Tab>
+</Tabs>
 
 You can later replace this with a custom font using `next/font` (Inter, Geist, or your future PyColors Brand Font).
 
@@ -29,48 +34,43 @@ You can later replace this with a custom font using `next/font` (Inter, Geist, o
 
 ## Heading hierarchy
 
-Headings follow Tailwind’s natural scale.
-This ensures readability, consistency, and a smooth visual hierarchy.
+Headings follow Tailwind’s natural scale. This ensures readability, consistency, and a smooth visual hierarchy.
 
-<Preview>
-  <div className="space-y-4">
-    <h1 className="text-4xl font-bold tracking-tight">
-      Heading 1 — Page title
-    </h1>
-    <h2 className="text-3xl font-semibold tracking-tight">
-      Heading 2 — Section title
-    </h2>
-    <h3 className="text-2xl font-semibold tracking-tight">
-      Heading 3 — Subsection
-    </h3>
-    <h4 className="text-xl font-medium tracking-tight">
-      Heading 4 — Minor heading
-    </h4>
-    <h5 className="text-lg font-medium">
-      Heading 5
-    </h5>
-    <h6 className="text-base font-medium uppercase text-muted-foreground">
-      Heading 6 — Label
-    </h6>
-  </div>
-</Preview>
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="space-y-4">
+        <h1 className="text-4xl font-bold tracking-tight">Heading 1 — Page title</h1>
+        <h2 className="text-3xl font-semibold tracking-tight">Heading 2 — Section title</h2>
+        <h3 className="text-2xl font-semibold tracking-tight">Heading 3 — Subsection</h3>
+        <h4 className="text-xl font-medium tracking-tight">Heading 4 — Minor heading</h4>
+        <h5 className="text-lg font-medium">Heading 5</h5>
+        <h6 className="text-base font-medium uppercase text-muted-foreground">
+          Heading 6 — Label
+        </h6>
+      </div>
+    </Preview>
+  </Tab>
 
-```tsx
-export function HeadingHierarchy() {
-  return (
-    <div className="space-y-4">
-      <h1 className="text-4xl font-bold tracking-tight">Heading 1</h1>
-      <h2 className="text-3xl font-semibold tracking-tight">Heading 2</h2>
-      <h3 className="text-2xl font-semibold tracking-tight">Heading 3</h3>
-      <h4 className="text-xl font-medium tracking-tight">Heading 4</h4>
-      <h5 className="text-lg font-medium">Heading 5</h5>
-      <h6 className="text-base font-medium uppercase text-muted-foreground">
-        Heading 6
-      </h6>
-    </div>
-  );
-}
-```
+  <Tab value="Code">
+    ```tsx
+    export function HeadingHierarchy() {
+      return (
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold tracking-tight">Heading 1</h1>
+          <h2 className="text-3xl font-semibold tracking-tight">Heading 2</h2>
+          <h3 className="text-2xl font-semibold tracking-tight">Heading 3</h3>
+          <h4 className="text-xl font-medium tracking-tight">Heading 4</h4>
+          <h5 className="text-lg font-medium">Heading 5</h5>
+          <h6 className="text-base font-medium uppercase text-muted-foreground">
+            Heading 6
+          </h6>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ---
 
@@ -82,43 +82,49 @@ Body text follows a simple progression:
 - `text-sm` → secondary content, descriptions
 - `text-xs` → subtle metadata, helper text
 
-<Preview>
-  <div className="space-y-3 max-w-prose">
-    <div className="text-base">
-      Standard body text for content, documentation, and product pages. Balanced
-      line height and optimal readability.
-    </div>
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="space-y-3 max-w-prose">
+        <div className="text-base">
+          Standard body text for content, documentation, and product pages. Balanced line
+          height and optimal readability.
+        </div>
 
-    <div className="text-sm text-muted-foreground">
-      Muted text for secondary information, descriptions, form hints, timestamps.
-    </div>
+        <div className="text-sm text-muted-foreground">
+          Muted text for secondary information, descriptions, form hints, timestamps.
+        </div>
 
-    <div className="text-xs text-muted-foreground uppercase tracking-wide">
-      Extra-small label text for structural metadata or subtle UI labels.
-    </div>
-  </div>
-</Preview>
+        <div className="text-xs text-muted-foreground uppercase tracking-wide">
+          Extra-small label text for structural metadata or subtle UI labels.
+        </div>
+      </div>
+    </Preview>
+  </Tab>
 
-```tsx
-export function BodyTextExample() {
-  return (
-    <div className="space-y-3 max-w-prose">
-      <p className="text-base">
-        Standard body text for content, documentation, and product pages.
-        Balanced line height and optimal readability.
-      </p>
+  <Tab value="Code">
+    ```tsx
+    export function BodyTextExample() {
+      return (
+        <div className="space-y-3 max-w-prose">
+          <p className="text-base">
+            Standard body text for content, documentation, and product pages. Balanced
+            line height and optimal readability.
+          </p>
 
-      <p className="text-sm text-muted-foreground">
-        Muted text for secondary information, descriptions, form hints, timestamps.
-      </p>
+          <p className="text-sm text-muted-foreground">
+            Muted text for secondary information, descriptions, form hints, timestamps.
+          </p>
 
-      <p className="text-xs text-muted-foreground uppercase tracking-wide">
-        Extra-small label text for structural metadata or subtle UI labels.
-      </p>
-    </div>
-  );
-}
-```
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">
+            Extra-small label text for structural metadata or subtle UI labels.
+          </p>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ---
 
@@ -126,117 +132,119 @@ export function BodyTextExample() {
 
 Semantic roles ensure color, emphasis, and accessibility are consistent across the system.
 
-<Preview>
-  <div className="space-y-2">
-    <div className="text-foreground">
-      <code>text-foreground</code> — main body text.
-    </div>
-    <div className="text-muted-foreground">
-      <code>text-muted-foreground</code> — subdued text.
-    </div>
-    <div className="text-accent-foreground">
-      <code>text-accent-foreground</code> — accents/highlights.
-    </div>
-    <div className="text-destructive">
-      <code>text-destructive</code> — destructive/danger.
-    </div>
-  </div>
-</Preview>
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="space-y-2">
+        <div className="text-foreground">
+          <code>text-foreground</code> — main body text.
+        </div>
+        <div className="text-muted-foreground">
+          <code>text-muted-foreground</code> — subdued text.
+        </div>
+        <div className="text-accent-foreground">
+          <code>text-accent-foreground</code> — accents/highlights.
+        </div>
+        <div className="text-destructive">
+          <code>text-destructive</code> — destructive/danger.
+        </div>
+      </div>
+    </Preview>
+  </Tab>
 
-```tsx
-export function TextRolesExample() {
-  return (
-    <div className="space-y-2">
-      <p className="text-foreground">
-        <code>text-foreground</code> — main body text.
-      </p>
-      <p className="text-muted-foreground">
-        <code>text-muted-foreground</code> — subdued text.
-      </p>
-      <p className="text-accent-foreground">
-        <code>text-accent-foreground</code> — accents/highlights.
-      </p>
-      <p className="text-destructive">
-        <code>text-destructive</code> — destructive/danger.
-      </p>
-    </div>
-  );
-}
-```
+  <Tab value="Code">
+    ```tsx
+    export function TextRolesExample() {
+      return (
+        <div className="space-y-2">
+          <p className="text-foreground">
+            <code>text-foreground</code> — main body text.
+          </p>
+          <p className="text-muted-foreground">
+            <code>text-muted-foreground</code> — subdued text.
+          </p>
+          <p className="text-accent-foreground">
+            <code>text-accent-foreground</code> — accents/highlights.
+          </p>
+          <p className="text-destructive">
+            <code>text-destructive</code> — destructive/danger.
+          </p>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ---
 
-## Content example (article-like layout)
+## Content example
 
-A realistic composition mixing headings + paragraphs + metadata.
+A realistic composition mixing headings, paragraphs, and metadata.
 
-<Preview>
-  <article className="space-y-4 max-w-prose">
-    <h2 className="text-3xl font-semibold tracking-tight">
-      Typography demonstration
-    </h2>
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <article className="space-y-4 max-w-prose">
+        <h2 className="text-3xl font-semibold tracking-tight">Typography demonstration</h2>
 
-    <div className="text-base">
-      PyColors UI defines a unified typography system to ensure clarity, hierarchy,
-      and strong visual structure across all products.
-    </div>
+        <div className="text-base">
+          PyColors UI defines a unified typography system to ensure clarity, hierarchy, and
+          strong visual structure across all products.
+        </div>
 
-    <h3 className="text-xl font-semibold tracking-tight">
-      Subheading
-    </h3>
+        <h3 className="text-xl font-semibold tracking-tight">Subheading</h3>
 
-    <div className="text-base">
-      Components rely on the same text roles and typographic scale, ensuring
-      coherence from dashboards to marketing pages.
-    </div>
+        <div className="text-base">
+          Components rely on the same text roles and typographic scale, ensuring coherence
+          from dashboards to marketing pages.
+        </div>
 
-    <ul className="list-disc pl-6 space-y-1">
-      <li>Clear hierarchy</li>
-      <li>Accessible contrast</li>
-      <li>Consistent spacing</li>
-    </ul>
+        <ul className="list-disc pl-6 space-y-1">
+          <li>Clear hierarchy</li>
+          <li>Accessible contrast</li>
+          <li>Consistent spacing</li>
+        </ul>
 
-    <div className="text-sm text-muted-foreground">
-      Metadata: last updated 2 days ago.
-    </div>
-  </article>
-</Preview>
+        <div className="text-sm text-muted-foreground">Metadata: last updated 2 days ago.</div>
+      </article>
+    </Preview>
+  </Tab>
 
-```tsx
-export function ArticleExample() {
-  return (
-    <article className="space-y-4 max-w-prose">
-      <h2 className="text-3xl font-semibold tracking-tight">
-        Typography demonstration
-      </h2>
+  <Tab value="Code">
+    ```tsx
+    export function ArticleExample() {
+      return (
+        <article className="space-y-4 max-w-prose">
+          <h2 className="text-3xl font-semibold tracking-tight">
+            Typography demonstration
+          </h2>
 
-      <p className="text-base">
-        PyColors UI defines a unified typography system to ensure clarity,
-        hierarchy, and strong visual structure across all products.
-      </p>
+          <p className="text-base">
+            PyColors UI defines a unified typography system to ensure clarity, hierarchy,
+            and strong visual structure across all products.
+          </p>
 
-      <h3 className="text-xl font-semibold tracking-tight">
-        Subheading
-      </h3>
+          <h3 className="text-xl font-semibold tracking-tight">Subheading</h3>
 
-      <p className="text-base">
-        Components rely on the same text roles and typographic scale, ensuring
-        coherence from dashboards to marketing pages.
-      </p>
+          <p className="text-base">
+            Components rely on the same text roles and typographic scale, ensuring coherence
+            from dashboards to marketing pages.
+          </p>
 
-      <ul className="list-disc pl-6 space-y-1">
-        <li>Clear hierarchy</li>
-        <li>Accessible contrast</li>
-        <li>Consistent spacing</li>
-      </ul>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Clear hierarchy</li>
+            <li>Accessible contrast</li>
+            <li>Consistent spacing</li>
+          </ul>
 
-      <p className="text-sm text-muted-foreground">
-        Metadata: last updated 2 days ago.
-      </p>
-    </article>
-  );
-}
-```
+          <p className="text-sm text-muted-foreground">Metadata: last updated 2 days ago.</p>
+        </article>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ---
 
@@ -244,47 +252,49 @@ export function ArticleExample() {
 
 Tailwind’s weight scale applies:
 
-| Weight | Utility         | Usage                    |
-|--------|-----------------|--------------------------|
-| 400    | `font-normal`   | Body text                |
-| 500    | `font-medium`   | UI labels, small titles  |
-| 600    | `font-semibold` | Strong headings          |
-| 700    | `font-bold`     | H1, emphasis             |
-
----
-
-## Shadows (optional)
-
-PyColors UI defines light shadows for subtle elevation:
-
-| Token        | Usage                  |
-|--------------|------------------------|
-| `shadow-xs`  | Buttons                |
-| `shadow-sm`  | Cards                  |
-| `shadow-md`  | Popovers, dropdowns    |
-| `shadow-lg`  | Modals                 |
+| Weight | Utility         | Usage                   |
+| ------ | --------------- | ----------------------- |
+| 400    | `font-normal`   | Body text               |
+| 500    | `font-medium`   | UI labels, small titles |
+| 600    | `font-semibold` | Strong headings         |
+| 700    | `font-bold`     | H1, emphasis            |
 
 ---
 
 ## Guidelines
 
-- Keep headings short and scannable
-- Use muted text for secondary or descriptive content
-- Maintain consistent spacing between sections
-- Prefer semantic text roles over raw color utilities
-- Limit the number of type scales on one screen
+- Keep headings short and scannable.
+- Use muted text for secondary or descriptive content.
+- Maintain consistent spacing between sections.
+- Prefer semantic text roles over raw color utilities.
+- Limit the number of type scales on one screen.
 
 ---
 
 ## Related guides
 
-- Colors
-- Radius
-- Button
-- Components
-- Theming
-- Layout
-- Forms (RHF/Zod)
-- Patterns
+<LinkCards>
+  <LinkCard
+    title="Colors"
+    description="Semantic color roles for text (foreground, muted-foreground, destructive)."
+    href="/docs/design-system/colors#semantic-tokens"
+  />
+  <LinkCard
+    title="Radius"
+    description="Corner radius scale used by surfaces and components."
+    href="/docs/design-system/tokens/radius"
+  />
+  <LinkCard
+    title="Button"
+    description="Button labels and hierarchy in interactive UI."
+    href="/docs/ui/button"
+  />
+  <LinkCard
+    title="Input"
+    description="Labels, helper text, and validation copy for forms."
+    href="/docs/ui/input"
+  />
+
+</LinkCards>
 
 </DocsPageShell>

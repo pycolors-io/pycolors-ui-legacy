@@ -5,127 +5,142 @@ description: Shadow tokens used in PyColors UI. Provides a single, consistent dr
 ---
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
+import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
 
 <DocsPageShell>
 
-PyColors UI keeps elevation **subtle and purposeful**. A single drop-shadow scale covers every surface, from compact buttons to floating panels, making depth predictable across light and dark themes.
+PyColors UI keeps elevation **subtle and purposeful**.
+A single drop-shadow scale covers every surface — from compact buttons to floating panels — making depth predictable across light and dark themes.
 
 ---
 
 ## Token scale
 
-| Token        | Utility      | Intent                                   |
-|--------------|--------------|------------------------------------------|
-| `shadow-xs`  | `shadow-xs`  | Micro lift for buttons, pills, inputs    |
-| `shadow-sm`  | `shadow-sm`  | Default cards, dropdown triggers         |
-| `shadow-md`  | `shadow-md`  | Popovers, dropdown content, menus        |
-| `shadow-lg`  | `shadow-lg`  | Modals, floating panels, command palettes|
+| Token        | Utility      | Intent                                    |
+|--------------|--------------|-------------------------------------------|
+| `shadow-xs`  | `shadow-xs`  | Micro lift for buttons, pills, inputs     |
+| `shadow-sm`  | `shadow-sm`  | Default cards, dropdown triggers          |
+| `shadow-md`  | `shadow-md`  | Popovers, dropdown content, menus         |
+| `shadow-lg`  | `shadow-lg`  | Modals, floating panels, command palettes |
 
-Each step increases spread + blur by ~4px, keeping gradients soft and avoiding harsh halos. Use `shadow-none` for flat/secondary elements.
+Each step increases spread + blur by ~4px, keeping gradients soft and avoiding harsh halos.
+Use `shadow-none` for flat or secondary elements.
 
 ---
 
-## Preview
+## Visual examples
 
-<Preview>
-  <div className="grid gap-4 sm:grid-cols-2">
-    <div className="rounded-lg border bg-card p-4 shadow-xs">
-      <div className="text-xs font-medium text-muted-foreground mb-1">
-        shadow-xs
-      </div>
-      <div className="text-sm leading-relaxed">
-        Buttons, segmented controls, small interaction chips.
-      </div>
-    </div>
-    <div className="rounded-lg border bg-card p-4 shadow-sm">
-      <div className="text-xs font-medium text-muted-foreground mb-1">
-        shadow-sm
-      </div>
-      <div className="text-sm leading-relaxed">
-        Default cards or navigation tiles.
-      </div>
-    </div>
-    <div className="rounded-lg border bg-card p-4 shadow-md">
-      <div className="text-xs font-medium text-muted-foreground mb-1">
-        shadow-md
-      </div>
-      <div className="text-sm leading-relaxed">
-        Popovers, dropdown menus, tooltips with tone.
-      </div>
-    </div>
-    <div className="rounded-lg border bg-card p-4 shadow-lg">
-      <div className="text-xs font-medium text-muted-foreground mb-1">
-        shadow-lg
-      </div>
-      <div className="text-sm leading-relaxed">
-        Modals and floating panels that should feel layered.
-      </div>
-    </div>
-  </div>
-</Preview>
-
-```tsx
-export function ShadowsPreview() {
-  const tokens = [
-    { className: 'shadow-xs', label: 'Buttons, segmented controls' },
-    { className: 'shadow-sm', label: 'Default cards, nav tiles' },
-    { className: 'shadow-md', label: 'Popovers, dropdowns' },
-    { className: 'shadow-lg', label: 'Modals, floating panes' },
-  ];
-
-  return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      {tokens.map((token) => (
-        <div
-          key={token.className}
-          className={`rounded-lg border bg-card p-4 ${token.className}`}
-        >
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="rounded-lg border bg-card p-4 shadow-xs">
           <div className="text-xs font-medium text-muted-foreground mb-1">
-            {token.className}
+            shadow-xs
           </div>
-          <div className="text-sm leading-relaxed">{token.label}</div>
+          <div className="text-sm leading-relaxed">
+            Buttons, segmented controls, small interaction chips.
+          </div>
         </div>
-      ))}
-    </div>
-  );
-}
-```
+
+        <div className="rounded-lg border bg-card p-4 shadow-sm">
+          <div className="text-xs font-medium text-muted-foreground mb-1">
+            shadow-sm
+          </div>
+          <div className="text-sm leading-relaxed">
+            Default cards or navigation tiles.
+          </div>
+        </div>
+
+        <div className="rounded-lg border bg-card p-4 shadow-md">
+          <div className="text-xs font-medium text-muted-foreground mb-1">
+            shadow-md
+          </div>
+          <div className="text-sm leading-relaxed">
+            Popovers, dropdown menus, focused surfaces.
+          </div>
+        </div>
+
+        <div className="rounded-lg border bg-card p-4 shadow-lg">
+          <div className="text-xs font-medium text-muted-foreground mb-1">
+            shadow-lg
+          </div>
+          <div className="text-sm leading-relaxed">
+            Modals and floating panels that should feel layered.
+          </div>
+        </div>
+      </div>
+    </Preview>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    export function ShadowsPreview() {
+      const tokens = [
+        { className: "shadow-xs", label: "Buttons, segmented controls" },
+        { className: "shadow-sm", label: "Default cards, nav tiles" },
+        { className: "shadow-md", label: "Popovers, dropdowns" },
+        { className: "shadow-lg", label: "Modals, floating panels" },
+      ];
+
+      return (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {tokens.map((token) => (
+            <div
+              key={token.className}
+              className={`rounded-lg border bg-card p-4 ${token.className}`}
+            >
+              <div className="text-xs font-medium text-muted-foreground mb-1">
+                {token.className}
+              </div>
+              <div className="text-sm leading-relaxed">
+                {token.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ---
 
 ## Usage guidelines
 
-- Pair shadows with the matching radius token (`rounded-md` + `shadow-sm`) so the silhouette feels cohesive.
-- Use only one shadow per surface; stack depth with overlays or borders instead of multiple layers.
-- Increase elevation only when interaction requires focus—cards in dense grids usually stay on `shadow-xs` or `shadow-none`.
-- In dark mode, default tokens already lower alpha to prevent “glow”; avoid overriding colors unless absolutely needed.
-- Reset to `shadow-none` for inline elements or surfaces nested inside another elevated container.
+- Pair shadows with the matching radius token
+  (`rounded-md` + `shadow-sm`, `rounded-lg` + `shadow-md`) for cohesive silhouettes.
+- Use **only one shadow per surface**. Stack depth with overlays, spacing, or borders — not multiple shadows.
+- Increase elevation only when interaction requires focus.
+- In dark mode, default tokens already reduce alpha to avoid glow — avoid overriding shadow colors.
+- Reset to `shadow-none` for inline or nested surfaces inside another elevated container.
 
 ---
 
 ## Related guides
 
-<Cards>
-  <Card
-    title="Radius tokens"
-    description="Corner radii used across surfaces."
+<LinkCards>
+  <LinkCard
+    title="Radius"
+    description="Corner radius tokens paired with elevation."
     href="/docs/design-system/tokens/radius"
   />
-  <Card
-    title="Color roles"
-    description="Semantic OKLCH palette & usage."
+  <LinkCard
+    title="Colors"
+    description="Semantic color roles used by elevated surfaces."
     href="/docs/design-system/colors"
   />
-  <Card
-    title="Layout"
-    description="Spacing, containers, and page shells."
-    href="/docs/design-system/layout"
+  <LinkCard
+    title="Card"
+    description="Primary surface component consuming shadow tokens."
+    href="/docs/ui/card"
   />
-  <Card
-    title="Components"
-    description="UI primitives powered by the tokens."
+  <LinkCard
+    title="Button"
+    description="Subtle elevation for interactive controls."
     href="/docs/ui/button"
   />
-</Cards>
+</LinkCards>
 
 </DocsPageShell>

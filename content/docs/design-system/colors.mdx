@@ -4,61 +4,71 @@ description: Color tokens, roles, and theming architecture used in PyColors UI.
 ---
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
+import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
 
 <DocsPageShell>
 
 PyColors UI uses an **OKLCH-based color system** to guarantee high contrast, predictable light/dark behavior, and fully themeable experiences.
 
-All core colors are defined as CSS variables in
-`app/global.css`
-and mapped to Tailwind’s internal design tokens via:
+All core colors are defined as CSS variables in `app/global.css` and mapped to Tailwind’s internal design tokens via the inline theme mapping.
 
-```css
-@theme inline {
-  --color-background: var(--background);
-  --color-primary: var(--primary);
-  --color-muted-foreground: var(--muted-foreground);
-  /* ... */
-}
-```
+---
+
+## Theme mapping
+
+<Tabs items={["Code"]}>
+  <Tab value="Code">
+    ```css
+    @theme inline {
+      --color-background: var(--background);
+      --color-primary: var(--primary);
+      --color-muted-foreground: var(--muted-foreground);
+      /* ... */
+    }
+    ```
+  </Tab>
+</Tabs>
 
 This ensures the entire UI stays consistent while allowing full customization through CSS variables alone.
 
+---
+
 ## Semantic tokens
 
-PyColors UI exposes high-level tokens instead of raw colors.
-These tokens represent roles, not visual values.
+PyColors UI exposes **high-level tokens** instead of raw colors. These tokens represent **roles**, not visual values.
 
 ### Surfaces
 
-- --background / --foreground
-- --card / --card-foreground
-- --popover / --popover-foreground
-- --sidebar, --sidebar-*
+- `--background` / `--foreground`
+- `--card` / `--card-foreground`
+- `--popover` / `--popover-foreground`
+- `--sidebar`, `--sidebar-*`
 
-### Brand / Component backgrounds
+### Brand / component backgrounds
 
-- --primary / --primary-foreground
-- --secondary / --secondary-foreground
-- --accent / --accent-foreground
-- --muted / --muted-foreground
+- `--primary` / `--primary-foreground`
+- `--secondary` / `--secondary-foreground`
+- `--accent` / `--accent-foreground`
+- `--muted` / `--muted-foreground`
 
 ### States
 
-- --destructive
-- --destructive-foreground
+- `--destructive`
+- `--destructive-foreground`
 
-### Borders / Input / Ring
+### Borders / input / ring
 
-- --border
-- --input
-- --ring
+- `--border`
+- `--input`
+- `--ring`
 
 ### Charts
 
-- --chart-1 … --chart-5
+- `--chart-1` … `--chart-5`
 
 These roles ensure each component uses the correct meaning, regardless of theme or brand adaptation.
+
+---
 
 ## Light & Dark mode
 
@@ -84,11 +94,7 @@ Light mode is applied on `:root`, dark mode on `.dark`.
 }
 ```
 
-The theme ensures:
-
-- correct contrast ratios
-- warm/cool adjustments between modes
-- consistent elevation and layering
+---
 
 ## Visual palette preview
 
@@ -97,7 +103,7 @@ The theme ensures:
 <Preview>
   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
 
-   {/* background */}
+    {/* background */}
     <div className="rounded-md border p-4 bg-background text-foreground">
       <div className="text-xs font-medium mb-2 text-muted-foreground">background</div>
       <div className="h-10 rounded bg-background border" />
@@ -148,51 +154,43 @@ The theme ensures:
   </div>
 </Preview>
 
+---
+
 ## Usage in components
 
-Components consume semantic utilities, not raw colors:
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="rounded-lg border bg-card text-card-foreground p-4 max-w-lg">
+        <h2 className="text-sm font-medium text-muted-foreground">Example</h2>
+        <div className="mt-2 text-sm">
+          This card uses the PyColors UI semantic color tokens.
+        </div>
+      </div>
+    </Preview>
+  </Tab>
 
-```tsx
-export function ExampleCard() {
-  return (
-    <div className="rounded-lg border bg-card text-card-foreground p-4">
-      <h2 className="text-sm font-medium text-muted-foreground">Example</h2>
-      <p className="mt-2 text-sm">
-        This card uses the PyColors UI semantic color tokens.
-      </p>
-    </div>
-  );
-}
-```
-
-Advantages:
-
-- automatic dark mode
-- consistent roles
-- full theme override from global.css only
-- no inline custom colors
-
-## Brand palette
-
-PyColors UI v1 defines a neutral / cool slate brand palette with subtle saturation, optimized for calm, professional interfaces.
-
-This palette guides:
-
-- primary actions (`bg-primary`, `text-primary-foreground`)
-- accent elements (links, pills, highlights)
-- chart colors and data visualizations
-- focus rings and interactive feedback
-
-Future iterations (PyColors Brand v2) will add:
-
-- multibrand theming
-- product themes
-- tenant theming
+  <Tab value="Code">
+    ```tsx
+    export function ExampleCard() {
+      return (
+        <div className="rounded-lg border bg-card text-card-foreground p-4">
+          <h2 className="text-sm font-medium text-muted-foreground">Example</h2>
+          <div className="mt-2 text-sm">
+            This card uses the PyColors UI semantic color tokens.
+          </div>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ---
+
 ## Roles
 
-PyColors UI follows a role-based color architecture, similar to Radix Themes, Vercel UI, and Shopify Polaris.
+PyColors UI follows a role-based color architecture.
 
 | Role category | Tokens |
 |--------------|--------|
@@ -203,78 +201,60 @@ PyColors UI follows a role-based color architecture, similar to Radix Themes, Ve
 | Inputs | border, input, ring |
 | Data Viz | chart-1 → chart-5 |
 
-Every component in the system uses these roles—never raw OKLCH colors.
+---
 
 ## Variables table
 
-A quick reference to all available tokens:
-
 | Token | Purpose |
 |-------|---------|
-| --background | Base surface |
-| --foreground | Primary text |
-| --card / --card-foreground | Cards & surfaces |
-| --primary / --primary-foreground | Brand action |
-| --secondary | Secondary sections |
-| --muted | Subtle UI parts |
-| --accent | Highlights |
-| --destructive | Dangerous actions |
-| --border | Border color |
-| --input | Input fields |
-| --ring | Focus ring |
-| --sidebar-* | Sidebar theming |
-| --chart-1 → --chart-5 | Data visualization |
+| `--background` | Base surface |
+| `--foreground` | Primary text |
+| `--card` / `--card-foreground` | Cards & surfaces |
+| `--primary` / `--primary-foreground` | Brand action |
+| `--secondary` | Secondary sections |
+| `--muted` | Subtle UI parts |
+| `--accent` | Highlights |
+| `--destructive` | Dangerous actions |
+| `--border` | Border color |
+| `--input` | Input fields |
+| `--ring` | Focus ring |
+| `--sidebar-*` | Sidebar theming |
+| `--chart-1` → `--chart-5` | Data visualization |
 
-This table grows automatically as the DS evolves.
+---
 
 ## Guidelines
 
-- Always use semantic color utilities (`bg-card`, `text-muted-foreground`)
-- Never use raw OKLCH values in components
-- Modify design tokens only in `global.css` → all components update automatically
-- Keep contrast ratios above WCAG AA for text and interactive states
-- Prefer role-based choices (“this is a surface”, “this is a state”) over purely aesthetic choices
+- Always use semantic color utilities (`bg-card`, `text-muted-foreground`).
+- Never use raw OKLCH values in components.
+- Modify tokens only in `global.css` → all components update automatically.
+- Keep contrast ratios above WCAG AA for text and interactive states.
 
 ---
 
 ## Related guides
 
-<Cards>
-  <Card
+<LinkCards>
+  <LinkCard
     title="Typography"
     description="Font scale, weights, and semantic text roles."
     href="/docs/design-system/typography"
   />
-  <Card
-    title="Radius tokens"
+  <LinkCard
+    title="Radius"
     description="Corner geometry for surfaces and components."
     href="/docs/design-system/tokens/radius"
   />
-  <Card
-    title="Buttons"
-    description="Interactive elements using PyColors tokens."
+  <LinkCard
+    title="Shadows"
+    description="Elevation scale for surfaces (xs → lg)."
+    href="/docs/design-system/tokens/shadows"
+  />
+  <LinkCard
+    title="Button"
+    description="Interactive elements using semantic tokens."
     href="/docs/ui/button"
   />
-  <Card
-    title="Theming"
-    description="Customize palettes, accents, and brand tokens."
-    href="/docs/design-system/colors"
-  />
-  <Card
-    title="Layout"
-    description="Spacing, containers, and responsive grid guidelines."
-    href="/docs/design-system/layout"
-  />
-  <Card
-    title="Forms"
-    description="RHF + Zod patterns for PyColors UI."
-    href="/docs/ui/forms"
-  />
-  <Card
-    title="Patterns"
-    description="Reusable flows built on components and tokens."
-    href="/docs/patterns"
-  />
-</Cards>
+</LinkCards>
 
 </DocsPageShell>

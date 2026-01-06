@@ -1,36 +1,74 @@
 ---
 title: Getting Started
-description: Learn how to set up PyColors UI and start building modern interfaces using our design system, components, and documentation toolkit.
+description: Learn how to set up PyColors UI and start building modern interfaces using a documentation-first design system.
 ---
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
+import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
 
 <DocsPageShell>
 
-PyColors UI is a modern, extensible design system built with **Next.js**, **Fumadocs**, **Tailwind CSS**, and **shadcn/ui**.
-It provides a clean foundation for building SaaS applications, dashboards, documentation sites, and marketing pages — all using accessible, composable, and reusable components.
+PyColors UI is a modern, extensible **design system and UI toolkit** built with **Next.js**, **Tailwind CSS**, **shadcn/ui**, and **Fumadocs**.
 
-This guide introduces the structure of the project and explains how to get started locally.
+It provides a clean, scalable foundation for building **SaaS applications, dashboards, documentation sites, and marketing pages** — with a strong focus on accessibility, consistency, and long-term maintainability.
+
+If you want to understand the philosophy behind these choices, read
+**[Why PyColors UI?](/docs/why-pycolors-ui)**.
+
+---
+
+## Quick start
+
+<Tabs items={["New Next.js app", "Existing project"]}>
+  <Tab value="New Next.js app">
+    ```bash
+    npx create-next-app@latest my-app --ts --tailwind --app
+    cd my-app
+    ```
+  </Tab>
+
+  <Tab value="Existing project">
+    ```bash
+    npm install tailwindcss class-variance-authority
+    ```
+  </Tab>
+</Tabs>
 
 ---
 
 ## What is PyColors UI?
 
-PyColors UI is composed of three core ideas:
+PyColors UI is built around three core principles:
 
-1. **A unified design language**
-   Color tokens, spacing, radius, typography, and semantic variables built on Tailwind CSS and OKLCH color space.
-
-2. **A flexible component architecture**
-   Reusable UI primitives based on shadcn/ui and Radix primitives (Button, Card, Input, Dialog, etc.).
-
-3. **A documentation-first workflow**
-   Powered by Fumadocs, every component and pattern can be documented, versioned, previewed, and shared.
+1. **Unified design language** via semantic tokens
+2. **Composable components** you fully own
+3. **Documentation-first workflow**
 
 ---
 
-## Project Structure
+## Recommended reading order
 
-The repository is intentionally simple to keep development focused:
+1. Getting Started
+2. Why PyColors UI?
+3. Design System
+4. UI Components
+5. Patterns
+
+---
+
+## Next steps
+
+<LinkCards>
+  <LinkCard
+    title="Why PyColors UI?"
+    description="Philosophy, trade-offs, and design principles."
+    href="/docs/why-pycolors-ui"
+  />
+  <LinkCard
+    title="UI components"
+    description="Reusable primitives built on shadcn/ui."
+    href="/docs/ui"
+  />
+</LinkCards>
 
 </DocsPageShell>

@@ -4,6 +4,7 @@ description: Small status and metadata component used to label, categorize, or h
 ---
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
+import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
 
 <DocsPageShell>
 
@@ -107,18 +108,6 @@ Use variants to convey meaning or status.
     ```
   </Tab>
 </Tabs>
-
-### Available variants
-
-| Variant      | Description                 |
-| ------------ | --------------------------- |
-| default      | Primary or neutral label    |
-| secondary    | Secondary emphasis          |
-| muted        | Low-contrast metadata       |
-| outline      | Neutral bordered label      |
-| success      | Positive or completed state |
-| warning      | Caution or attention        |
-| destructive | Error or critical state     |
 
 ---
 
@@ -318,27 +307,27 @@ export type BadgeSize =
 
 ## Related guides
 
-<Cards>
-  <Card
+<LinkCards>
+  <LinkCard
     title="Colors"
-    description="Understand semantic color tokens."
+    description="Semantic color roles used by badges."
     href="/docs/design-system/colors"
   />
-  <Card
+  <LinkCard
     title="Typography"
-    description="Badge text sizing and weight."
+    description="Text scale and weight for compact UI labels."
     href="/docs/design-system/typography"
   />
-  <Card
+  <LinkCard
     title="Button"
     description="Use buttons for actions, not badges."
     href="/docs/ui/button"
   />
-  <Card
+  <LinkCard
     title="Patterns"
-    description="Status labels and real-world flows."
+    description="Status labels and real-world usage patterns."
     href="/docs/patterns"
   />
-</Cards>
+</LinkCards>
 
 </DocsPageShell>
