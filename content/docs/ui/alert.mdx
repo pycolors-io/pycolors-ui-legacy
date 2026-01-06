@@ -1,0 +1,269 @@
+---
+title: Alert
+description: Feedback surface for status messages, validation results, and system notices in PyColors UI.
+---
+
+import { DocsPageShell } from "@/components/shells/docs-page-shell";
+
+<DocsPageShell>
+
+The **Alert** component is a feedback surface used to communicate important information:
+success confirmations, warnings, and errors.
+
+It uses semantic tokens (`bg-card`, `border-border`, `text-muted-foreground`) so it stays consistent across themes.
+
+---
+
+## Import
+
+```tsx
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  AlertIndicator,
+  AlertContent,
+} from "@/components/ui/alert";
+```
+
+---
+
+## Usage
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <Alert className="max-w-xl">
+        <AlertTitle>Heads up</AlertTitle>
+        <AlertDescription>
+          <p>This is a neutral message. Use it for non-critical information.</p>
+        </AlertDescription>
+      </Alert>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Alert>
+      <AlertTitle>Heads up</AlertTitle>
+      <AlertDescription>
+        <p>This is a neutral message.</p>
+      </AlertDescription>
+    </Alert>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+
+    export default function Demo() {
+      return (
+        <Alert>
+          <AlertTitle>Heads up</AlertTitle>
+          <AlertDescription>
+            <p>This is a neutral message.</p>
+          </AlertDescription>
+        </Alert>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Variants
+
+Use variants to reflect the semantic meaning of the message.
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="grid gap-4 max-w-xl">
+        <Alert variant="info">
+          <AlertTitle>Info</AlertTitle>
+          <AlertDescription>
+            <p>Useful context for the user.</p>
+          </AlertDescription>
+        </Alert>
+
+        <Alert variant="success">
+          <AlertTitle>Success</AlertTitle>
+          <AlertDescription>
+            <p>Your changes were saved.</p>
+          </AlertDescription>
+        </Alert>
+
+        <Alert variant="warning">
+          <AlertTitle>Warning</AlertTitle>
+          <AlertDescription>
+            <p>Something may need attention.</p>
+          </AlertDescription>
+        </Alert>
+
+        <Alert variant="destructive" ariaLive="assertive">
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>
+            <p>We couldn’t save your changes. Try again.</p>
+          </AlertDescription>
+        </Alert>
+      </div>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Alert variant="success">...</Alert>
+    <Alert variant="warning">...</Alert>
+    <Alert variant="destructive" ariaLive="assertive">...</Alert>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+
+    export default function AlertVariants() {
+      return (
+        <div className="grid gap-4">
+          <Alert variant="success">
+            <AlertTitle>Success</AlertTitle>
+            <AlertDescription>
+              <p>Your changes were saved.</p>
+            </AlertDescription>
+          </Alert>
+
+          <Alert variant="destructive" ariaLive="assertive">
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+              <p>We couldn’t save your changes.</p>
+            </AlertDescription>
+          </Alert>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Available variants
+
+| Variant            | Purpose                                |
+| ------------------ | -------------------------------------- |
+| default / info     | Neutral information                    |
+| success            | Confirmation / positive feedback       |
+| warning            | Risk / attention required              |
+| destructive        | Error / critical message               |
+
+---
+
+## With indicator (icon)
+
+Use `AlertIndicator` + `AlertContent` to align content.
+Ideal for icons (Lucide, Heroicons, or custom SVG).
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <Alert variant="warning" className="max-w-xl">
+        <AlertIndicator aria-hidden>
+          <svg
+            className="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M12 9v4" />
+            <path d="M12 17h.01" />
+            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+          </svg>
+        </AlertIndicator>
+
+        <AlertContent>
+          <AlertTitle>Check your input</AlertTitle>
+          <AlertDescription>
+            <p>Some fields might be incomplete. Review before submitting.</p>
+          </AlertDescription>
+        </AlertContent>
+      </Alert>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Alert variant="warning">
+      <AlertIndicator aria-hidden>...</AlertIndicator>
+      <AlertContent>
+        <AlertTitle>...</AlertTitle>
+        <AlertDescription><p>...</p></AlertDescription>
+      </AlertContent>
+    </Alert>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import {
+      Alert,
+      AlertIndicator,
+      AlertContent,
+      AlertTitle,
+      AlertDescription,
+    } from "@/components/ui/alert";
+
+    export default function AlertWithIcon() {
+      return (
+        <Alert variant="warning">
+          <AlertIndicator aria-hidden>{/* icon */}</AlertIndicator>
+          <AlertContent>
+            <AlertTitle>Check your input</AlertTitle>
+            <AlertDescription>
+              <p>Review before submitting.</p>
+            </AlertDescription>
+          </AlertContent>
+        </Alert>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## API
+
+### Props
+
+| Prop      | Type                                                         | Default     | Description                       |
+| --------- | ------------------------------------------------------------ | ----------- | --------------------------------- |
+| variant   | `"default" | "info" | "success" | "warning" | "destructive"` | `"default"` | Visual semantics                  |
+| ariaLive  | `"off" | "polite" | "assertive"`                             | `"polite"`  | Screen reader priority            |
+| className | `string`                                                     | —           | Tailwind override                 |
+
+The Alert components extend standard HTML props:
+
+```ts
+React.HTMLAttributes<HTMLDivElement>
+```
+
+---
+
+## Accessibility
+
+- Uses `role="alert"` by default for status messages.
+- Use `ariaLive="polite"` for non-blocking updates.
+- Use `ariaLive="assertive"` for critical errors.
+- Avoid placing multiple assertive alerts in the same view.
+
+---
+
+## Design guidelines
+
+- Keep alerts short and actionable.
+- Prefer `success` only after a user action completes.
+- Prefer `warning` when the user can still proceed.
+- Use `destructive` for errors that block completion.
+
+</DocsPageShell>

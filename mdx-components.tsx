@@ -4,6 +4,13 @@ import { CodeBlock, Pre } from 'fumadocs-ui/components/codeblock';
 import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
 
 // Custom components available in .mdx
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  AlertIndicator,
+  AlertContent,
+} from '@/components/ui/alert';
 import { Preview } from '@/components/docs/preview';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -31,6 +38,11 @@ export function getMDXComponents(
       </CodeBlock>
     ),
 
+    Alert,
+    AlertTitle,
+    AlertDescription,
+    AlertIndicator,
+    AlertContent,
     Preview,
     Badge,
     Button,
