@@ -216,6 +216,11 @@
   z-index: 30;
 }
 
+a[data-active="true"] {
+  background-color: var(--fd-primary);
+  color: var(--fd-primary-foreground);
+}
+
 /* Mobile Sidebar */
 [data-sidebar][data-side="left"] {
   background-color: var(--background);
@@ -226,3 +231,6 @@
   @apply bg-background/80 border-x border-border/50;
 }
 
+.footer {
+  background-color: var(--fd-nav-height);
+}

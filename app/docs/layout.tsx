@@ -14,19 +14,20 @@ export default function Layout({
   const docsLinks = getDocsNavLinks();
 
   return (
-    <DocsLayout
-      tree={source.pageTree}
-      {...baseOptions()}
-      nav={{
-        enabled: true,
-        component: <SiteHeader docsLinks={docsLinks} />,
-      }}
-      sidebar={{
-        collapsible: false,
-      }}
-    >
-      {children}
+    <div className="min-h-screen flex flex-col">
+      <DocsLayout
+        tree={source.pageTree}
+        {...baseOptions()}
+        nav={{
+          enabled: true,
+          component: <SiteHeader docsLinks={docsLinks} />,
+        }}
+        sidebar={{ collapsible: false }}
+      >
+        {children}
+      </DocsLayout>
+
       <Footer />
-    </DocsLayout>
+    </div>
   );
 }
