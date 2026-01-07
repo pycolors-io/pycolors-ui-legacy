@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Container } from '@/components/container';
 
 const links = [
-  { label: 'Docs', href: '/docs' },
-  { label: 'Components', href: '/components' },
+  { label: 'Documentation', href: '/docs' },
+  { label: 'Components', href: '/docs/ui' },
   { label: 'Changelog', href: '/changelog' },
   { label: 'Roadmap', href: '/roadmap' },
   {
@@ -17,7 +17,6 @@ const links = [
     external: true,
   },
   { label: 'License', href: '/license' },
-  { label: 'Privacy', href: '/privacy' },
 ];
 
 export function Footer() {

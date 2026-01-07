@@ -4,6 +4,26 @@
 @import "tw-animate-css";
 
 /* ==========================================================================
+   Fonts — local assets (public/)
+   ========================================================================== */
+
+@font-face {
+  font-family: "Graphit";
+  src: url("/fonts/Graphit-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/fonts/Mona-Sans.var.woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+/* ==========================================================================
    Dark Mode Variant (Tailwind v4)
    ========================================================================== */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -131,6 +151,16 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+
+  /* ==========================================================================
+     Typography — PyColors convention
+     (Inter is applied globally via next/font in app/layout.tsx)
+     ========================================================================== */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-brand: "Graphit", var(--font-sans);
+  --font-mono: "Mona Sans", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 /* ==========================================================================
@@ -198,6 +228,29 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* ==========================================================================
+   Typography utilities
+   ========================================================================== */
+
+.font-brand {
+  font-family: var(--font-brand);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
 }
 
 /* ==========================================================================

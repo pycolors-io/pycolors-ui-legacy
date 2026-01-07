@@ -69,7 +69,7 @@ function SectionCard({ section }: { section: LicenseSection }) {
   return (
     <Card className="p-6 sm:p-7">
       <div className="space-y-2">
-        <h2 className="text-lg font-semibold tracking-tight">
+        <h2 className="font-brand text-lg font-semibold tracking-tight">
           {section.title}
         </h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -99,7 +99,6 @@ export default function LicensePage() {
 
       <main className="flex-1 bg-background text-foreground">
         <Container className="py-20 sm:py-20 lg:py-24">
-          {/* Header */}
           <header className="mx-auto w-full max-w-4xl text-center">
             <div className="flex justify-center">
               <Badge variant="secondary" className="gap-2">
@@ -108,7 +107,7 @@ export default function LicensePage() {
               </Badge>
             </div>
 
-            <h1 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h1 className="font-brand mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
               License
             </h1>
 

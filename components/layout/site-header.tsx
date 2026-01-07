@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { ExternalLink, Menu, X } from 'lucide-react';
 import { LargeSearchToggle } from 'fumadocs-ui/components/layout/search-toggle';
 import { ThemeToggle } from 'fumadocs-ui/components/layout/theme-toggle';
 
@@ -26,6 +26,9 @@ function matchPathname(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+const focusRing =
+  'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background';
+
 export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -34,7 +37,6 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  // Only one active: we take the most specific match (longest href)
   const activeHref = React.useMemo(() => {
     if (!pathname) return null;
 
@@ -51,7 +53,10 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
       <Container className="flex h-16 items-center gap-3">
         <Logo />
 
-        <nav className="ml-6 hidden flex-1 items-center gap-1 text-sm font-medium md:flex">
+        <nav
+          className="ml-6 hidden flex-1 items-center gap-1 text-sm font-medium md:flex"
+          aria-label="Primary navigation"
+        >
           {PRIMARY_NAV_ITEMS.map((item) => {
             const isCurrent = activeHref === item.href;
 
@@ -61,8 +66,10 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
                 href={item.href}
                 aria-current={isCurrent ? 'page' : undefined}
                 className={cn(
-                  'rounded-md px-3 py-2 text-muted-foreground transition-colors hover:text-foreground',
-                  isCurrent && 'text-foreground'
+                  'rounded-md px-3 py-2 transition-colors',
+                  'text-muted-foreground hover:text-foreground hover:bg-accent/30',
+                  isCurrent && 'bg-accent/30 text-foreground',
+                  focusRing
                 )}
               >
                 {item.label}
@@ -73,27 +80,44 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
 
         <div className="flex items-center gap-2">
           <div className="hidden items-center gap-2 sm:flex">
-            <LargeSearchToggle className="w-60" />
+            <LargeSearchToggle className={cn('w-60', focusRing)} />
             <ThemeToggle
               mode="light-dark-system"
-              className="inline-flex h-9 items-center rounded-full border border-border px-1"
+              className={cn(
+                'inline-flex h-9 items-center rounded-full border border-border px-1',
+                focusRing
+              )}
             />
           </div>
 
           <a
             href="https://github.com/pycolors-io/pycolors-ui"
             target="_blank"
-            rel="noreferrer"
-            className="hidden h-9 items-center rounded-md border border-border px-3 text-xs font-semibold transition-colors hover:bg-accent hover:text-accent-foreground md:inline-flex"
+            rel="noreferrer noopener"
+            aria-label="Open the PyColors UI repository on GitHub"
+            className={cn(
+              'hidden h-9 items-center gap-1.5 rounded-md border border-border px-3 text-xs font-semibold',
+              'transition-colors hover:bg-accent hover:text-accent-foreground md:inline-flex',
+              focusRing
+            )}
           >
             GitHub
+            <ExternalLink
+              className="h-3.5 w-3.5"
+              aria-hidden="true"
+            />
           </a>
 
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border md:hidden"
+            className={cn(
+              'inline-flex h-9 w-9 items-center justify-center rounded-md border border-border md:hidden',
+              'transition-colors hover:bg-accent/40',
+              focusRing
+            )}
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav"
             onClick={() => setIsMenuOpen((prev) => !prev)}
           >
             {isMenuOpen ? (
@@ -106,8 +130,14 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
       </Container>
 
       {isMenuOpen ? (
-        <Container className="border-t border-border bg-background/95 px-4 pb-6 pt-3 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60 md:hidden">
-          <nav className="flex flex-col gap-1">
+        <Container
+          id="mobile-nav"
+          className="border-t border-border bg-background/95 px-4 pb-6 pt-3 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60 md:hidden"
+        >
+          <nav
+            className="flex flex-col gap-1"
+            aria-label="Mobile navigation"
+          >
             {PRIMARY_NAV_ITEMS.map((item) => {
               const isCurrent = activeHref === item.href;
 
@@ -117,8 +147,10 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
                   href={item.href}
                   aria-current={isCurrent ? 'page' : undefined}
                   className={cn(
-                    'rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
-                    isCurrent && 'bg-muted text-foreground'
+                    'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                    'text-muted-foreground hover:bg-muted hover:text-foreground',
+                    isCurrent && 'bg-muted text-foreground',
+                    focusRing
                   )}
                 >
                   {item.label}
@@ -137,7 +169,11 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
                   <Link
                     key={doc.href}
                     href={doc.href}
-                    className="block rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    className={cn(
+                      'block rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors',
+                      'hover:bg-muted hover:text-foreground',
+                      focusRing
+                    )}
                   >
                     {doc.label}
                   </Link>
@@ -147,23 +183,37 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
           )}
 
           <div className="mt-4 flex flex-col gap-3">
-            <LargeSearchToggle className="w-full justify-between rounded-md border border-border px-3 py-2 text-sm font-medium" />
+            <LargeSearchToggle
+              className={cn(
+                'w-full justify-between rounded-md border border-border px-3 py-2 text-sm font-medium',
+                focusRing
+              )}
+            />
 
             <div className="flex items-center justify-between rounded-md border border-border px-3 py-2 text-sm font-medium">
               <span>Theme</span>
               <ThemeToggle
                 mode="light-dark-system"
-                className="inline-flex items-center rounded-full border border-border px-1"
+                className={cn(
+                  'inline-flex items-center rounded-full border border-border px-1',
+                  focusRing
+                )}
               />
             </div>
 
             <a
               href="https://github.com/pycolors-io/pycolors-ui"
               target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-11 items-center justify-center rounded-md border border-border text-sm font-semibold transition-colors hover:bg-accent hover:text-accent-foreground"
+              rel="noreferrer noopener"
+              aria-label="Open the PyColors UI repository on GitHub"
+              className={cn(
+                'inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border text-sm font-semibold',
+                'transition-colors hover:bg-accent hover:text-accent-foreground',
+                focusRing
+              )}
             >
               GitHub
+              <ExternalLink className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
         </Container>
