@@ -4,17 +4,18 @@ import { MarketingShell } from '@/components/shells/marketing-shell';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
+import { ExternalLink } from 'lucide-react';
 
 const highlights = [
   {
     title: 'Production-first components',
     description:
-      'Radix-based primitives with consistent variants, tokens, and docs — built to ship real products.',
+      'Radix-based primitives with consistent variants, tokens, and docs — designed to ship real products.',
   },
   {
-    title: 'Design tokens & semantics',
+    title: 'Semantic tokens & theming',
     description:
-      'A clean token system (bg-card, border-border, text-muted-foreground) to scale themes and UI density.',
+      'A clean token system (bg-card, border-border, text-muted-foreground) so themes scale without breaking UI density.',
   },
   {
     title: 'Docs that don’t waste time',
@@ -28,7 +29,7 @@ const v1Components = [
     name: 'Button',
     desc: 'Variants + sizes, asChild support, consistent tokens.',
     href: '/docs/ui/button',
-    status: 'Ready',
+    status: 'v1',
   },
   {
     name: 'Input',
@@ -61,6 +62,7 @@ const quickLinks = [
   { label: 'Components', href: '/docs/ui' },
   { label: 'Changelog', href: '/changelog' },
   { label: 'Roadmap', href: '/roadmap' },
+  { label: 'License', href: '/license' },
 ];
 
 function StatusPill({ label }: { label: string }) {
@@ -71,53 +73,70 @@ function StatusPill({ label }: { label: string }) {
   );
 }
 
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-border bg-card px-4 py-3">
+      <div className="text-xs text-muted-foreground">{label}</div>
+      <div className="mt-1 text-sm font-semibold">{value}</div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <MarketingShell>
       <div className="mx-auto w-full max-w-5xl">
-        {/* HERO */}
         <section className="relative py-10 sm:py-14 lg:py-16">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 -z-10"
-          >
-            <div className="absolute left-1/2 top-[-220px] h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-accent/25 blur-3xl" />
-            <div className="absolute left-1/2 top-[120px] h-[260px] w-[520px] -translate-x-1/2 rounded-full bg-muted/25 blur-3xl" />
-          </div>
-
           <div className="flex flex-col items-center gap-6 text-center">
             <div className="flex flex-wrap items-center justify-center gap-2">
               <Badge variant="secondary" className="gap-2">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                PyColors UI v1 · shipping Jan 2026
+                v1.0 · stable baseline
+              </Badge>
+
+              <Badge variant="outline" className="gap-2">
+                Docs-first
               </Badge>
 
               <a
                 href="https://github.com/pycolors-io/pycolors-ui"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Open the PyColors UI repository on GitHub"
+                className="
+                inline-flex items-center gap-1.5
+                text-xs text-muted-foreground
+                transition-colors
+                hover:text-foreground
+                focus:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-ring
+                focus-visible:ring-offset-2
+                focus-visible:ring-offset-background
+                rounded-sm
+              "
               >
-                GitHub ↗
+                GitHub
+                <ExternalLink
+                  className="h-3.5 w-3.5"
+                  aria-hidden="true"
+                />
               </a>
             </div>
-
             <div className="space-y-4">
-              <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-                Ship modern React interfaces
+              <h1 className="font-brand text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+                A minimal UI system
                 <span className="block font-bold">
-                  with a minimal UI kit.
+                  built to ship SaaS.
                 </span>
               </h1>
 
               <p className="mx-auto max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
                 PyColors UI is a documentation-first design system
-                built on semantic tokens, Radix primitives, and
-                production-ready patterns — so you can move faster
-                without losing consistency.
+                built on semantic tokens and Radix primitives — so you
+                move faster without losing consistency.
               </p>
             </div>
-
             <div className="flex flex-wrap justify-center gap-3">
               <Button asChild>
                 <Link href="/docs">Explore the docs</Link>
@@ -126,14 +145,28 @@ export default function HomePage() {
               <Button asChild variant="outline">
                 <Link href="/docs/ui">Browse components</Link>
               </Button>
-            </div>
 
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 pt-2">
+              <Button asChild variant="secondary">
+                <Link href="/changelog">What’s new</Link>
+              </Button>
+            </div>
+            <div className="mt-2 grid w-full max-w-3xl gap-3 sm:grid-cols-3">
+              <Stat label="Current version" value="v1.0.0" />
+              <Stat
+                label="Docs format"
+                value="Preview → Usage → Code → Props"
+              />
+              <Stat
+                label="Release cadence"
+                value="Iterative, release-based"
+              />
+            </div>
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 pt-1">
               {quickLinks.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-xs text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
                 >
                   {l.label}
                 </Link>
@@ -141,8 +174,19 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
         <section className="py-8 sm:py-10">
+          <div className="mb-4 flex items-end justify-between gap-3">
+            <div className="space-y-1">
+              <h2 className="font-brand text-lg font-semibold tracking-tight">
+                Highlights
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                A focused baseline for building product UIs with
+                predictable patterns.
+              </p>
+            </div>
+          </div>
+
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {highlights.map((item) => (
               <Card key={item.title} className="p-5">
@@ -158,16 +202,160 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+        <section className="py-8 sm:py-10">
+          <div className="mb-4 flex flex-col gap-2 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
+            <div className="space-y-1">
+              <h2 className="font-brand text-lg font-semibold tracking-tight">
+                Who it’s for
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Built for people shipping real interfaces: SaaS apps,
+                dashboards, and marketing sites.
+              </p>
+            </div>
+
+            <Button
+              asChild
+              variant="secondary"
+              className="sm:self-start"
+            >
+              <Link href="/docs">Get started</Link>
+            </Button>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            <Card className="p-5">
+              <div className="space-y-2">
+                <div className="text-sm font-medium">
+                  SaaS products
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Dashboards, settings, billing pages, CRUD flows —
+                  with predictable UI density and tokens.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-5">
+              <div className="space-y-2">
+                <div className="text-sm font-medium">
+                  Data-heavy dashboards
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Layout primitives that scale to tables, filters,
+                  pagination, empty states, and system feedback.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-5">
+              <div className="space-y-2">
+                <div className="text-sm font-medium">
+                  Marketing sites
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Landing pages that stay consistent with your app UI
+                  — typography, spacing, and components.
+                </p>
+              </div>
+            </Card>
+          </div>
+        </section>
+        <section className="py-8 sm:py-10">
+          <Card className="p-6 sm:p-7">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+              <div className="space-y-2">
+                <h2 className="font-brand text-lg font-semibold tracking-tight">
+                  Quick start
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  Install, run docs locally, and start copying
+                  components.
+                </p>
+
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <span className="inline-flex items-center rounded-full border border-border bg-muted/30 px-2.5 py-1 text-xs text-muted-foreground">
+                    Node 18+
+                  </span>
+                  <span className="inline-flex items-center rounded-full border border-border bg-muted/30 px-2.5 py-1 text-xs text-muted-foreground">
+                    PNPM recommended
+                  </span>
+                </div>
+              </div>
+
+              <div className="w-full sm:max-w-md">
+                <div className="overflow-hidden rounded-xl border border-border bg-card">
+                  <div className="flex items-center justify-between border-b border-border bg-muted/30 px-4 py-2">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="inline-flex h-2 w-2 rounded-full bg-rose-500"
+                        aria-hidden="true"
+                      />
+                      <span
+                        className="inline-flex h-2 w-2 rounded-full bg-amber-500"
+                        aria-hidden="true"
+                      />
+                      <span
+                        className="inline-flex h-2 w-2 rounded-full bg-emerald-500"
+                        aria-hidden="true"
+                      />
+                      <span className="ml-2 text-xs text-muted-foreground">
+                        terminal
+                      </span>
+                    </div>
+
+                    <a
+                      href="https://github.com/pycolors-io/pycolors-ui"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label="Open the PyColors UI repository on GitHub"
+                      className="
+                      inline-flex items-center gap-1.5
+                      text-xs text-muted-foreground
+                      transition-colors
+                      hover:text-foreground
+                      focus:outline-none
+                      focus-visible:ring-2
+                      focus-visible:ring-ring
+                      focus-visible:ring-offset-2
+                      focus-visible:ring-offset-background
+                      rounded-sm
+                    "
+                    >
+                      GitHub
+                      <ExternalLink
+                        className="h-3.5 w-3.5"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  </div>
+
+                  <div className="px-4 py-4">
+                    <pre className="font-mono overflow-x-auto text-xs leading-relaxed text-foreground">{`pnpm install
+pnpm dev`}</pre>
+
+                    <div className="mt-3 rounded-lg border border-border bg-muted/20 px-3 py-2 text-xs text-muted-foreground">
+                      Then open{' '}
+                      <span className="font-mono text-foreground">
+                        http://localhost:3000
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
 
         <section className="py-8 sm:py-10">
           <div className="mb-4 flex flex-col gap-2 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="space-y-1">
-              <div className="text-sm font-medium">
+              <h2 className="font-brand text-lg font-semibold tracking-tight">
                 What’s in v1.0
-              </div>
+              </h2>
               <p className="text-sm text-muted-foreground">
                 The core primitives to build real SaaS UIs —
-                documented, consistent, and extensible.
+                documented, consistent, extensible.
               </p>
             </div>
 
@@ -185,7 +373,7 @@ export default function HomePage() {
               <Link
                 key={c.name}
                 href={c.href}
-                className="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent/30"
+                className="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="space-y-1">
@@ -213,7 +401,7 @@ export default function HomePage() {
             Next up: Modal / Tabs / Toast / Dropdown — tracked in{' '}
             <Link
               href="/roadmap"
-              className="underline underline-offset-4 hover:text-foreground"
+              className="underline underline-offset-4 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
             >
               Roadmap
             </Link>
@@ -225,22 +413,30 @@ export default function HomePage() {
           <Card className="p-6 sm:p-7">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
-                <div className="text-sm font-medium">Start here</div>
+                <h2 className="font-brand text-lg font-semibold tracking-tight">
+                  Start here
+                </h2>
                 <p className="text-sm text-muted-foreground">
-                  Get productive in minutes: install, theme, and ship
-                  your first screen with PyColors UI.
+                  Build your first screen with PyColors UI — then
+                  follow the changelog for updates.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3">
                 <Button asChild>
-                  <Link href="/docs">Quick start</Link>
+                  <Link href="/docs">Read the docs</Link>
                 </Button>
+
                 <Button asChild variant="outline">
+                  <Link href="/license">License</Link>
+                </Button>
+
+                <Button asChild variant="secondary">
                   <a
                     href="https://github.com/pycolors-io/pycolors-ui"
                     target="_blank"
                     rel="noreferrer noopener"
+                    aria-label="Open the PyColors UI repository on GitHub"
                   >
                     View repository
                   </a>
@@ -248,6 +444,10 @@ export default function HomePage() {
               </div>
             </div>
           </Card>
+
+          <p className="mt-4 text-center text-xs text-muted-foreground">
+            Building in public. Shipping consistently.
+          </p>
         </section>
       </div>
     </MarketingShell>
