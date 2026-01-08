@@ -9,17 +9,19 @@ export type PrimaryNavItem = {
 };
 
 export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
-  { label: 'Docs', href: '/docs' },
-  { label: 'Components', href: '/docs/ui/button' },
-  { label: 'Templates', href: '/templates' },
+  { label: 'Documentation', href: '/docs' },
+  { label: 'Components', href: '/docs/ui' },
 ];
 
-const layoutLinks: LinkItemType[] = PRIMARY_NAV_ITEMS.map((item) => ({
-  type: 'main',
-  text: item.label,
-  url: item.href,
-  active: 'nested-url',
-}));
+// Optional: if you reactivate the nav fumadocs one day
+export const layoutLinks: LinkItemType[] = PRIMARY_NAV_ITEMS.map(
+  (item) => ({
+    type: 'main',
+    text: item.label,
+    url: item.href,
+    active: 'nested-url',
+  })
+);
 
 export function baseOptions(): BaseLayoutProps {
   return {
@@ -29,6 +31,6 @@ export function baseOptions(): BaseLayoutProps {
     },
     searchToggle: { enabled: false },
     themeSwitch: { enabled: false },
-    links: layoutLinks,
+    // links: layoutLinks,
   };
 }
