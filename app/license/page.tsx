@@ -12,6 +12,27 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Footer } from '@/components/footer';
 import { SiteHeader } from '@/components/layout/site-header';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'License',
+  description:
+    'Licensing information for PyColors UI. Understand what is free, what may become commercial, and how PyColors UI can be used in real-world projects.',
+  openGraph: {
+    title: 'License · PyColors UI',
+    description:
+      'Licensing details for PyColors UI. Clear usage rules for free components and future commercial offerings.',
+    url: '/license',
+    images: ['/seo/og-main.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'License · PyColors UI',
+    description:
+      'Licensing details for PyColors UI. Free core components with a clear path to future commercial offerings.',
+    images: ['/seo/twitter-main.png'],
+  },
+};
 
 type LicenseSection = {
   title: string;
