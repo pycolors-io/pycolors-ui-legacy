@@ -49,7 +49,7 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
   }, [pathname]);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border/70 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="fixed top-0 z-50 w-full border-b border-border/70 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60">
       <Container className="flex h-16 items-center gap-3">
         <Logo />
 
@@ -132,7 +132,7 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
       {isMenuOpen ? (
         <Container
           id="mobile-nav"
-          className="border-t border-border bg-background/95 px-4 pb-6 pt-3 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60 md:hidden"
+          className="border-t border-border bg-background/95 px-4 pb-6 pt-3 shadow-lg backdrop-blur supports-backdrop-filter:bg-background/60 md:hidden"
         >
           <nav
             className="flex flex-col gap-1"
