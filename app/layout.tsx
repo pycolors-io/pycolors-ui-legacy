@@ -5,12 +5,11 @@ import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
 import { inter } from './fonts';
 
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? 'GTM-NQNBGFLM';
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://pycolors.io'),
-  title: {
-    default: 'PyColors UI',
-    template: '%s · PyColors UI',
-  },
+  title: { default: 'PyColors UI', template: '%s · PyColors UI' },
   description:
     'A documentation-first UI system built on semantic tokens and Radix primitives — designed to ship real SaaS interfaces.',
   applicationName: 'PyColors UI',
@@ -53,7 +52,6 @@ export default function Layout({
       className={inter.className}
     >
       <head>
-        {/* Google Tag Manager */}
         <Script
           id="gtm"
           strategy="afterInteractive"
@@ -63,13 +61,22 @@ export default function Layout({
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-NQNBGFLM');
+              })(window,document,'script','dataLayer','${GTM_ID}');
             `,
           }}
         />
       </head>
 
       <body className="flex min-h-screen flex-col">
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
         <RootProvider>{children}</RootProvider>
       </body>
     </html>
