@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { APP_MAJOR, formatVersion } from '@/lib/version';
 
 const focusRing =
   'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background';
@@ -33,31 +34,31 @@ const v1Components = [
     name: 'Button',
     desc: 'Variants + sizes, asChild support, consistent tokens.',
     href: '/docs/ui/button',
-    status: 'v1',
+    status: 'v1.0',
   },
   {
     name: 'Input',
     desc: 'Label, helper, error, icons — form-ready patterns.',
     href: '/docs/ui/input',
-    status: 'v1',
+    status: 'v1.0',
   },
   {
     name: 'Badge',
     desc: 'Default / secondary / outline — lightweight labeling.',
     href: '/docs/ui/badge',
-    status: 'v1',
+    status: 'v1.0',
   },
   {
     name: 'Card',
     desc: 'Header / content / footer — layout foundation for UIs.',
     href: '/docs/ui/card',
-    status: 'v1',
+    status: 'v1.0',
   },
   {
     name: 'Alert',
     desc: 'Info / success / warning / destructive — clear feedback.',
     href: '/docs/ui/alert',
-    status: 'v1',
+    status: 'v1.0',
   },
 ];
 
@@ -103,7 +104,7 @@ export default function HomePage() {
             <div className="flex flex-wrap items-center justify-center gap-2">
               <Badge variant="secondary" className="gap-2">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                v1 · stable baseline
+                {APP_MAJOR} · stable baseline
               </Badge>
 
               <Badge variant="outline" className="gap-2">
@@ -156,7 +157,7 @@ export default function HomePage() {
             </div>
 
             <div className="mt-2 grid w-full max-w-3xl gap-3 sm:grid-cols-3">
-              <Stat label="Current version" value="v1.0.x" />
+              <Stat label="Current version" value={formatVersion()} />
               <Stat
                 label="Docs format"
                 value="Preview → Usage → Code → Props"
@@ -347,7 +348,7 @@ pnpm dev`}</pre>
           <div className="mb-4 flex flex-col gap-2 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="space-y-1">
               <h2 className="font-brand text-lg font-semibold tracking-tight">
-                What’s in v1
+                What’s in {APP_MAJOR}
               </h2>
               <p className="text-sm text-muted-foreground">
                 The core primitives to build real SaaS UIs —

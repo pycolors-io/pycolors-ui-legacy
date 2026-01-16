@@ -3,9 +3,12 @@ import { ExternalLink } from 'lucide-react';
 
 import { Container } from '@/components/container';
 import { cn } from '@/lib/utils';
+import { APP_VERSION } from '@/lib/version';
 
 const focusRing =
   'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background';
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 type FooterLink = {
   label: string;
@@ -22,7 +25,6 @@ const links: FooterLink[] = [
   { label: 'Roadmap', href: '/roadmap' },
   { label: 'License', href: '/license' },
   { label: 'About', href: '/about' },
-
   {
     label: 'GitHub',
     href: 'https://github.com/pycolors-io/pycolors-ui',
@@ -87,8 +89,8 @@ export function Footer() {
           </nav>
 
           <div className="text-[11px] text-muted-foreground">
-            © {new Date().getFullYear()} PyColors UI ·
-            Documentation-first UI system for SaaS · v1.0.0
+            © {CURRENT_YEAR} PyColors UI · Documentation-first UI
+            system for modern SaaS products · v{APP_VERSION}
           </div>
         </div>
       </Container>
