@@ -53,6 +53,43 @@ type ChangelogItem = {
 
 const CHANGELOG: ChangelogItem[] = [
   {
+    version: 'v1.0.1',
+    title: 'Marketing & trust baseline',
+    dateLabel: 'Fri 16 Jan 2026',
+    dateISO: '2026-01-16',
+    status: 'Stable',
+    releaseWeekLabel: 'Jan 2026 (post-release)',
+    summary:
+      'Improves marketing + trust surface: templates listing, NA-AI template page, narrative About, and navigation/accessibility polish.',
+    highlights: [
+      {
+        title: 'Templates',
+        items: [
+          'Templates index page: listing of available templates with status and positioning.',
+          'NA-AI template landing: clear value prop, stack, and “early → migration to PyColors UI planned”.',
+          'External links for distribution (Gumroad) + improved discoverability.',
+        ],
+      },
+      {
+        title: 'About page',
+        items: [
+          'New About page: motivation, design principles, and direction of PyColors UI.',
+          'Docs-first philosophy and trust positioning for early adopters.',
+        ],
+      },
+      {
+        title: 'Navigation & UI polish',
+        items: [
+          'Navigation cleanup: standardized nav data + new links (Templates/About).',
+          'Accessibility improvements: focus handling, keyboard support, ARIA refinements.',
+          'Quick start copy updated for clearer onboarding.',
+        ],
+      },
+    ],
+    cta: { label: 'View templates', href: '/templates' },
+  },
+
+  {
     version: 'v1.0.0',
     title: 'UI Core Foundation',
     dateLabel: 'Fri 9 Jan 2026',

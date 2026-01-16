@@ -87,7 +87,7 @@ const items: RoadmapItem[] = [
     title: 'Ship v1.0 — UI Core',
     description:
       'Button, Input, Badge, Card, Alert: consistent variants + sizing + docs (Preview / Usage / Code / Props).',
-    status: 'Now',
+    status: 'Shipped',
     milestone: 'Release Week',
     tags: ['Core', 'Docs'],
     href: '/docs/ui',
@@ -96,7 +96,7 @@ const items: RoadmapItem[] = [
     title: 'Docs quality pass (minimum bar)',
     description:
       'Unify Related guides, add missing Preview/Code tabs, fix footer consistency between docs & marketing, quick navigation cleanup.',
-    status: 'Now',
+    status: 'Shipped',
     milestone: 'Release Week',
     tags: ['Docs', 'DX'],
     href: '/docs',
@@ -105,35 +105,51 @@ const items: RoadmapItem[] = [
     title: 'Release hygiene',
     description:
       'Changelog page + Roadmap page + version bump + release notes format. Ensure “v1.0” looks serious.',
-    status: 'Now',
+    status: 'Shipped',
     milestone: 'Release Week',
     tags: ['Release', 'Trust'],
     href: '/changelog',
   },
   {
-    title: 'Brand baseline',
+    title: 'Marketing site baseline (pycolors.io)',
     description:
-      'Logo v1 + domain purchase. Add basic legal placeholders (terms/privacy) to increase buyer trust.',
-    status: 'Next',
-    milestone: 'Release Week',
-    tags: ['Brand', 'Legal'],
+      'Home page v2 + dedicated pages: Templates, License, About. Trust-first baseline for distribution.',
+    status: 'Shipped',
+    milestone: 'Jan 2026',
+    tags: ['Marketing', 'Trust'],
+    href: '/',
   },
   {
     title: 'Stability patch (v1.0.x)',
     description:
       'Fix edge cases, polish docs, align tokens + class naming, reduce inconsistencies discovered after release.',
-    status: 'Next',
+    status: 'Now',
     milestone: 'Jan 2026',
     tags: ['Quality', 'Consistency'],
   },
   {
-    title: 'Marketing site baseline (pycolors.io)',
+    title: 'Search & analytics baseline',
     description:
-      'Home page v2 (value prop + “What’s in v1.0”), add dedicated pages: Templates (placeholder), License, About.',
+      'Finish GA4/GTM wiring, validate key events, and set up Search Console indexing checks for faster discoverability.',
+    status: 'Now',
+    milestone: 'Jan 2026',
+    tags: ['SEO', 'Analytics', 'Trust'],
+  },
+  {
+    title: 'Brand & legal baseline',
+    description:
+      'Logo v1, domain hygiene, and lightweight legal placeholders (license, privacy, terms) to support trust and early sales.',
     status: 'Next',
     milestone: 'Jan 2026',
-    tags: ['Marketing', 'Trust'],
-    href: '/',
+    tags: ['Brand', 'Trust', 'Legal'],
+  },
+  {
+    title: 'Brand baseline',
+    description:
+      'Logo v1 + domain hygiene. Add basic legal placeholders (terms/privacy) to increase buyer trust.',
+    status: 'Next',
+    milestone: 'Jan 2026',
+    tags: ['Brand', 'Legal'],
   },
   {
     title: 'Distribution loop v1',
@@ -146,10 +162,11 @@ const items: RoadmapItem[] = [
   {
     title: 'NA-AI landing page integration',
     description:
-      'Publish NA-AI as a “Template” on PyColors site + add the demo link + license section + cross-links from docs.',
-    status: 'Later',
+      'Publish NA-AI as a Template on PyColors site + add demo/purchase links + license section + cross-links from docs.',
+    status: 'Next',
     milestone: 'Jan 2026',
     tags: ['Template', 'Sales'],
+    href: '/templates/na-ai',
   },
   {
     title: 'UI Advanced v1',
