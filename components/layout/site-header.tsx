@@ -33,6 +33,9 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  const openBtnRef = React.useRef<HTMLButtonElement>(null);
+  const closeBtnRef = React.useRef<HTMLButtonElement>(null);
+
   React.useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
@@ -47,6 +50,38 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
     matches.sort((a, b) => b.href.length - a.href.length);
     return matches[0]?.href ?? null;
   }, [pathname]);
+
+  // ESC to close
+  React.useEffect(() => {
+    if (!isMenuOpen) return;
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+        window.setTimeout(() => openBtnRef.current?.focus(), 0);
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isMenuOpen]);
+
+  // Body scroll lock + focus when opened
+  React.useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    window.setTimeout(
+      () => closeBtnRef.current?.focus({ preventScroll: true }),
+      0
+    );
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border/70 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60">
@@ -109,15 +144,21 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
           </a>
 
           <button
+            ref={openBtnRef}
             type="button"
             className={cn(
               'inline-flex h-9 w-9 items-center justify-center rounded-md border border-border md:hidden',
               'transition-colors hover:bg-accent/40',
               focusRing
             )}
-            aria-label="Toggle navigation menu"
+            aria-label={
+              isMenuOpen
+                ? 'Close navigation menu'
+                : 'Open navigation menu'
+            }
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
+            aria-haspopup="menu"
             onClick={() => setIsMenuOpen((prev) => !prev)}
           >
             {isMenuOpen ? (
@@ -134,6 +175,14 @@ export function SiteHeader({ docsLinks = [] }: SiteHeaderProps) {
           id="mobile-nav"
           className="border-t border-border bg-background/95 px-4 pb-6 pt-3 shadow-lg backdrop-blur supports-backdrop-filter:bg-background/60 md:hidden"
         >
+          <button
+            ref={closeBtnRef}
+            type="button"
+            className="sr-only"
+            aria-label="Close menu"
+            onClick={() => setIsMenuOpen(false)}
+          />
+
           <nav
             className="flex flex-col gap-1"
             aria-label="Mobile navigation"

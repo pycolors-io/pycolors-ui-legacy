@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import { ExternalLink } from 'lucide-react';
 
 import { MarketingShell } from '@/components/shells/marketing-shell';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
-import { ExternalLink } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+const focusRing =
+  'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background';
 
 const highlights = [
   {
@@ -82,6 +86,14 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
+function TrustPill({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center rounded-full border border-border bg-muted/30 px-2.5 py-1 text-xs text-muted-foreground">
+      {label}
+    </span>
+  );
+}
+
 export default function HomePage() {
   return (
     <MarketingShell>
@@ -91,7 +103,7 @@ export default function HomePage() {
             <div className="flex flex-wrap items-center justify-center gap-2">
               <Badge variant="secondary" className="gap-2">
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                v1.0 · stable baseline
+                v1 · stable baseline
               </Badge>
 
               <Badge variant="outline" className="gap-2">
@@ -103,18 +115,10 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label="Open the PyColors UI repository on GitHub"
-                className="
-                inline-flex items-center gap-1.5
-                text-xs text-muted-foreground
-                transition-colors
-                hover:text-foreground
-                focus:outline-none
-                focus-visible:ring-2
-                focus-visible:ring-ring
-                focus-visible:ring-offset-2
-                focus-visible:ring-offset-background
-                rounded-sm
-              "
+                className={cn(
+                  'inline-flex items-center gap-1.5 rounded-sm text-xs text-muted-foreground transition-colors hover:text-foreground',
+                  focusRing
+                )}
               >
                 GitHub
                 <ExternalLink
@@ -147,26 +151,27 @@ export default function HomePage() {
               </Button>
 
               <Button asChild variant="secondary">
-                <Link href="/changelog">What’s new</Link>
+                <Link href="/roadmap">View roadmap</Link>
               </Button>
             </div>
+
             <div className="mt-2 grid w-full max-w-3xl gap-3 sm:grid-cols-3">
-              <Stat label="Current version" value="v1.0.0" />
+              <Stat label="Current version" value="v1.0.x" />
               <Stat
                 label="Docs format"
                 value="Preview → Usage → Code → Props"
               />
-              <Stat
-                label="Release cadence"
-                value="Iterative, release-based"
-              />
+              <Stat label="Release cadence" value="Regular updates" />
             </div>
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 pt-1">
               {quickLinks.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-xs text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+                  className={cn(
+                    'rounded-sm text-xs text-muted-foreground transition-colors hover:text-foreground',
+                    focusRing
+                  )}
                 >
                   {l.label}
                 </Link>
@@ -269,17 +274,14 @@ export default function HomePage() {
                   Quick start
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  Install, run docs locally, and start copying
+                  Clone the repo, run docs locally, and start copying
                   components.
                 </p>
 
                 <div className="flex flex-wrap gap-2 pt-1">
-                  <span className="inline-flex items-center rounded-full border border-border bg-muted/30 px-2.5 py-1 text-xs text-muted-foreground">
-                    Node 18+
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-border bg-muted/30 px-2.5 py-1 text-xs text-muted-foreground">
-                    PNPM recommended
-                  </span>
+                  <TrustPill label="Node 18+" />
+                  <TrustPill label="PNPM recommended" />
+                  <TrustPill label="Docs-first workflow" />
                 </div>
               </div>
 
@@ -309,18 +311,10 @@ export default function HomePage() {
                       target="_blank"
                       rel="noreferrer noopener"
                       aria-label="Open the PyColors UI repository on GitHub"
-                      className="
-                      inline-flex items-center gap-1.5
-                      text-xs text-muted-foreground
-                      transition-colors
-                      hover:text-foreground
-                      focus:outline-none
-                      focus-visible:ring-2
-                      focus-visible:ring-ring
-                      focus-visible:ring-offset-2
-                      focus-visible:ring-offset-background
-                      rounded-sm
-                    "
+                      className={cn(
+                        'inline-flex items-center gap-1.5 rounded-sm text-xs text-muted-foreground transition-colors hover:text-foreground',
+                        focusRing
+                      )}
                     >
                       GitHub
                       <ExternalLink
@@ -331,7 +325,9 @@ export default function HomePage() {
                   </div>
 
                   <div className="px-4 py-4">
-                    <pre className="font-mono overflow-x-auto text-xs leading-relaxed text-foreground">{`pnpm install
+                    <pre className="font-mono overflow-x-auto text-xs leading-relaxed text-foreground">{`git clone https://github.com/pycolors-io/pycolors-ui.git
+cd pycolors-ui
+pnpm install
 pnpm dev`}</pre>
 
                     <div className="mt-3 rounded-lg border border-border bg-muted/20 px-3 py-2 text-xs text-muted-foreground">
@@ -351,7 +347,7 @@ pnpm dev`}</pre>
           <div className="mb-4 flex flex-col gap-2 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="space-y-1">
               <h2 className="font-brand text-lg font-semibold tracking-tight">
-                What’s in v1.0
+                What’s in v1
               </h2>
               <p className="text-sm text-muted-foreground">
                 The core primitives to build real SaaS UIs —
@@ -373,7 +369,10 @@ pnpm dev`}</pre>
               <Link
                 key={c.name}
                 href={c.href}
-                className="group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className={cn(
+                  'group rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent/30',
+                  focusRing
+                )}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="space-y-1">
@@ -390,7 +389,7 @@ pnpm dev`}</pre>
                   </div>
                 </div>
 
-                <div className="mt-3 text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                <div className="mt-3 text-xs text-muted-foreground transition-colors group-hover:text-foreground">
                   Open docs →
                 </div>
               </Link>
@@ -401,7 +400,10 @@ pnpm dev`}</pre>
             Next up: Modal / Tabs / Toast / Dropdown — tracked in{' '}
             <Link
               href="/roadmap"
-              className="underline underline-offset-4 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+              className={cn(
+                'rounded-sm underline underline-offset-4 hover:text-foreground',
+                focusRing
+              )}
             >
               Roadmap
             </Link>
@@ -420,6 +422,12 @@ pnpm dev`}</pre>
                   Build your first screen with PyColors UI — then
                   follow the changelog for updates.
                 </p>
+
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <TrustPill label="Public roadmap" />
+                  <TrustPill label="Changelog updates" />
+                  <TrustPill label="Open-source repo" />
+                </div>
               </div>
 
               <div className="flex flex-wrap gap-3">

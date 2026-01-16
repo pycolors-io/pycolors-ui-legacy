@@ -11,9 +11,13 @@ export type PrimaryNavItem = {
 export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   { label: 'Documentation', href: '/docs' },
   { label: 'Components', href: '/docs/ui' },
+  { label: 'Templates', href: '/templates' },
+  { label: 'Roadmap', href: '/roadmap' },
 ];
 
-// Optional: if you reactivate the nav fumadocs one day
+/**
+ * Optional: if we later re-enable Fumadocs built-in navigation.
+ */
 export const layoutLinks: LinkItemType[] = PRIMARY_NAV_ITEMS.map(
   (item) => ({
     type: 'main',
