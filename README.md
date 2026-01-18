@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/pycolors-io/pycolors-ui/releases">
-    <img src="https://img.shields.io/badge/version-v1.0.0-blue?style=flat-square" alt="Version" />
+    <img src="https://img.shields.io/badge/version-v1.0.1-blue?style=flat-square" alt="Version" />
   </a>
   <a href="https://pycolors.io/roadmap">
     <img src="https://img.shields.io/badge/roadmap-public-success?style=flat-square" alt="Roadmap" />
