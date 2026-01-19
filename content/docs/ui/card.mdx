@@ -6,13 +6,12 @@ description: Surface component used for grouping content, actions, and metadata 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
 import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
 
-
 <DocsPageShell>
 
-The **Card** component is a foundational layout surface used to group related content:
+The **Card** component is a foundational surface used to group related content:
 dashboards, pricing blocks, settings panels, and list items.
 
-It’s built with semantic tokens (`bg-card`, `border-border`, `text-card-foreground`) so it stays consistent across themes.
+It is built on semantic tokens (`bg-card`, `border-border`, `text-card-foreground`) so it stays consistent across themes, and it supports **surface variants** + an optional **interactive** state for hover/focus feedback.
 
 ---
 
@@ -46,9 +45,9 @@ import {
             Update personal details, security preferences, and integrations.
           </div>
         </CardContent>
-        <CardFooter className="justify-end">
+        <CardFooter className="justify-end gap-2">
           <Button variant="secondary">Cancel</Button>
-          <Button className="ml-2">Save</Button>
+          <Button>Save</Button>
         </CardFooter>
       </Card>
     </Preview>
@@ -61,7 +60,9 @@ import {
         <CardTitle>Account</CardTitle>
         <CardDescription>Manage your profile settings.</CardDescription>
       </CardHeader>
+
       <CardContent>...</CardContent>
+
       <CardFooter>...</CardFooter>
     </Card>
     ```
@@ -86,14 +87,16 @@ import {
             <CardTitle>Account</CardTitle>
             <CardDescription>Manage your profile settings.</CardDescription>
           </CardHeader>
+
           <CardContent>
             <div className="text-sm text-muted-foreground">
               Update personal details, security preferences, and integrations.
             </div>
           </CardContent>
-          <CardFooter className="justify-end">
+
+          <CardFooter className="justify-end gap-2">
             <Button variant="secondary">Cancel</Button>
-            <Button className="ml-2">Save</Button>
+            <Button>Save</Button>
           </CardFooter>
         </Card>
       );
@@ -106,7 +109,7 @@ import {
 
 ## Variants
 
-Cards support small semantic variants for different surfaces.
+Cards support semantic surface variants. Use them to adjust contrast without changing layout.
 
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
@@ -122,14 +125,14 @@ Cards support small semantic variants for different surfaces.
         <Card variant="muted">
           <CardHeader>
             <CardTitle>Muted</CardTitle>
-            <CardDescription>Subtle background.</CardDescription>
+            <CardDescription>Subtle background for secondary panels.</CardDescription>
           </CardHeader>
         </Card>
 
-        <Card variant="transparent">
+        <Card variant="transparent" className="border-dashed">
           <CardHeader>
             <CardTitle>Transparent</CardTitle>
-            <CardDescription>No background.</CardDescription>
+            <CardDescription>No background (keeps layout only).</CardDescription>
           </CardHeader>
         </Card>
       </div>
@@ -148,7 +151,7 @@ Cards support small semantic variants for different surfaces.
     ```tsx
     import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-    export default function CardVariantsExample() {
+    export function CardVariantsExample() {
       return (
         <div className="grid gap-4 sm:grid-cols-3">
           <Card>
@@ -180,33 +183,43 @@ Cards support small semantic variants for different surfaces.
 
 ### Available variants
 
-| Variant       | Description                     |
-| ------------- | ------------------------------- |
-| default       | Main surface (`bg-card`)        |
-| muted         | Softer surface (`bg-muted/40`)  |
-| transparent   | No background                   |
+| Variant | Description |
+|---|---|
+| `default` | Main surface (`bg-card`) |
+| `muted` | Secondary surface (`bg-muted/40`) |
+| `transparent` | No background (`bg-transparent`) |
 
 ---
 
 ## Interactive cards
 
-Use `interactive` for hover feedback on list items and grids.
+Set `interactive` to add hover + focus styles. This is useful for **selectable list rows**, **dashboard tiles**, and **grid cards**.
 
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
     <Preview>
-      <Card interactive className="max-w-sm cursor-pointer">
-        <CardHeader>
-          <CardTitle>Clickable card</CardTitle>
-          <CardDescription>Hover to see the accent surface.</CardDescription>
-        </CardHeader>
-      </Card>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Card interactive>
+          <CardHeader>
+            <CardTitle>Clickable card</CardTitle>
+            <CardDescription>Hover / focus to see feedback.</CardDescription>
+          </CardHeader>
+        </Card>
+
+        <Card interactive variant="muted">
+          <CardHeader>
+            <CardTitle>Interactive + muted</CardTitle>
+            <CardDescription>Great for secondary selection items.</CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
     </Preview>
   </Tab>
 
   <Tab value="Usage">
     ```tsx
-    <Card interactive className="cursor-pointer">...</Card>
+    <Card interactive>...</Card>
+    <Card interactive variant="muted">...</Card>
     ```
   </Tab>
 
@@ -214,25 +227,36 @@ Use `interactive` for hover feedback on list items and grids.
     ```tsx
     import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-    export default function InteractiveCardExample() {
+    export function InteractiveCards() {
       return (
-        <Card interactive className="max-w-sm cursor-pointer">
-          <CardHeader>
-            <CardTitle>Clickable card</CardTitle>
-            <CardDescription>Hover to see the accent surface.</CardDescription>
-          </CardHeader>
-        </Card>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Card interactive>
+            <CardHeader>
+              <CardTitle>Clickable card</CardTitle>
+              <CardDescription>Hover / focus to see feedback.</CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card interactive variant="muted">
+            <CardHeader>
+              <CardTitle>Interactive + muted</CardTitle>
+              <CardDescription>Great for secondary selection items.</CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
       );
     }
     ```
   </Tab>
 </Tabs>
 
+**Recommendation:** if the card is actually a navigation element, prefer `asChild` with a real `<a>` (or `next/link`) so semantics are correct.
+
 ---
 
 ## As child (Slot)
 
-Render the Card as another element (for example, a link) while keeping styles.
+Use `asChild` to render the Card as another element while keeping the Card styling. Perfect for cards that are links.
 
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
@@ -251,7 +275,7 @@ Render the Card as another element (for example, a link) while keeping styles.
   <Tab value="Usage">
     ```tsx
     <Card asChild interactive>
-      <a href="/docs">...</a>
+      <a href="/docs" className="block">...</a>
     </Card>
     ```
   </Tab>
@@ -260,7 +284,7 @@ Render the Card as another element (for example, a link) while keeping styles.
     ```tsx
     import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-    export default function CardAsChildExample() {
+    export function CardAsLink() {
       return (
         <Card asChild interactive className="max-w-sm">
           <a href="/docs" className="block">
@@ -282,14 +306,14 @@ Render the Card as another element (for example, a link) while keeping styles.
 
 ### Props
 
-| Prop        | Type        | Default    | Description                  |
-| ----------- | ----------- | ---------- | ---------------------------- |
-| variant     | CardVariant | "default"  | Visual surface style         |
-| interactive | boolean     | false      | Adds hover feedback          |
-| asChild     | boolean     | false      | Render via Radix Slot        |
-| className   | string      | —          | Additional Tailwind classes |
+| Prop | Type | Default | Description |
+|---|---:|---:|---|
+| `variant` | `CardVariant` | `"default"` | Surface style |
+| `interactive` | `boolean` | `false` | Adds hover + focus-visible feedback |
+| `asChild` | `boolean` | `false` | Render via Radix Slot (link cards, sections, etc.) |
+| `className` | `string` | — | Additional Tailwind classes |
 
-The Card components extend standard HTML props:
+The Card extends standard HTML div props:
 
 ```ts
 React.HTMLAttributes<HTMLDivElement>
@@ -299,41 +323,42 @@ React.HTMLAttributes<HTMLDivElement>
 
 ## TypeScript types
 
-These types define the public API of the Card component.
-
 ```ts
 export type CardVariant = "default" | "muted" | "transparent";
+export type CardInteractive = boolean;
 ```
 
 ---
 
 ## Accessibility
 
-- Prefer semantic structure: `CardHeader` → title/description → `CardContent` → `CardFooter`.
-- If the Card is clickable, render it as a link or button via `asChild`.
-- Avoid nesting interactive elements inside an interactive Card.
-- Keep only one interactive target per Card.
+- Keep structure consistent: `CardHeader` → title/description → `CardContent` → `CardFooter`.
+- If the Card is clickable, prefer `asChild` with a semantic target (`a`, `button`).
+- Avoid multiple nested interactive elements inside an interactive Card.
+- Ensure focus is visible (enabled automatically via `interactive`).
 
 ---
 
 ## Design guidelines
 
 - Use Cards for grouping and layout rhythm, not decoration.
-- Keep spacing consistent with the built-in `p-6` layout.
-- Use `muted` for secondary panels; `transparent` for inline layouts.
-- Use `interactive` only when the Card is a selectable item.
+- Use `muted` for secondary surfaces and dense layouts.
+- Use `transparent` for “layout-only” containers (e.g., in a stacked list).
+- Use `interactive` only for selectable / navigational surfaces.
+
+---
 
 ## Related guides
 
 <LinkCards>
   <LinkCard
     title="Colors"
-    description="Use semantic tokens (bg-card, text-muted-foreground, border-border)."
+    description="Semantic surface roles (bg-card, border-border, text-muted-foreground)."
     href="/docs/design-system/colors#semantic-tokens"
   />
   <LinkCard
     title="Radius"
-    description="Corner radius tokens used for cards, panels, and surfaces."
+    description="Corner radius tokens used for cards and surfaces."
     href="/docs/design-system/tokens/radius"
   />
   <LinkCard
@@ -347,6 +372,5 @@ export type CardVariant = "default" | "muted" | "transparent";
     href="/docs/design-system/typography"
   />
 </LinkCards>
-
 
 </DocsPageShell>

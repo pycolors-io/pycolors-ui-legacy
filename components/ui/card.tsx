@@ -15,18 +15,23 @@ export const cardVariants = cva(
       },
       interactive: {
         false: '',
-        true: 'transition-colors hover:bg-accent/40',
+        true:
+          'cursor-pointer transition-colors hover:bg-accent/40 ' +
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       },
     },
     defaultVariants: {
       variant: 'default',
       interactive: false,
     },
-  }
+  },
 );
 
+type CardElement = React.ElementRef<'div'>;
+
 export interface CardProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof cardVariants> {
   /**
    * Render the Card as another element (e.g. <a />, <section />) via Radix Slot.
@@ -35,29 +40,33 @@ export interface CardProps
   asChild?: boolean;
 }
 
-export function Card({
-  className,
-  variant,
-  interactive,
-  asChild = false,
-  ...props
-}: CardProps) {
-  const Comp = asChild ? Slot : 'div';
+export type CardVariant = NonNullable<CardProps['variant']>;
+export type CardInteractive = NonNullable<CardProps['interactive']>;
 
-  return (
-    <Comp
-      data-slot="card"
-      className={cn(
-        cardVariants({ variant, interactive }),
-        className
-      )}
-      {...props}
-    />
-  );
-}
+export const Card = React.forwardRef<CardElement, CardProps>(
+  (
+    { className, variant, interactive, asChild = false, ...props },
+    ref,
+  ) => {
+    const Comp = asChild ? Slot : 'div';
 
-export interface CardHeaderProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+    return (
+      <Comp
+        ref={ref}
+        data-slot="card"
+        className={cn(
+          cardVariants({ variant, interactive }),
+          className,
+        )}
+        {...props}
+      />
+    );
+  },
+);
+
+Card.displayName = 'Card';
+
+export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function CardHeader({ className, ...props }: CardHeaderProps) {
   return (
@@ -69,8 +78,7 @@ export function CardHeader({ className, ...props }: CardHeaderProps) {
   );
 }
 
-export interface CardTitleProps
-  extends React.HTMLAttributes<HTMLHeadingElement> {}
+export interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 
 export function CardTitle({ className, ...props }: CardTitleProps) {
   return (
@@ -78,15 +86,14 @@ export function CardTitle({ className, ...props }: CardTitleProps) {
       data-slot="card-title"
       className={cn(
         'text-base font-semibold leading-none tracking-tight',
-        className
+        className,
       )}
       {...props}
     />
   );
 }
 
-export interface CardDescriptionProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {}
+export interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
 
 export function CardDescription({
   className,
@@ -101,8 +108,7 @@ export function CardDescription({
   );
 }
 
-export interface CardContentProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function CardContent({
   className,
@@ -117,8 +123,7 @@ export function CardContent({
   );
 }
 
-export interface CardFooterProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function CardFooter({ className, ...props }: CardFooterProps) {
   return (
