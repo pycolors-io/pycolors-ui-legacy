@@ -22,11 +22,14 @@ const inputVariants = cva(
       size: 'md',
       hasError: false,
     },
-  }
+  },
 );
 
+export type InputSize = 'sm' | 'md' | 'lg';
+
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+  extends
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
     VariantProps<typeof inputVariants> {
   /**
    * Accessible label displayed above the input.
@@ -48,6 +51,10 @@ export interface InputProps
    * Optional icon rendered on the right inside the field.
    */
   rightIcon?: React.ReactNode;
+  /**
+   * Design system size (not the native HTML `size` attribute).
+   */
+  size?: InputSize;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -62,20 +69,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       size,
       id,
       disabled,
+      required,
       ...props
     },
-    ref
+    ref,
   ) => {
     const generatedId = React.useId();
     const inputId = id ?? generatedId;
 
     const describedByIds: string[] = [];
-    if (helperText && !error) {
+    if (helperText && !error)
       describedByIds.push(`${inputId}-helper`);
-    }
-    if (error) {
-      describedByIds.push(`${inputId}-error`);
-    }
+    if (error) describedByIds.push(`${inputId}-error`);
 
     const describedBy =
       describedByIds.length > 0
@@ -90,13 +95,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className="mb-1 block text-sm font-medium text-foreground"
           >
             {label}
+            {required ? (
+              <span className="ml-1 text-destructive">*</span>
+            ) : null}
           </label>
         )}
 
         <div
           className={cn(
             inputVariants({ size, hasError: !!error }),
-            className
+            className,
           )}
         >
           {leftIcon && (
@@ -109,13 +117,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             id={inputId}
             ref={ref}
             disabled={disabled}
+            required={required}
             aria-invalid={!!error}
             aria-describedby={describedBy}
+            aria-errormessage={error ? `${inputId}-error` : undefined}
+            aria-required={required ? true : undefined}
             className={cn(
               'flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground',
-              // padding interne ajusté quand pas d'icône
               !leftIcon && 'pl-1',
-              !rightIcon && 'pr-1'
+              !rightIcon && 'pr-1',
             )}
             {...props}
           />
@@ -146,7 +156,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = 'Input';
