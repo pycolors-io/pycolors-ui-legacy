@@ -8,11 +8,11 @@ import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/car
 
 <DocsPageShell>
 
-The **Badge** component is a compact UI element used to display short information such as
+The **Badge** component is a compact, non-interactive UI primitive used to display short information such as
 status, category, count, or label.
 
-Badges are **non-interactive by default**, lightweight, and fully aligned with the
-PyColors design system tokens.
+Badges are lightweight, semantic, and fully aligned with the PyColors design system tokens.
+They are designed for **metadata**, not actions.
 
 ---
 
@@ -24,7 +24,7 @@ import { Badge } from "@/components/ui/badge";
 
 ---
 
-## Usage
+## Basic usage
 
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
@@ -76,7 +76,6 @@ Use variants to convey meaning or status.
 
   <Tab value="Usage">
     ```tsx
-    <div className="flex gap-2">
       <Badge>Default</Badge>
       <Badge variant="secondary">Secondary</Badge>
       <Badge variant="muted">Muted</Badge>
@@ -84,7 +83,6 @@ Use variants to convey meaning or status.
       <Badge variant="success">Success</Badge>
       <Badge variant="warning">Warning</Badge>
       <Badge variant="destructive">Destructive</Badge>
-    </div>
     ```
   </Tab>
 
@@ -101,13 +99,25 @@ Use variants to convey meaning or status.
           <Badge variant="outline">Outline</Badge>
           <Badge variant="success">Success</Badge>
           <Badge variant="warning">Warning</Badge>
-          <Badge variant="destructive">Destructive</Badge>
+          <Badge variant="destructive">Error</Badge>
         </div>
       );
     }
     ```
   </Tab>
 </Tabs>
+
+### Available variants
+
+| Variant       | Description                         |
+|--------------|-------------------------------------|
+| default      | Primary or neutral label            |
+| secondary    | Secondary emphasis                  |
+| muted        | Low-contrast metadata               |
+| outline      | Neutral bordered label              |
+| success      | Positive or completed state         |
+| warning      | Caution or attention required       |
+| destructive  | Error or critical state             |
 
 ---
 
@@ -136,7 +146,7 @@ Use variants to convey meaning or status.
     ```tsx
     import { Badge } from "@/components/ui/badge";
 
-    export default function BadgeSizesExample() {
+    export default function BadgeSizes() {
       return (
         <div className="flex gap-2">
           <Badge size="sm">Small</Badge>
@@ -151,29 +161,23 @@ Use variants to convey meaning or status.
 
 ### Available sizes
 
-| Size | Description             |
-| ---- | ----------------------- |
-| sm   | Compact metadata        |
-| md   | Default badge size      |
-| lg   | Emphasized or prominent |
+| Size | Description              |
+|-----|--------------------------|
+| sm  | Compact metadata         |
+| md  | Default badge size       |
+| lg  | Emphasized or prominent  |
 
 ---
 
 ## With icon
 
-Badges can include icons when necessary (status, type, etc.).
+Badges can include icons when needed (status, type, category).
 
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
     <Preview>
       <Badge variant="success">
-        <svg
-          className="size-3"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
+        <svg className="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M5 13l4 4L19 7" />
         </svg>
         Active
@@ -212,7 +216,7 @@ Badges can include icons when necessary (status, type, etc.).
 
 ## As child (Slot)
 
-You can render a badge as another component (for example, a link).
+Use `asChild` to render a badge as another element (for example, a link).
 
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
@@ -252,12 +256,12 @@ You can render a badge as another component (for example, a link).
 
 ### Props
 
-| Prop      | Type         | Default   | Description                  |
-| --------- | ------------ | --------- | ---------------------------- |
-| variant   | BadgeVariant | "default" | Visual style                 |
-| size      | BadgeSize    | "md"      | Badge size                   |
-| asChild   | boolean      | false     | Render via Radix Slot        |
-| className | string       | —         | Additional Tailwind classes |
+| Prop      | Type         | Default   | Description                   |
+|----------|--------------|-----------|-------------------------------|
+| variant  | BadgeVariant | "default" | Visual style                  |
+| size     | BadgeSize    | "md"      | Badge size                    |
+| asChild  | boolean      | false     | Render via Radix Slot         |
+| className| string       | —         | Additional Tailwind classes   |
 
 The Badge extends standard HTML span props:
 
@@ -322,11 +326,6 @@ export type BadgeSize =
     title="Button"
     description="Use buttons for actions, not badges."
     href="/docs/ui/button"
-  />
-  <LinkCard
-    title="Patterns"
-    description="Status labels and real-world usage patterns."
-    href="/docs/patterns"
   />
 </LinkCards>
 

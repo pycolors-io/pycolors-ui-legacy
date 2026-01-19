@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 const badgeVariants = cva(
   'inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium ' +
     'transition-colors ring-offset-background focus-visible:outline-none focus-visible:ring-2 ' +
-    'focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50',
+    'focus-visible:ring-ring focus-visible:ring-offset-2',
   {
     variants: {
       variant: {
@@ -34,13 +34,14 @@ const badgeVariants = cva(
       variant: 'default',
       size: 'md',
     },
-  }
+  },
 );
 
 type BadgeElement = React.ElementRef<'span'>;
 
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
+  extends
+    React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof badgeVariants> {
   /**
    * Render the badge as a Slot wrapper instead of a plain span,
@@ -48,6 +49,9 @@ export interface BadgeProps
    */
   asChild?: boolean;
 }
+
+export type BadgeVariant = NonNullable<BadgeProps['variant']>;
+export type BadgeSize = NonNullable<BadgeProps['size']>;
 
 const Badge = React.forwardRef<BadgeElement, BadgeProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
@@ -61,7 +65,7 @@ const Badge = React.forwardRef<BadgeElement, BadgeProps>(
         {...props}
       />
     );
-  }
+  },
 );
 
 Badge.displayName = 'Badge';
