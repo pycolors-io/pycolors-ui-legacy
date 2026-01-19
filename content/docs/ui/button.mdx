@@ -11,7 +11,7 @@ import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/car
 The **Button** component is one of the core interactive elements of PyColors UI.
 It provides consistent styling, variants, accessibility, and flexible composition across marketing pages, dashboards, and applications.
 
-This implementation extends the **shadcn/ui `button` primitive** and integrates smoothly with the PyColors design system.
+This implementation extends the **shadcn/ui Button primitive** and is aligned with the PyColors design system (semantic color tokens, radius, shadows, and focus rings).
 
 ---
 
@@ -49,7 +49,7 @@ import { Button } from "@/components/ui/button";
   </Tab>
 </Tabs>
 
-The default button uses the primary color from the PyColors theme and adapts automatically to light/dark mode.
+The default button uses the primary semantic color tokens and adapts automatically to light/dark mode.
 
 ---
 
@@ -119,6 +119,8 @@ Buttons support several variants to adapt to different contexts.
 
 ## Sizes
 
+The Button supports both regular sizes and icon-only sizes.
+
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
     <Preview>
@@ -126,18 +128,41 @@ Buttons support several variants to adapt to different contexts.
         <Button size="sm">Small</Button>
         <Button size="default">Default</Button>
         <Button size="lg">Large</Button>
-        <Button size="icon">
+
+        <Button size="icon" aria-label="History">
           <svg
-            className="size-4"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
+            aria-hidden="true"
           >
             <path
               fillRule="evenodd"
               d="M10 1a9 9 0 100 18 9 9 0 000-18zM9 5a1 1 0 012 0v5a1 1 0 01-.293.707l-3 3a1 1 0 11-1.414-1.414L9 9.586V5z"
               clipRule="evenodd"
             />
+          </svg>
+        </Button>
+
+        <Button size="icon-sm" aria-label="Small icon button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" />
+          </svg>
+        </Button>
+
+        <Button size="icon-lg" aria-label="Large icon button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" />
           </svg>
         </Button>
       </div>
@@ -150,19 +175,17 @@ Buttons support several variants to adapt to different contexts.
       <Button size="sm">Small</Button>
       <Button size="default">Default</Button>
       <Button size="lg">Large</Button>
+
       <Button size="icon" aria-label="History">
-        <svg
-          className="size-4"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 1a9 9 0 100 18 9 9 0 000-18zM9 5a1 1 0 012 0v5a1 1 0 01-.293.707l-3 3a1 1 0 11-1.414-1.414L9 9.586V5z"
-            clipRule="evenodd"
-          />
-        </svg>
+        <HistoryIcon className="size-4" aria-hidden="true" />
+      </Button>
+
+      <Button size="icon-sm" aria-label="Small icon button">
+        <Icon aria-hidden="true" />
+      </Button>
+
+      <Button size="icon-lg" aria-label="Large icon button">
+        <Icon aria-hidden="true" />
       </Button>
     </div>
     ```
@@ -178,18 +201,22 @@ Buttons support several variants to adapt to different contexts.
           <Button size="sm">Small</Button>
           <Button size="default">Default</Button>
           <Button size="lg">Large</Button>
+
           <Button size="icon" aria-label="History">
-            <svg
-              className="size-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 1a9 9 0 100 18 9 9 0 000-18zM9 5a1 1 0 012 0v5a1 1 0 01-.293.707l-3 3a1 1 0 11-1.414-1.414L9 9.586V5z"
-                clipRule="evenodd"
-              />
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M10 1a9 9 0 100 18 9 9 0 000-18z" />
+            </svg>
+          </Button>
+
+          <Button size="icon-sm" aria-label="Small icon button">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" />
+            </svg>
+          </Button>
+
+          <Button size="icon-lg" aria-label="Large icon button">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" />
             </svg>
           </Button>
         </div>
@@ -201,12 +228,14 @@ Buttons support several variants to adapt to different contexts.
 
 ### Available sizes
 
-| Size    | Description                   |
-| ------- | ----------------------------- |
-| sm      | Compact buttons for dense UIs |
-| default | Standard button size          |
-| lg      | Larger visual weight          |
-| icon    | Square icon-only button       |
+| Size      | Description                                  |
+| --------- | -------------------------------------------- |
+| sm        | Compact buttons for dense UIs                |
+| default   | Standard button size                         |
+| lg        | Larger visual weight                         |
+| icon      | Square icon-only button (base)               |
+| icon-sm   | Smaller icon-only button                      |
+| icon-lg   | Larger icon-only button                       |
 
 ---
 
@@ -215,7 +244,7 @@ Buttons support several variants to adapt to different contexts.
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
     <Preview>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap">
         <Button disabled>Disabled</Button>
         <Button variant="secondary" disabled>
           Disabled
@@ -253,13 +282,36 @@ Buttons support several variants to adapt to different contexts.
   </Tab>
 </Tabs>
 
-Disabled buttons use `pointer-events-none` and reduced opacity to indicate non-interactivity.
+Disabled buttons use reduced opacity and disable pointer events to indicate non-interactivity.
+
+---
+
+## Focus and keyboard
+
+Buttons use a **focus-visible** ring for accessible keyboard navigation.
+The ring is applied only when navigating with the keyboard (Tab / Shift+Tab), not on mouse clicks.
+
+- Keeps focus clear for keyboard users
+- Avoids noisy focus styles for pointer users
+- Uses semantic tokens (`ring-ring`, `border-ring`)
 
 ---
 
 ## With icon
 
 Use any icon library (Lucide, Heroicons, custom SVG).
+
+### Icon sizing rule
+
+The Button applies a default `size-4` to any nested `<svg>` that does **not** already have a `size-*` class.
+If you want a custom size, set it explicitly:
+
+```tsx
+<Button>
+  <MyIcon className="size-5" aria-hidden="true" />
+  Label
+</Button>
+```
 
 ### Leading icon
 
@@ -286,7 +338,7 @@ Use any icon library (Lucide, Heroicons, custom SVG).
   <Tab value="Usage">
     ```tsx
     <Button>
-      <svg className="size-4 mr-2" aria-hidden="true" />
+      <PlusIcon className="size-4 mr-2" aria-hidden="true" />
       Add item
     </Button>
     ```
@@ -299,15 +351,7 @@ Use any icon library (Lucide, Heroicons, custom SVG).
     export default function ButtonWithIconExample() {
       return (
         <Button>
-          <svg
-            className="size-4 mr-2"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
+          <svg className="size-4 mr-2" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 5v14m7-7H5" />
           </svg>
           Add item
@@ -344,7 +388,7 @@ Use any icon library (Lucide, Heroicons, custom SVG).
     ```tsx
     <Button>
       Continue
-      <svg className="size-4 ml-2" aria-hidden="true" />
+      <ArrowRightIcon className="size-4 ml-2" aria-hidden="true" />
     </Button>
     ```
   </Tab>
@@ -357,19 +401,45 @@ Use any icon library (Lucide, Heroicons, custom SVG).
       return (
         <Button>
           Continue
-          <svg
-            className="size-4 ml-2"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
+          <svg className="size-4 ml-2" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M9 5l7 7-7 7" />
           </svg>
         </Button>
       );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Validation state (aria-invalid)
+
+The Button supports an invalid visual state via `aria-invalid`.
+This is useful for **submit actions** when the related form is invalid.
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="flex gap-4 flex-wrap">
+        <Button aria-invalid="true">Fix errors</Button>
+        <Button variant="outline" aria-invalid="true">Review</Button>
+      </div>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Button aria-invalid="true">Fix errors</Button>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Button } from "@/components/ui/button";
+
+    export default function InvalidButtonExample() {
+      return <Button aria-invalid="true">Fix errors</Button>;
     }
     ```
   </Tab>
@@ -432,14 +502,14 @@ This allows styling links, router components, or custom components as buttons wh
 The Button extends the standard HTML button props:
 
 ```ts
-React.ButtonHTMLAttributes<HTMLButtonElement>
+React.ComponentProps<"button">
 ```
 
 ---
 
 ## TypeScript types
 
-These types define the public API for the `variant` and `size` props.
+These types define the public API for the `variant` and `size` props and remain aligned with the source component.
 
 ```ts
 export type ButtonVariant =
@@ -451,10 +521,12 @@ export type ButtonVariant =
   | "link";
 
 export type ButtonSize =
-  | "sm"
   | "default"
+  | "sm"
   | "lg"
-  | "icon";
+  | "icon"
+  | "icon-sm"
+  | "icon-lg";
 ```
 
 ---
@@ -464,7 +536,8 @@ export type ButtonSize =
 - Use clear and descriptive labels for button text.
 - Preserve keyboard focus styles (`focus-visible`) for accessible navigation.
 - For icon-only buttons, provide an `aria-label` describing the action.
-- Avoid using Button with only an icon and no accessible text or label.
+- Icons should be marked `aria-hidden` (decorative).
+- Avoid using a Button with only an icon and no accessible label.
 
 ---
 
@@ -474,6 +547,7 @@ export type ButtonSize =
 - Use `secondary` or `outline` for secondary actions.
 - Use `destructive` only for actions that are dangerous or irreversible.
 - Prefer consistent button sizing within a view to preserve rhythm.
+- Use icon-only sizes (`icon-*`) for toolbars and compact actions.
 
 ---
 
@@ -494,6 +568,11 @@ export type ButtonSize =
     title="Colors"
     description="Semantic color roles used by button variants."
     href="/docs/design-system/colors"
+  />
+  <LinkCard
+    title="Radius"
+    description="Corner radius tokens used by buttons and pills."
+    href="/docs/design-system/tokens/radius"
   />
 </LinkCards>
 
