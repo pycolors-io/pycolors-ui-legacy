@@ -11,9 +11,9 @@ export const alertVariants = cva(
         default: 'bg-card text-card-foreground border-border',
         info: 'bg-card text-card-foreground border-border',
         success:
-          'bg-card text-card-foreground border-border [&_[data-slot=alert-indicator]]:text-success',
+          'bg-card text-card-foreground border-success/30 [&_[data-slot=alert-indicator]]:text-success',
         warning:
-          'bg-card text-card-foreground border-border [&_[data-slot=alert-indicator]]:text-warning',
+          'bg-card text-card-foreground border-warning/30 [&_[data-slot=alert-indicator]]:text-warning',
         destructive:
           'bg-card text-card-foreground border-destructive/40 [&_[data-slot=alert-indicator]]:text-destructive',
       },
@@ -21,18 +21,17 @@ export const alertVariants = cva(
     defaultVariants: {
       variant: 'default',
     },
-  }
+  },
 );
 
 export interface AlertProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof alertVariants> {
-  /**
-   * If true, renders proper ARIA semantics for an alert.
-   * Use `polite` for non-blocking messages, `assertive` for critical errors.
-   */
   ariaLive?: 'off' | 'polite' | 'assertive';
 }
+
+export type AlertVariant = NonNullable<AlertProps['variant']>;
 
 export function Alert({
   className,
@@ -40,19 +39,29 @@ export function Alert({
   ariaLive = 'polite',
   ...props
 }: AlertProps) {
+  // ARIA semantics:
+  // - assertive => role="alert"
+  // - polite    => role="status"
+  // - off       => no role / no aria-live
+  const role =
+    ariaLive === 'assertive'
+      ? 'alert'
+      : ariaLive === 'polite'
+        ? 'status'
+        : undefined;
+
   return (
     <div
       data-slot="alert"
-      role="alert"
-      aria-live={ariaLive}
+      role={role}
+      aria-live={ariaLive === 'off' ? undefined : ariaLive}
       className={cn(alertVariants({ variant }), className)}
       {...props}
     />
   );
 }
 
-export interface AlertTitleProps
-  extends React.HTMLAttributes<HTMLHeadingElement> {}
+export interface AlertTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 
 export function AlertTitle({ className, ...props }: AlertTitleProps) {
   return (
@@ -60,15 +69,14 @@ export function AlertTitle({ className, ...props }: AlertTitleProps) {
       data-slot="alert-title"
       className={cn(
         'mb-1 font-medium leading-none tracking-tight',
-        className
+        className,
       )}
       {...props}
     />
   );
 }
 
-export interface AlertDescriptionProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export interface AlertDescriptionProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function AlertDescription({
   className,
@@ -79,7 +87,7 @@ export function AlertDescription({
       data-slot="alert-description"
       className={cn(
         'text-sm text-muted-foreground [&_p]:leading-relaxed',
-        className
+        className,
       )}
       {...props}
     />
@@ -90,8 +98,7 @@ export function AlertDescription({
  * Optional left indicator (icon or dot).
  * Keep it outside AlertTitle/AlertDescription for cleaner layout.
  */
-export interface AlertIndicatorProps
-  extends React.HTMLAttributes<HTMLSpanElement> {}
+export interface AlertIndicatorProps extends React.HTMLAttributes<HTMLSpanElement> {}
 
 export function AlertIndicator({
   className,
@@ -102,7 +109,7 @@ export function AlertIndicator({
       data-slot="alert-indicator"
       className={cn(
         'absolute left-4 top-4 inline-flex size-5 items-center justify-center text-foreground',
-        className
+        className,
       )}
       {...props}
     />
@@ -113,8 +120,7 @@ export function AlertIndicator({
  * Content wrapper to align text with indicator.
  * Use when AlertIndicator is present.
  */
-export interface AlertContentProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export interface AlertContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function AlertContent({
   className,

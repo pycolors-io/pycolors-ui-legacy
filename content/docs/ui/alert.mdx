@@ -8,10 +8,9 @@ import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/car
 
 <DocsPageShell>
 
-The **Alert** component is a feedback surface used to communicate important information:
-success confirmations, warnings, and errors.
+The **Alert** component communicates important information to the user: neutral notices, success confirmations, warnings, and critical errors.
 
-It uses semantic tokens (`bg-card`, `border-border`, `text-muted-foreground`) so it stays consistent across themes.
+Unlike Toasts, Alerts are **inline and persistent**. They’re built on semantic tokens (`bg-card`, `border-*`, `text-*`) so they remain consistent across themes.
 
 ---
 
@@ -24,6 +23,8 @@ import {
   AlertDescription,
   AlertIndicator,
   AlertContent,
+  type AlertProps,
+  type AlertVariant,
 } from "@/components/ui/alert";
 ```
 
@@ -76,7 +77,7 @@ import {
 
 ## Variants
 
-Use variants to reflect the semantic meaning of the message.
+Variants reflect the semantic meaning of the message. In PyColors UI, variants are mostly expressed through **border emphasis** and (optionally) indicator color.
 
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
@@ -84,30 +85,22 @@ Use variants to reflect the semantic meaning of the message.
       <div className="grid gap-4 max-w-xl">
         <Alert variant="info">
           <AlertTitle>Info</AlertTitle>
-          <AlertDescription>
-            <p>Useful context for the user.</p>
-          </AlertDescription>
+          <AlertDescription><p>Useful context for the user.</p></AlertDescription>
         </Alert>
 
         <Alert variant="success">
           <AlertTitle>Success</AlertTitle>
-          <AlertDescription>
-            <p>Your changes were saved.</p>
-          </AlertDescription>
+          <AlertDescription><p>Your changes were saved.</p></AlertDescription>
         </Alert>
 
         <Alert variant="warning">
           <AlertTitle>Warning</AlertTitle>
-          <AlertDescription>
-            <p>Something may need attention.</p>
-          </AlertDescription>
+          <AlertDescription><p>Something may need attention.</p></AlertDescription>
         </Alert>
 
         <Alert variant="destructive" ariaLive="assertive">
           <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            <p>We couldn’t save your changes. Try again.</p>
-          </AlertDescription>
+          <AlertDescription><p>We couldn’t save your changes. Try again.</p></AlertDescription>
         </Alert>
       </div>
     </Preview>
@@ -115,6 +108,7 @@ Use variants to reflect the semantic meaning of the message.
 
   <Tab value="Usage">
     ```tsx
+    <Alert variant="info">...</Alert>
     <Alert variant="success">...</Alert>
     <Alert variant="warning">...</Alert>
     <Alert variant="destructive" ariaLive="assertive">...</Alert>
@@ -128,18 +122,24 @@ Use variants to reflect the semantic meaning of the message.
     export default function AlertVariants() {
       return (
         <div className="grid gap-4">
+          <Alert variant="info">
+            <AlertTitle>Info</AlertTitle>
+            <AlertDescription><p>Useful context for the user.</p></AlertDescription>
+          </Alert>
+
           <Alert variant="success">
             <AlertTitle>Success</AlertTitle>
-            <AlertDescription>
-              <p>Your changes were saved.</p>
-            </AlertDescription>
+            <AlertDescription><p>Your changes were saved.</p></AlertDescription>
+          </Alert>
+
+          <Alert variant="warning">
+            <AlertTitle>Warning</AlertTitle>
+            <AlertDescription><p>Something may need attention.</p></AlertDescription>
           </Alert>
 
           <Alert variant="destructive" ariaLive="assertive">
             <AlertTitle>Error</AlertTitle>
-            <AlertDescription>
-              <p>We couldn’t save your changes.</p>
-            </AlertDescription>
+            <AlertDescription><p>We couldn’t save your changes. Try again.</p></AlertDescription>
           </Alert>
         </div>
       );
@@ -150,25 +150,95 @@ Use variants to reflect the semantic meaning of the message.
 
 ### Available variants
 
-| Variant            | Purpose                          |
-| ------------------ | -------------------------------- |
-| default / info     | Neutral information              |
-| success            | Confirmation / positive feedback |
-| warning            | Risk / attention required        |
-| destructive        | Error / critical message         |
+| Variant        | Purpose                                |
+| -------------- | -------------------------------------- |
+| `default`      | Neutral information                     |
+| `info`         | Neutral information (alias of default) |
+| `success`      | Confirmation / positive feedback        |
+| `warning`      | Risk / attention required               |
+| `destructive`  | Error / critical message                |
+
+> Note: `default` and `info` intentionally share the same visual style in the current v1 token set.
+
+---
+
+## Announcements (ariaLive)
+
+PyColors UI includes an `ariaLive` prop that controls how assistive tech announces updates:
+
+- `polite` (default) → non-blocking updates (`role="status"`)
+- `assertive` → critical errors (`role="alert"`)
+- `off` → no announcement
+
+<Tabs items={["Preview", "Usage", "Code"]}>
+  <Tab value="Preview">
+    <Preview>
+      <div className="grid gap-4 max-w-xl">
+        <Alert ariaLive="polite">
+          <AlertTitle>Status</AlertTitle>
+          <AlertDescription><p>Saved in the background (polite).</p></AlertDescription>
+        </Alert>
+
+        <Alert variant="destructive" ariaLive="assertive">
+          <AlertTitle>Critical</AlertTitle>
+          <AlertDescription><p>Payment failed. Please retry (assertive).</p></AlertDescription>
+        </Alert>
+
+        <Alert ariaLive="off">
+          <AlertTitle>Silent</AlertTitle>
+          <AlertDescription><p>No live announcement for this message.</p></AlertDescription>
+        </Alert>
+      </div>
+    </Preview>
+  </Tab>
+
+  <Tab value="Usage">
+    ```tsx
+    <Alert ariaLive="polite">...</Alert>
+    <Alert ariaLive="assertive">...</Alert>
+    <Alert ariaLive="off">...</Alert>
+    ```
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+
+    export default function AlertAriaLive() {
+      return (
+        <div className="grid gap-4">
+          <Alert ariaLive="polite">
+            <AlertTitle>Status</AlertTitle>
+            <AlertDescription><p>Saved in the background.</p></AlertDescription>
+          </Alert>
+
+          <Alert variant="destructive" ariaLive="assertive">
+            <AlertTitle>Critical</AlertTitle>
+            <AlertDescription><p>Payment failed. Please retry.</p></AlertDescription>
+          </Alert>
+
+          <Alert ariaLive="off">
+            <AlertTitle>Silent</AlertTitle>
+            <AlertDescription><p>No announcement for this message.</p></AlertDescription>
+          </Alert>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ---
 
 ## With indicator (icon)
 
-Use `AlertIndicator` + `AlertContent` to align content.
-Ideal for icons (Lucide, Heroicons, or custom SVG).
+Use `AlertIndicator` + `AlertContent` to align content. The indicator is positioned absolutely; `AlertContent` adds left padding so the text lines up.
 
 <Tabs items={["Preview", "Usage", "Code"]}>
   <Tab value="Preview">
     <Preview>
       <Alert variant="warning" className="max-w-xl">
-        <AlertIndicator aria-hidden>
+        <AlertIndicator aria-hidden="true">
           <svg
             className="size-5"
             viewBox="0 0 24 24"
@@ -195,7 +265,7 @@ Ideal for icons (Lucide, Heroicons, or custom SVG).
   <Tab value="Usage">
     ```tsx
     <Alert variant="warning">
-      <AlertIndicator aria-hidden>...</AlertIndicator>
+      <AlertIndicator aria-hidden="true">...</AlertIndicator>
       <AlertContent>
         <AlertTitle>...</AlertTitle>
         <AlertDescription><p>...</p></AlertDescription>
@@ -217,12 +287,10 @@ Ideal for icons (Lucide, Heroicons, or custom SVG).
     export default function AlertWithIcon() {
       return (
         <Alert variant="warning">
-          <AlertIndicator aria-hidden>{/* icon */}</AlertIndicator>
+          <AlertIndicator aria-hidden="true">{/* icon */}</AlertIndicator>
           <AlertContent>
             <AlertTitle>Check your input</AlertTitle>
-            <AlertDescription>
-              <p>Review before submitting.</p>
-            </AlertDescription>
+            <AlertDescription><p>Review before submitting.</p></AlertDescription>
           </AlertContent>
         </Alert>
       );
@@ -237,11 +305,11 @@ Ideal for icons (Lucide, Heroicons, or custom SVG).
 
 ### Props
 
-| Prop      | Type                                                           | Default     | Description            |
-| --------- | -------------------------------------------------------------- | ----------- | ---------------------- |
-| `variant` | `"default" \| "info" \| "success" \| "warning" \| "destructive"` | `"default"` | Visual semantics       |
-| `ariaLive`| `"off" \| "polite" \| "assertive"`                            | `"polite"`  | Screen reader priority |
-| `className` | `string`                                                     | —           | Tailwind override      |
+| Prop       | Type                                              | Default     | Description |
+| ---------- | ------------------------------------------------- | ----------- | ----------- |
+| `variant`  | `AlertVariant`                                     | `"default"` | Visual semantics |
+| `ariaLive` | `"off" \| "polite" \| "assertive"`              | `"polite"`  | Assistive announcement behavior |
+| `className`| `string`                                           | —           | Tailwind override |
 
 The Alert components extend standard HTML props:
 
@@ -253,27 +321,26 @@ React.HTMLAttributes<HTMLDivElement>
 
 ## TypeScript types
 
-These types define the public API of the Alert component.
+Aligned with the source implementation:
 
 ```ts
-export type AlertVariant =
-  | "default"
-  | "info"
-  | "success"
-  | "warning"
-  | "destructive";
+export type AlertVariant = NonNullable<AlertProps["variant"]>;
 
-export type AlertAriaLive = "off" | "polite" | "assertive";
+export interface AlertProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof alertVariants> {
+  ariaLive?: "off" | "polite" | "assertive";
+}
 ```
 
 ---
 
 ## Accessibility
 
-- Uses `role="alert"` by default for status messages.
-- Use `ariaLive="polite"` for non-blocking updates.
-- Use `ariaLive="assertive"` for critical errors.
-- Avoid placing multiple `assertive` alerts in the same view.
+- `ariaLive="polite"` renders `role="status"` (recommended for non-blocking updates).
+- `ariaLive="assertive"` renders `role="alert"` (use for critical errors only).
+- `ariaLive="off"` removes live-region announcements (and role).
+- When using `AlertIndicator`, mark purely decorative icons with `aria-hidden="true"`.
 
 ---
 
@@ -281,8 +348,9 @@ export type AlertAriaLive = "off" | "polite" | "assertive";
 
 - Keep alerts short and actionable.
 - Prefer `success` only after a user action completes.
-- Prefer `warning` when the user can still proceed.
+- Prefer `warning` when the user can still proceed but should be aware.
 - Use `destructive` for errors that block completion.
+- Don’t overuse `assertive` alerts; they can be disruptive for screen reader users.
 
 ---
 
@@ -298,6 +366,16 @@ export type AlertAriaLive = "off" | "polite" | "assertive";
     title="Typography"
     description="Alert title/description rhythm and hierarchy."
     href="/docs/design-system/typography"
+  />
+  <LinkCard
+    title="UI Components"
+    description="How primitives are organized in PyColors UI."
+    href="/docs/ui"
+  />
+  <LinkCard
+    title="Patterns"
+    description="Real-world forms and error flows."
+    href="/docs/patterns"
   />
 </LinkCards>
 
