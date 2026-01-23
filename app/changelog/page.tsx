@@ -53,6 +53,59 @@ type ChangelogItem = {
 
 const CHANGELOG: ChangelogItem[] = [
   {
+    version: 'v1.1.0',
+    title: 'Advanced UI + product patterns',
+    dateLabel: 'Fri 23 Jan 2026',
+    dateISO: '2026-01-23',
+    status: 'Stable',
+    releaseWeekLabel: 'Jan 2026 (weekly release)',
+    summary:
+      'Major expansion of PyColors UI with advanced Radix-based components, practical product patterns, and a clearer product ecosystem. This release strengthens PyColors as a SaaS-ready UI foundation — from core interactions to data UI and platform-level structure.',
+    highlights: [
+      {
+        title: 'New UI components',
+        items: [
+          'Password Input — accessible show/hide toggle with keyboard and screen reader support.',
+          'Sheet — slide-over panels for filters, contextual actions, and side content (Radix Dialog-based).',
+          'Dialog — accessible modal primitives with composable subcomponents and consistent styling.',
+          'Dropdown Menu — groups, submenus, checkbox/radio items, and keyboard shortcuts (Radix-based).',
+          'Tabs — segmented navigation with size variants and consistent theming.',
+          'Toast — minimal, accessible notifications with variant styling for non-blocking feedback.',
+          'Table — composable data table primitives with built-in empty and loading states.',
+          'Skeleton — loading placeholder primitive to preserve layout and improve perceived performance.',
+          'Empty State — flexible primitive for first-run, no-results, and guidance-driven UX.',
+          'Pagination — composable, stateless pagination primitives (UI-only, no routing or data logic).',
+        ],
+      },
+      {
+        title: 'Docs & product guides',
+        items: [
+          'New guides covering SaaS layout composition, async UI states (empty/loading/error), and accessible forms with validation.',
+          'Documentation expanded beyond components to include real-world product patterns and UX guidance.',
+          'Every new component ships with usage examples, design notes, and accessibility guidelines.',
+        ],
+      },
+      {
+        title: 'Marketing & ecosystem structure',
+        items: [
+          'Restructured marketing pages to better reflect the PyColors product ecosystem.',
+          'Introduced dedicated sections for UI and Starters to clarify positioning and future offerings.',
+          'Home page refined to focus on product value, use-cases, and SaaS builder workflows.',
+          'Navigation updated to streamline the user journey across Docs, UI, Templates, and Starters.',
+        ],
+      },
+      {
+        title: 'Platform readiness',
+        items: [
+          'Added Radix dependencies for dialog, dropdown menu, and tabs to support advanced interactions.',
+          'Improved discoverability through clearer information architecture and interactive previews.',
+          'Brand consistency improved with a dynamic logo and simplified layout spacing.',
+        ],
+      },
+    ],
+    cta: { label: 'Browse components', href: '/docs/ui' },
+  },
+  {
     version: 'v1.0.1',
     title: 'Marketing & trust baseline',
     dateLabel: 'Fri 16 Jan 2026',
@@ -137,7 +190,7 @@ function StatusPill({ status }: { status: ChangelogStatus }) {
       <span
         className={cn(
           'inline-flex h-1.5 w-1.5 rounded-full',
-          isStable ? 'bg-success' : 'bg-warning'
+          isStable ? 'bg-success' : 'bg-warning',
         )}
       />
       {status}
