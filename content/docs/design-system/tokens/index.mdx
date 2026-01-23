@@ -10,24 +10,43 @@ import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/car
 
 Design tokens are the **single source of truth** for PyColors UI’s visual language.
 
-They define the atomic values that every component consumes — ensuring consistency,
+They define the atomic decisions that every component consumes — ensuring consistency,
 predictability, and safe global evolution of the design system.
 
 Tokens are **not components** and **not stylesheets**.
-They are **design decisions encoded as variables**.
+They are **atomic design decisions expressed as variables**.
 
 ---
 
 ## What are tokens?
 
-In PyColors UI, tokens represent **roles**, not raw values.
+A token encodes **meaning**, not appearance.
 
-They answer questions like:
+In PyColors UI, tokens represent **roles**, not raw values. They answer questions like:
+
 - *What is the default corner radius of the system?*
 - *How much elevation does a card have?*
 - *How do surfaces visually separate from the background?*
 
 Instead of hard-coding values in components, everything flows from tokens.
+
+---
+
+## System flow
+
+Design decisions become tokens, then utilities, then components:
+
+```text
+Design decisions
+  ↓
+Tokens (CSS variables)
+  ↓
+Tailwind utilities (semantic classes)
+  ↓
+UI Components (primitives)
+  ↓
+Guides & Patterns (real product UI)
+```
 
 ---
 
@@ -94,6 +113,11 @@ No component ever needs to know the actual value.
 ---
 
 ## Extend tokens safely
+
+Not everything is tokenized yet — intentionally.
+
+PyColors UI starts with a minimal, high-impact token set.
+Spacing, motion, and z-index may be introduced later once patterns stabilize.
 
 When your product grows, you can:
 

@@ -5,6 +5,7 @@ description: Foundations of PyColors UI — tokens, colors, typography, and the 
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
 import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/card";
+import { CheckCircle, XCircle } from "lucide-react";
 
 <DocsPageShell>
 
@@ -36,8 +37,8 @@ PyColors UI prevents that by encoding design decisions into **tokens** and expos
 
 Components should use **roles** (meaning) instead of raw values (appearance).
 
-- ✅ `bg-card`, `text-muted-foreground`, `border-border`
-- ❌ `#0f172a`, `rgba(...)`, `rounded-[11px]`
+- <CheckCircle className="inline-block mr-2 h-4 w-4 text-success" /> `bg-card`, `text-muted-foreground`, `border-border`
+- <XCircle className="inline-block mr-2 h-4 w-4 text-destructive" /> `#0f172a`, `rgba(...)`, `rounded-[11px]`
 
 Roles keep components stable across themes and brands.
 

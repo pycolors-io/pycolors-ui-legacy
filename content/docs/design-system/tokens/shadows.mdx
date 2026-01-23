@@ -1,7 +1,6 @@
 ---
 title: Shadows
-description: Shadow tokens used in PyColors UI. Provides a single, consistent drop-shadow scale
-  for subtle elevation across components.
+description: Shadow tokens used in PyColors UI. Provides a single, consistent drop-shadow scale for subtle elevation across components.
 ---
 
 import { DocsPageShell } from "@/components/shells/docs-page-shell";
@@ -10,6 +9,7 @@ import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/car
 <DocsPageShell>
 
 PyColors UI keeps elevation **subtle and purposeful**.
+
 A single drop-shadow scale covers every surface — from compact buttons to floating panels — making depth predictable across light and dark themes.
 
 ---
@@ -23,8 +23,16 @@ A single drop-shadow scale covers every surface — from compact buttons to floa
 | `shadow-md`  | `shadow-md`  | Popovers, dropdown content, menus         |
 | `shadow-lg`  | `shadow-lg`  | Modals, floating panels, command palettes |
 
-Each step increases spread + blur by ~4px, keeping gradients soft and avoiding harsh halos.
+Each step increases blur and spread incrementally (~4px) to preserve soft silhouettes and avoid harsh halos.
 Use `shadow-none` for flat or secondary elements.
+
+---
+
+## Token definition
+
+Shadow tokens are defined in `global.css` and mapped to Tailwind utilities through the PyColors design system theme layer.
+
+Components never define custom `box-shadow` values — they consume semantic shadow tokens instead.
 
 ---
 
@@ -112,9 +120,10 @@ Use `shadow-none` for flat or secondary elements.
 - Pair shadows with the matching radius token
   (`rounded-md` + `shadow-sm`, `rounded-lg` + `shadow-md`) for cohesive silhouettes.
 - Use **only one shadow per surface**. Stack depth with overlays, spacing, or borders — not multiple shadows.
-- Increase elevation only when interaction requires focus.
+- Increase elevation only when interaction or focus requires it.
 - In dark mode, default tokens already reduce alpha to avoid glow — avoid overriding shadow colors.
 - Reset to `shadow-none` for inline or nested surfaces inside another elevated container.
+- Avoid custom `box-shadow` values in components. If a new elevation is required, introduce a token.
 
 ---
 

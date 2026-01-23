@@ -10,7 +10,7 @@ import { Cards as LinkCards, Card as LinkCard } from "fumadocs-ui/components/car
 
 PyColors UI defines a small set of **radius tokens** to keep corners consistent across components and layouts.
 
-All radiuses are derived from a **single base variable**, ensuring global consistency and easy theming.
+All **radii** are derived from a **single base variable**, ensuring global consistency and easy theming.
 
 ---
 
@@ -41,7 +41,7 @@ From this base, derived tokens are generated:
   </Tab>
 </Tabs>
 
-These tokens are mapped to Tailwind’s `rounded-*` utilities:
+If you maintain an explicit Tailwind configuration, you can optionally map these tokens:
 
 <Tabs items={["Code"]}>
   <Tab value="Code">
@@ -57,7 +57,7 @@ These tokens are mapped to Tailwind’s `rounded-*` utilities:
   </Tab>
 </Tabs>
 
-This ensures all components using Tailwind’s radius utilities remain aligned with the PyColors design system.
+This ensures all components using Tailwind’s `rounded-*` utilities remain aligned with the PyColors design system.
 
 ---
 
@@ -156,14 +156,11 @@ When you use `rounded-sm`, `rounded-md`, `rounded-lg`, or `rounded-xl`, Tailwind
 
 ## Usage guidelines
 
-- Use `rounded-md` as the default radius for most interactive elements (buttons, inputs, small cards).
-- Use `rounded-lg` for primary surfaces such as cards, panels, and important containers.
-- Use `rounded-xl` sparingly for standout elements like modals, hero sections, or featured cards.
+- Use `rounded-md` as the default radius for most interactive elements.
+- Use `rounded-lg` for primary surfaces such as cards and panels.
+- Use `rounded-xl` sparingly for standout elements like modals or featured cards.
 - Use `rounded-sm` for dense UIs or subtle decorative elements.
-
-By limiting radiuses to a small, semantic set derived from a single base token, PyColors UI maintains strong visual consistency while remaining easy to adapt globally.
-
-Need elevation guidance? See the **Shadows tokens** page for the matching depth scale.
+- Avoid raw values like `rounded-[11px]` in components. If a new radius is needed, introduce a token.
 
 ---
 
@@ -194,11 +191,6 @@ Need elevation guidance? See the **Shadows tokens** page for the matching depth 
     title="Card"
     description="Cards are the primary consumers of radius tokens."
     href="/docs/ui/card"
-  />
-  <LinkCard
-    title="Theming"
-    description="How to adapt radius and geometry across brands."
-    href="/docs/design-system/colors"
   />
 </LinkCards>
 
