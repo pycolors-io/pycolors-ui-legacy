@@ -1,24 +1,21 @@
 # PyColors UI
 
-<p align="center">
-  <a href="https://github.com/pycolors-io/pycolors-ui/releases">
-    <img src="https://img.shields.io/badge/version-v1.1.0-blue?style=flat-square" alt="Version" />
-  </a>
-  <a href="https://pycolors.io/roadmap">
-    <img src="https://img.shields.io/badge/roadmap-public-success?style=flat-square" alt="Roadmap" />
-  </a>
-  <img src="https://img.shields.io/badge/status-production--ready-success?style=flat-square" alt="Status" />
-  <img src="https://img.shields.io/badge/docs-documentation--first-informational?style=flat-square" alt="Docs" />
-</p>
+<p align="center"> <a href="https://github.com/pycolors-io/pycolors-ui/releases"> <img src="https://img.shields.io/badge/version-v1.1.0-blue?style=flat-square" alt="Version" /> </a> <a href="https://pycolors.io/roadmap"> <img src="https://img.shields.io/badge/roadmap-public-success?style=flat-square" alt="Roadmap" /> </a> <img src="https://img.shields.io/badge/status-production--ready-success?style=flat-square" alt="Status" /> <img src="https://img.shields.io/badge/docs-documentation--first-informational?style=flat-square" alt="Docs" /> </p> <p align="center"> <strong>A minimal, documentation-first UI foundation for building real-world web products.</strong><br /> The UI layer powering <strong>PyColors SaaS Starters</strong>. </p> <p align="center"> Built in public. Shipped with discipline. Designed to last. </p>
 
-<p align="center">
-  <strong>A modern, documentation-first UI system for building real-world web products.</strong><br />
-  Designed for consistency, scalability, and commercial readiness.
-</p>
+---
 
-<p align="center">
-  Built in public. Shipped with discipline. Designed to last.
-</p>
+## Positioning
+
+PyColors UI is a minimal UI foundation, not a generic component zoo.
+
+It is designed to be:
+
+- The UI layer used internally by PyColors SaaS Starters
+- a stable base for shipping SaaS dashboards, apps, and marketing pages
+- a system you can adopt independently, without buying anything
+
+PyColors UI is the foundation.
+Starters, templates, and blocks are products built on top of it.
 
 ---
 
@@ -123,36 +120,6 @@ The project is organized to support **documentation, UI components, and future m
 ## Roadmap
 
 PyColors UI follows a **transparent, release-driven roadmap**.
-
-### v1.0 — UI Core Foundation ✅
-
-- Button, Input, Badge, Card, Alert
-- Consistent variants & sizing
-- Complete documentation baseline
-- Changelog & Roadmap pages
-- Semantic versioning introduced
-
-### v1.0.x — Stability & polish (Jan 2026)
-
-- Fix edge cases
-- Improve docs clarity
-- Align tokens and naming
-- Minor API refinements (non-breaking)
-
-### v1.1 — Advanced UI (Feb 2026)
-
-- Dialog / Modal
-- Dropdown / Menu
-- Tabs
-- Tooltip / Toast
-- Data-oriented patterns
-
-### H1 2026
-
-- Blocks library (marketing + SaaS)
-- First premium templates
-- Licensing & distribution loop
-- Monetization-ready packaging
 
 👉 Full roadmap available at:
 https://pycolors.io/roadmap
