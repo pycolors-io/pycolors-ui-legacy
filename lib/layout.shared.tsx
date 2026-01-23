@@ -9,9 +9,10 @@ export type PrimaryNavItem = {
 };
 
 export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
-  { label: 'Documentation', href: '/docs' },
-  { label: 'Components', href: '/docs/ui' },
+  { label: 'Starters', href: '/starters' },
   { label: 'Templates', href: '/templates' },
+  { label: 'UI', href: '/ui' },
+  { label: 'Documentation', href: '/docs' },
   { label: 'Roadmap', href: '/roadmap' },
 ];
 
@@ -24,7 +25,7 @@ export const layoutLinks: LinkItemType[] = PRIMARY_NAV_ITEMS.map(
     text: item.label,
     url: item.href,
     active: 'nested-url',
-  })
+  }),
 );
 
 export function baseOptions(): BaseLayoutProps {

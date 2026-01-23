@@ -11,9 +11,7 @@ export function MarketingShell({ children }: MarketingShellProps) {
   return (
     <div className="flex flex-col bg-background text-foreground">
       <main id="main" className="flex-1 flex items-center">
-        <Container className="py-8 sm:py-10 lg:py-12">
-          {children}
-        </Container>
+        <Container>{children}</Container>
       </main>
     </div>
   );
