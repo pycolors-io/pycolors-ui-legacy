@@ -275,7 +275,7 @@ export default function HomePage() {
                       rel="noreferrer noopener"
                       aria-label="Buy NA-AI on Gumroad (opens in a new tab)"
                     >
-                      Get it
+                      Get it on Gumroad
                       <ExternalLink
                         className="ml-2 h-4 w-4"
                         aria-hidden="true"
