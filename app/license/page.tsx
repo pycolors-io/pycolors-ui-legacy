@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import {
   Scale,
   ShieldCheck,
@@ -12,24 +13,23 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Footer } from '@/components/footer';
 import { SiteHeader } from '@/components/layout/site-header';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'License',
   description:
-    'Licensing information for PyColors UI. Understand what is free, what may become commercial, and how PyColors UI can be used in real-world projects.',
+    'Licensing information for PyColors. Understand what is free, what is commercial, and how PyColors products can be used in real-world projects.',
   openGraph: {
-    title: 'License · PyColors UI',
+    title: 'License · PyColors',
     description:
-      'Licensing details for PyColors UI. Clear usage rules for free components and future commercial offerings.',
+      'Clear licensing rules for PyColors UI and premium templates.',
     url: '/license',
     images: ['/seo/og-main.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'License · PyColors UI',
+    title: 'License · PyColors',
     description:
-      'Licensing details for PyColors UI. Free core components with a clear path to future commercial offerings.',
+      'Clear licensing rules for PyColors UI and premium templates.',
     images: ['/seo/twitter-main.png'],
   },
 };
@@ -40,28 +40,48 @@ type LicenseSection = {
   items: string[];
 };
 
+/* -------------------------------------------------------------------------- */
+/* PYCOLORS UI — FREE FOUNDATION                                               */
+/* -------------------------------------------------------------------------- */
+
 const freeToday: LicenseSection = {
-  title: 'What’s free today',
+  title: 'PyColors UI — what’s free',
   description:
-    'PyColors UI is public and free to explore while the product matures. This includes the current foundation and future core additions.',
+    'PyColors UI is the public, documentation-first foundation of the ecosystem.',
   items: [
-    'Core UI components shipped as part of the free PyColors UI foundation (including v1.0 and future additions).',
+    'Core UI components shipped as part of the free PyColors UI foundation.',
     'Documentation (Preview / Usage / Code / Props).',
     'Examples, patterns, and public pages (Changelog, Roadmap).',
-    'Bug fixes and stability patches within the v1.0.x line.',
+    'Bug fixes and stability patches within the v1.x line.',
   ],
 };
 
 const mayBecomeCommercial: LicenseSection = {
   title: 'What may become commercial',
   description:
-    'As PyColors UI evolves into a sustainable ecosystem, some parts may be introduced under a commercial license.',
+    'As PyColors evolves into a sustainable ecosystem, some parts may be introduced under a commercial license.',
   items: [
-    'Premium components and advanced UI patterns (dashboard-grade building blocks).',
-    'Blocks library (marketing + SaaS) and packaged sections.',
-    'Premium templates built on PyColors UI (landing + dashboard).',
-    'Commercial distribution assets (starter kits, packaging, screenshot kits).',
-    'Priority support and higher-touch help for teams.',
+    'Premium UI components and advanced patterns.',
+    'Blocks libraries (marketing & SaaS sections).',
+    'Premium templates and starter kits.',
+    'Commercial packaging and distribution assets.',
+    'Priority support and higher-touch assistance.',
+  ],
+};
+
+/* -------------------------------------------------------------------------- */
+/* TEMPLATES — COMMERCIAL LICENSE                                              */
+/* -------------------------------------------------------------------------- */
+
+const templatesLicense: LicenseSection = {
+  title: 'Templates license (NA-AI)',
+  description:
+    'Commercial license included with every template purchase. Clear rules, no ambiguity.',
+  items: [
+    '✔ Use for personal and commercial projects.',
+    '✔ Client work is allowed.',
+    '✖ Reselling or redistributing the template is not allowed.',
+    '✖ Sharing the source code publicly or privately is not permitted.',
   ],
 };
 
@@ -69,7 +89,7 @@ const principles = [
   {
     title: 'Clarity over complexity',
     description:
-      'Licensing should be readable and practical. No legal theater, no dark patterns.',
+      'Licensing should be readable, explicit, and practical.',
     icon: <Scale className="h-4 w-4" aria-hidden="true" />,
   },
   {
@@ -81,7 +101,7 @@ const principles = [
   {
     title: 'Docs-first mindset',
     description:
-      'Whether free or commercial, every shipped artifact must be documented and polished.',
+      'Every shipped artifact — free or paid — must be documented and production-ready.',
     icon: <Sparkles className="h-4 w-4" aria-hidden="true" />,
   },
 ];
@@ -120,6 +140,7 @@ export default function LicensePage() {
 
       <main className="flex-1 bg-background text-foreground">
         <Container className="py-20 sm:py-20 lg:py-24">
+          {/* HEADER */}
           <header className="mx-auto w-full max-w-4xl text-center">
             <div className="flex justify-center">
               <Badge variant="secondary" className="gap-2">
@@ -133,22 +154,13 @@ export default function LicensePage() {
             </h1>
 
             <p className="mx-auto mt-3 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
-              PyColors UI is built to be production-ready and
-              commercially sustainable. This page explains how
-              licensing works today—and how it may evolve as the
-              ecosystem grows.
+              This page explains how PyColors products can be used
+              today — and how licensing is structured across the
+              ecosystem.
             </p>
-
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Button asChild>
-                <Link href="/docs">Read the docs</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/roadmap">View roadmap</Link>
-              </Button>
-            </div>
           </header>
 
+          {/* PRINCIPLES */}
           <section className="mx-auto mt-10 w-full max-w-5xl">
             <div className="grid gap-4 sm:grid-cols-3">
               {principles.map((p) => (
@@ -165,6 +177,7 @@ export default function LicensePage() {
             </div>
           </section>
 
+          {/* PYCOLORS UI */}
           <section className="mx-auto mt-10 w-full max-w-5xl">
             <div className="grid gap-4 sm:grid-cols-2">
               <SectionCard section={freeToday} />
@@ -172,6 +185,12 @@ export default function LicensePage() {
             </div>
           </section>
 
+          {/* TEMPLATES LICENSE */}
+          <section className="mx-auto mt-10 w-full max-w-5xl">
+            <SectionCard section={templatesLicense} />
+          </section>
+
+          {/* CURRENT STATUS */}
           <section className="mx-auto mt-10 w-full max-w-5xl">
             <Card className="p-6 sm:p-7">
               <div className="space-y-2">
@@ -179,19 +198,20 @@ export default function LicensePage() {
                   Current status
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  License details will be published as part of the
-                  commercialization phase.
+                  PyColors UI (foundation) is currently public and
+                  free to explore.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  For now, PyColors UI is public and free to explore.
-                  Licensing terms may evolve as the project matures.
+                  Templates (such as NA-AI) are distributed under a
+                  separate commercial license, included with each
+                  purchase.
                 </p>
               </div>
 
               <div className="mt-6 flex flex-col gap-2 sm:flex-row">
                 <Button asChild variant="outline">
                   <Link href="/changelog">
-                    View changelog{' '}
+                    View changelog
                     <ArrowRight
                       className="ml-2 h-4 w-4"
                       aria-hidden="true"
@@ -204,7 +224,7 @@ export default function LicensePage() {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    View repository{' '}
+                    View repository
                     <ArrowRight
                       className="ml-2 h-4 w-4"
                       aria-hidden="true"
@@ -215,8 +235,8 @@ export default function LicensePage() {
             </Card>
 
             <p className="mt-4 text-center text-xs text-muted-foreground">
-              Note: this page is informational and may be updated as
-              PyColors UI evolves.
+              This page is informational and does not replace the
+              license included with paid products.
             </p>
           </section>
         </Container>
