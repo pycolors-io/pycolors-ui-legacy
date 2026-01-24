@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ExternalLink, Eye, ArrowRight } from 'lucide-react';
 
 import { MarketingShell } from '@/components/shells/marketing-shell';
 import { Button } from '@/components/ui/button';
@@ -153,7 +154,6 @@ export default function HomePage() {
               starters.
             </p>
 
-            {/* CTA: push what’s available now */}
             <div className="flex flex-wrap justify-center gap-3">
               <Button asChild>
                 <Link href="/ui">Explore UI system</Link>
@@ -217,6 +217,96 @@ export default function HomePage() {
               cta="Join early access"
               ctaVariant="secondary"
             />
+          </div>
+
+          <div className="mx-auto mt-6 w-full max-w-5xl">
+            <Card className="p-6 sm:p-7">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge variant="secondary" className="gap-2">
+                      <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      Featured template
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      Early access
+                    </Badge>
+                    <span className="text-xs text-muted-foreground">
+                      $49
+                    </span>
+                  </div>
+
+                  <h3 className="font-brand text-lg font-semibold tracking-tight">
+                    NA-AI — Premium Landing Page
+                  </h3>
+
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
+                    Premium landing page template for AI & SaaS
+                    products — real sections, pricing toggle,
+                    integrations, dark/light mode, and clean
+                    production UI.
+                  </p>
+
+                  <p className="text-xs text-muted-foreground">
+                    Dark + Light screenshots included. Frontend-only
+                    by design.
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2 sm:min-w-[220px] sm:items-end">
+                  <Button asChild className={cn(focusRing)}>
+                    <Link href="/templates/na-ai">
+                      View NA-AI details
+                      <ArrowRight
+                        className="ml-2 h-4 w-4"
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  </Button>
+
+                  <Button
+                    asChild
+                    variant="secondary"
+                    className={cn(focusRing)}
+                  >
+                    <a
+                      href="https://pycolors.gumroad.com/l/na-ai-nextjs-landing?layout=profile"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label="Buy NA-AI on Gumroad (opens in a new tab)"
+                    >
+                      Get it
+                      <ExternalLink
+                        className="ml-2 h-4 w-4"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  </Button>
+
+                  <a
+                    href="https://na-ai-landing-template.vercel.app"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={cn(
+                      'mt-1 inline-flex items-center text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline',
+                      focusRing,
+                      'rounded-sm',
+                    )}
+                  >
+                    View live demo
+                    <Eye
+                      className="ml-2 h-4 w-4"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </div>
+              </div>
+            </Card>
+
+            <p className="mt-3 text-center text-xs text-muted-foreground">
+              This is one example of the Templates line — more ship
+              progressively.
+            </p>
           </div>
         </section>
 
