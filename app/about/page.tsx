@@ -19,19 +19,19 @@ import { cn } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'The story behind PyColors UI — a documentation-first UI system built to ship real SaaS interfaces.',
+    'The story behind PyColors.io — an ecosystem built to ship, powered by PyColors UI as the minimal docs-first foundation.',
   openGraph: {
-    title: 'About · PyColors UI',
+    title: 'About · PyColors',
     description:
-      'The story behind PyColors UI — a documentation-first UI system built to ship real SaaS interfaces.',
+      'The story behind PyColors.io — an ecosystem built to ship, powered by PyColors UI as the minimal docs-first foundation.',
     url: '/about',
     images: ['/seo/og-main.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About · PyColors UI',
+    title: 'About · PyColors',
     description:
-      'The story behind PyColors UI — a documentation-first UI system built to ship real SaaS interfaces.',
+      'The story behind PyColors.io — an ecosystem built to ship, powered by PyColors UI as the minimal docs-first foundation.',
     images: ['/seo/twitter-main.png'],
   },
 };
@@ -62,7 +62,6 @@ export default function AboutPage() {
 
       <main className="flex-1 bg-background text-foreground">
         <Container className="py-20 sm:py-20 lg:py-24">
-          {/* HERO */}
           <header className="mx-auto w-full max-w-4xl text-center">
             <div className="flex justify-center">
               <Badge variant="secondary" className="gap-2">
@@ -72,14 +71,14 @@ export default function AboutPage() {
             </div>
 
             <h1 className="font-brand mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-              PyColors UI is built for shipping
+              PyColors.io is built for shipping
             </h1>
 
             <p className="mx-auto mt-3 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
-              Not “pretty demos”. Not “component dumps”. A
-              documentation-first UI system designed to help you move
-              fast while keeping interfaces consistent and
-              maintainable.
+              Not “pretty demos”. Not “component dumps”. PyColors is a
+              product ecosystem designed to help you ship real web
+              products — with a minimal, documentation-first UI
+              foundation that stays consistent as you scale.
             </p>
 
             <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -92,6 +91,7 @@ export default function AboutPage() {
                   />
                 </Link>
               </Button>
+
               <Button
                 asChild
                 variant="outline"
@@ -115,7 +115,7 @@ export default function AboutPage() {
                 rel="noreferrer noopener"
                 className={cn(
                   'underline underline-offset-4 transition hover:text-foreground',
-                  focusRing
+                  focusRing,
                 )}
               >
                 pycolors.com
@@ -124,12 +124,11 @@ export default function AboutPage() {
             </p>
           </header>
 
-          {/* STORY */}
           <section className="mx-auto mt-10 w-full max-w-5xl">
             <Card className="p-6 sm:p-7">
               <div className="space-y-3">
                 <h2 className="font-brand text-lg font-semibold tracking-tight">
-                  The reason PyColors UI exists
+                  The reason PyColors exists
                 </h2>
 
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -142,10 +141,18 @@ export default function AboutPage() {
                 </p>
 
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  PyColors UI is my answer to that. A system where
-                  documentation is not an afterthought, and where each
-                  component is shipped with a predictable structure —
-                  so the kit scales as the product scales.
+                  PyColors is my answer to that — an ecosystem where
+                  the foundation is strong enough to support products.
+                  PyColors UI is the minimal, docs-first system that
+                  powers everything else: Starters and Templates.
+                </p>
+
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <span className="font-medium text-foreground">
+                    PyColors UI is the foundation.
+                  </span>{' '}
+                  Starters and Templates are the products built on
+                  top.
                 </p>
               </div>
 
@@ -160,7 +167,6 @@ export default function AboutPage() {
             </Card>
           </section>
 
-          {/* HOW IT’S BUILT */}
           <section className="mx-auto mt-10 w-full max-w-5xl">
             <div className="grid gap-4 sm:grid-cols-3">
               <Card className="p-5">
@@ -212,11 +218,11 @@ export default function AboutPage() {
                 </h2>
 
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  PyColors UI is built in public and shipped
+                  PyColors is built in public and shipped
                   progressively. The goal is not to promise
                   “everything”. The goal is to ship a foundation you
-                  can trust — then build up to blocks and templates
-                  without breaking the core.
+                  can trust — then build up to blocks, templates, and
+                  starters without breaking the core.
                 </p>
               </div>
 
@@ -227,8 +233,9 @@ export default function AboutPage() {
                     Now
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    Stabilize v1.0.x, tighten docs quality, and
-                    reinforce marketing and trust foundations.
+                    Stabilize v1.1.x, tighten docs quality, and expand
+                    product patterns so the ecosystem remains
+                    consistent and predictable.
                   </p>
                   <div className="mt-4">
                     <Button
@@ -253,9 +260,9 @@ export default function AboutPage() {
                     Mid-term
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    Grow into a sellable ecosystem: components →
-                    blocks → templates → products, with repeatable
-                    launches.
+                    Grow into a sellable ecosystem: UI foundation →
+                    blocks → templates → starters, shipped via
+                    predictable weekly releases and clean packaging.
                   </p>
                   <div className="mt-4">
                     <Button
@@ -283,7 +290,6 @@ export default function AboutPage() {
             </p>
           </section>
 
-          {/* LINKS */}
           <section className="mx-auto mt-10 w-full max-w-5xl">
             <Card className="p-6 sm:p-7">
               <div className="space-y-2">
@@ -302,7 +308,7 @@ export default function AboutPage() {
                     href="https://github.com/pycolors-io/pycolors-ui"
                     target="_blank"
                     rel="noreferrer noopener"
-                    aria-label="Open the PyColors UI repository on GitHub (opens in a new tab)"
+                    aria-label="Open PyColors UI on GitHub (opens in a new tab)"
                   >
                     GitHub{' '}
                     <ArrowRight
@@ -342,7 +348,7 @@ export default function AboutPage() {
                     rel="noreferrer noopener"
                     aria-label="Open PyColors on X (opens in a new tab)"
                   >
-                    X (Twitter){' '}
+                    X{' '}
                     <ArrowRight
                       className="ml-2 h-4 w-4"
                       aria-hidden="true"
