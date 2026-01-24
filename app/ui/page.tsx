@@ -202,6 +202,11 @@ export default function UiPage() {
                     now including advanced interactions and data UI
                     foundations for real product screens.
                   </p>
+
+                  <p className="mx-auto max-w-2xl text-balance text-xs text-muted-foreground">
+                    PyColors UI is the minimal foundation powering
+                    Templates and SaaS Starters.
+                  </p>
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-3">
@@ -214,7 +219,7 @@ export default function UiPage() {
                   </Button>
 
                   <Button asChild variant="secondary">
-                    <Link href="/roadmap">View roadmap</Link>
+                    <Link href="/templates">Browse templates</Link>
                   </Button>
                 </div>
 
@@ -280,7 +285,7 @@ export default function UiPage() {
             </section>
 
             <section className="py-8 sm:py-10">
-              <div className="mb-4 flex flex-col gap-2 sm sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
+              <div className="mb-4 flex flex-col gap-2 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
                 <div className="space-y-1">
                   <h2 className="font-brand text-lg font-semibold tracking-tight">
                     Who it’s for
@@ -353,10 +358,23 @@ export default function UiPage() {
                       copying components.
                     </p>
 
+                    <p className="text-xs text-muted-foreground">
+                      Fast path: open docs → copy a component → ship a
+                      screen.
+                    </p>
+
                     <div className="flex flex-wrap gap-2 pt-1">
                       <TrustPill label="Node 18+" />
                       <TrustPill label="PNPM recommended" />
                       <TrustPill label="Docs-first workflow" />
+                    </div>
+
+                    <div className="pt-2">
+                      <Button asChild size="sm" variant="outline">
+                        <Link href="/docs/ui">
+                          Start from a component
+                        </Link>
+                      </Button>
                     </div>
                   </div>
 
@@ -400,7 +418,7 @@ export default function UiPage() {
                       </div>
 
                       <div className="px-4 py-4">
-                        <pre className="font-mono overflow-x-auto text-xs leading-relaxed text-foreground">{`git clone https://github.com/pycolors-io/pycolors-ui.git
+                        <pre className="overflow-x-auto font-mono text-xs leading-relaxed text-foreground">{`git clone https://github.com/pycolors-io/pycolors-ui.git
 cd pycolors-ui
 pnpm install
 pnpm dev`}</pre>
