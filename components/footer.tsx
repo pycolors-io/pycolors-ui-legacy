@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ExternalLink } from 'lucide-react';
 
 import { Container } from '@/components/container';
@@ -18,19 +21,27 @@ type FooterLink = {
 };
 
 const links: FooterLink[] = [
-  { label: 'Documentation', href: '/docs' },
-  { label: 'Components', href: '/docs/ui' },
+  // Product navigation
+  { label: 'Starters', href: '/starters' },
   { label: 'Templates', href: '/templates' },
+  { label: 'UI', href: '/ui' },
+  { label: 'Docs', href: '/docs' },
+
+  // Explore
+  { label: 'Components', href: '/docs/ui' },
   { label: 'Changelog', href: '/changelog' },
   { label: 'Roadmap', href: '/roadmap' },
+
+  // Trust
   { label: 'License', href: '/license' },
   { label: 'About', href: '/about' },
+
+  // External
   {
     label: 'GitHub',
     href: 'https://github.com/pycolors-io/pycolors-ui',
     external: true,
-    ariaLabel:
-      'Open the PyColors UI repository on GitHub (opens in a new tab)',
+    ariaLabel: 'Open PyColors UI on GitHub (opens in a new tab)',
   },
   {
     label: 'Gumroad',
@@ -53,7 +64,7 @@ function FooterLinkItem(link: FooterLink) {
         }
         className={cn(
           'inline-flex items-center gap-1 rounded-sm text-xs text-muted-foreground transition-colors hover:text-foreground',
-          focusRing
+          focusRing,
         )}
       >
         {link.label}
@@ -68,7 +79,7 @@ function FooterLinkItem(link: FooterLink) {
       href={link.href}
       className={cn(
         'rounded-sm text-xs text-muted-foreground transition-colors hover:text-foreground',
-        focusRing
+        focusRing,
       )}
     >
       {link.label}
@@ -76,7 +87,45 @@ function FooterLinkItem(link: FooterLink) {
   );
 }
 
+function getFooterBrand(pathname: string | null) {
+  if (!pathname) {
+    return {
+      label: 'PyColors.io',
+      suffix: `UI · v${APP_VERSION}`,
+    };
+  }
+
+  if (pathname === '/ui' || pathname.startsWith('/ui/')) {
+    return {
+      label: 'PyColors.io',
+      suffix: `UI · v${APP_VERSION}`,
+    };
+  }
+
+  if (pathname === '/starters' || pathname.startsWith('/starters/')) {
+    return {
+      label: 'PyColors.io',
+      suffix: 'SaaS Starter · Coming soon',
+    };
+  }
+
+  if (pathname === '/docs' || pathname.startsWith('/docs/')) {
+    return {
+      label: 'PyColors.io',
+      suffix: 'Docs · Docs-first',
+    };
+  }
+
+  return {
+    label: 'PyColors.io',
+    suffix: `v${APP_VERSION}`,
+  };
+}
+
 export function Footer() {
+  const pathname = usePathname();
+  const brand = getFooterBrand(pathname);
+
   return (
     <footer className="border-t border-border bg-background">
       <Container>
@@ -89,8 +138,7 @@ export function Footer() {
           </nav>
 
           <div className="text-[11px] text-muted-foreground">
-            © {CURRENT_YEAR} PyColors UI · Documentation-first UI
-            system for modern SaaS products · v{APP_VERSION}
+            © {CURRENT_YEAR} {brand.label} · {brand.suffix}
           </div>
         </div>
       </Container>
