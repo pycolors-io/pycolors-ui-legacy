@@ -5,14 +5,14 @@ import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
 import { inter } from './fonts';
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? 'GTM-NQNBGFLM';
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pycolors.io'),
-  title: { default: 'PyColors UI', template: '%s · PyColors UI' },
+  title: { default: 'PyColors', template: '%s · PyColors' },
   description:
-    'A documentation-first UI system built on semantic tokens and Radix primitives — designed to ship real SaaS interfaces.',
-  applicationName: 'PyColors UI',
+    'Documentation-first UI system and premium templates for shipping real SaaS.',
+  applicationName: 'PyColors',
   creator: 'PyColors',
   publisher: 'PyColors',
   icons: {
@@ -24,18 +24,18 @@ export const metadata: Metadata = {
   manifest: '/manifest.webmanifest',
   openGraph: {
     type: 'website',
-    siteName: 'PyColors UI',
-    title: 'PyColors UI',
+    siteName: 'PyColors',
+    title: 'PyColors',
     description:
-      'A documentation-first UI system built to ship modern SaaS interfaces.',
+      'Documentation-first UI system and premium templates for shipping real SaaS.',
     url: '/',
     images: ['/seo/og-main.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PyColors UI',
+    title: 'PyColors',
     description:
-      'A documentation-first UI system built to ship modern SaaS interfaces.',
+      'Documentation-first UI system and premium templates for shipping real SaaS.',
     images: ['/seo/twitter-main.png'],
   },
 };
@@ -52,30 +52,34 @@ export default function Layout({
       className={inter.className}
     >
       <head>
-        <Script
-          id="gtm"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${GTM_ID}');
-            `,
-          }}
-        />
+        {GTM_ID ? (
+          <Script
+            id="gtm"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${GTM_ID}');
+              `,
+            }}
+          />
+        ) : null}
       </head>
 
       <body className="flex min-h-screen flex-col">
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
+        {GTM_ID ? (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        ) : null}
 
         <RootProvider>{children}</RootProvider>
       </body>
