@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://pycolors.io'),
   title: { default: 'PyColors', template: '%s · PyColors' },
   description:
-    'Documentation-first UI system and premium templates for shipping real SaaS.',
+    'PyColors is a product ecosystem for shipping real SaaS — a minimal UI system, premium templates, and production-ready starters, built in public.',
   applicationName: 'PyColors',
   creator: 'PyColors',
   publisher: 'PyColors',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: 'PyColors',
     title: 'PyColors',
     description:
-      'Documentation-first UI system and premium templates for shipping real SaaS.',
+      'PyColors is a product ecosystem for shipping real SaaS — a minimal UI system, premium templates, and production-ready starters, built in public.',
     url: '/',
     images: ['/seo/og-main.png'],
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PyColors',
     description:
-      'Documentation-first UI system and premium templates for shipping real SaaS.',
+      'PyColors is a product ecosystem for shipping real SaaS — a minimal UI system, premium templates, and production-ready starters, built in public.',
     images: ['/seo/twitter-main.png'],
   },
 };
