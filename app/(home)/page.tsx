@@ -12,12 +12,6 @@ import { APP_VERSION } from '@/lib/version';
 export const metadata: Metadata = {
   metadataBase: new URL('https://pycolors.io'),
   alternates: { canonical: '/' },
-  title: {
-    default: 'PyColors',
-    template: '%s · PyColors',
-  },
-  description:
-    'PyColors is a product ecosystem for shipping real SaaS — a minimal UI system, premium templates, and production-ready starters, built in public.',
   openGraph: {
     title: 'PyColors',
     description:
