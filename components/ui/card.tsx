@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-
 import { cn } from '@/lib/utils';
 
 export const cardVariants = cva(
@@ -66,7 +65,7 @@ export const Card = React.forwardRef<CardElement, CardProps>(
 
 Card.displayName = 'Card';
 
-export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type CardHeaderProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function CardHeader({ className, ...props }: CardHeaderProps) {
   return (
@@ -78,7 +77,7 @@ export function CardHeader({ className, ...props }: CardHeaderProps) {
   );
 }
 
-export interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
+export type CardTitleProps = React.HTMLAttributes<HTMLHeadingElement>;
 
 export function CardTitle({ className, ...props }: CardTitleProps) {
   return (
@@ -93,7 +92,8 @@ export function CardTitle({ className, ...props }: CardTitleProps) {
   );
 }
 
-export interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
+export type CardDescriptionProps =
+  React.HTMLAttributes<HTMLParagraphElement>;
 
 export function CardDescription({
   className,
@@ -108,7 +108,7 @@ export function CardDescription({
   );
 }
 
-export interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type CardContentProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function CardContent({
   className,
@@ -123,7 +123,7 @@ export function CardContent({
   );
 }
 
-export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type CardFooterProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function CardFooter({ className, ...props }: CardFooterProps) {
   return (
