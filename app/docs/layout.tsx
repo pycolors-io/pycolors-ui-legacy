@@ -6,21 +6,28 @@ import { getDocsNavLinks, source } from '@/lib/source';
 import { baseOptions } from '@/lib/layout.shared';
 import { SiteHeader } from '@/components/layout/site-header';
 import { Footer } from '@/components/footer';
+import { ToastDocsProvider } from '@/content/docs/previews/toast-docs-provider';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/docs' },
+
   title: {
-    default: 'Documentation',
+    default: 'Docs',
     template: '%s · Docs · PyColors UI',
   },
   description:
     'Official documentation for PyColors UI. Components, design tokens, patterns, and best practices to build production-ready SaaS interfaces.',
+
   openGraph: {
+    type: 'website',
+    siteName: 'PyColors UI',
     title: 'PyColors UI Documentation',
     description:
-      'Learn how to build consistent, production-ready interfaces with PyColors UI.',
+      'Components, tokens, patterns, and best practices for production-ready SaaS interfaces.',
     url: '/docs',
     images: ['/seo/og-main.png'],
   },
+
   twitter: {
     card: 'summary_large_image',
     title: 'PyColors UI Documentation',
@@ -48,7 +55,7 @@ export default function Layout({
         }}
         sidebar={{ collapsible: false }}
       >
-        {children}
+        <ToastDocsProvider>{children}</ToastDocsProvider>
       </DocsLayout>
 
       <Footer />
