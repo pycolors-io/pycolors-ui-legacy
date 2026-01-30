@@ -18,18 +18,18 @@ import { SiteHeader } from '@/components/layout/site-header';
 export const metadata: Metadata = {
   title: 'Changelog',
   description:
-    'Release notes and product updates for PyColors UI. Clear versions, stable conventions, and documentation-first releases.',
+    'Release notes and Product updates for PyColors. Clear versions, stable conventions, and documentation-first releases.',
   openGraph: {
     title: 'Changelog · PyColors UI',
     description:
-      'Release notes and product updates for PyColors UI. Stable versions, predictable conventions.',
+      'Release notes and Product updates for PyColors. Stable versions, predictable conventions.',
     url: '/changelog',
     images: ['/seo/og-main.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Changelog · PyColors UI',
-    description: 'Release notes and product updates for PyColors UI.',
+    description: 'Release notes and Product updates for PyColors.',
     images: ['/seo/twitter-main.png'],
   },
 };
@@ -52,6 +52,50 @@ type ChangelogItem = {
 };
 
 const CHANGELOG: ChangelogItem[] = [
+  {
+    version: 'v1.1.1',
+    title: 'Patterns docs + SEO polish',
+    dateLabel: 'Fri 30 Jan 2026',
+    dateISO: '2026-01-30',
+    status: 'Stable',
+    releaseWeekLabel: 'Jan 2026 (weekly release)',
+    summary:
+      'Docs expansion for production-grade UX patterns (data tables, overlays, async actions) plus SEO/metadata cleanup, favicon refresh, and type-level refactors for consistency.',
+    highlights: [
+      {
+        title: 'Docs & patterns',
+        items: [
+          'Introduced a new “Patterns” docs section: opinionated, feature-level UI patterns with guidance on when to use them.',
+          'Added a comprehensive Data Table pattern doc: anatomy, states, variations for SaaS/admin dashboards.',
+          'Shipped Data Table preview components: loading, empty, error, filterable, and row actions states.',
+          'Added an Overlays pattern guide (Dropdown vs Dialog vs Sheet) with interactive demos and accessibility rules.',
+          'Added Async Actions UX patterns: optimistic/pessimistic updates, feedback tiers, error handling + interactive demos (save, delete with undo, optimistic toggle).',
+          'Refactored Toast docs (removed unnecessary provider) and centralized data table preview exports via an index file.',
+        ],
+      },
+      {
+        title: 'SEO & metadata',
+        items: [
+          'Refined site metadata messaging to better position PyColors as a product ecosystem (not only a UI system).',
+          'Simplified metadata configuration by removing redundant title/description where Open Graph is the source of truth.',
+          'Enhanced docs layout SEO with improved titles/descriptions and canonical URL support.',
+        ],
+      },
+      {
+        title: 'Branding & UI polish',
+        items: [
+          'Updated favicon assets for improved branding consistency across browsers and platforms.',
+        ],
+      },
+      {
+        title: 'Refactoring',
+        items: [
+          'Standardized component prop typing by migrating from interfaces to type aliases for consistency and readability.',
+        ],
+      },
+    ],
+    cta: { label: 'Browse patterns', href: '/docs/patterns' },
+  },
   {
     version: 'v1.1.0',
     title: 'Advanced UI + product patterns',

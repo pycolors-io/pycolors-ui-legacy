@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
@@ -7,7 +8,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Footer } from '@/components/footer';
 import { SiteHeader } from '@/components/layout/site-header';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Roadmap',
@@ -120,10 +120,76 @@ const items: RoadmapItem[] = [
     href: '/',
   },
   {
-    title: 'Stability patch (v1.0.x)',
+    title: 'Patterns docs v1 (Overlays, Async actions, Data Table)',
     description:
-      'Fix edge cases, polish docs, align tokens + class naming, reduce inconsistencies discovered after release.',
-    status: 'Now',
+      'New “Patterns” section with production UX rules + interactive demos: overlays decision matrix, async mutation UX, and data table states (loading/empty/error/filtering/row actions).',
+    status: 'Shipped',
+    milestone: 'Jan 2026',
+    tags: ['Docs', 'Patterns', 'DX'],
+    href: '/docs/patterns',
+  },
+  {
+    title: 'Table (Data UI) direction',
+    description:
+      'Production-ready data table patterns and previews: loading/empty/error states, filtering, and row actions. Minimal, practical approach for dashboards.',
+    status: 'Shipped',
+    milestone: 'Jan 2026',
+    tags: ['Data UI', 'Dashboards', 'Docs'],
+    href: '/docs/patterns/data-table',
+  },
+  {
+    title: 'SEO & branding polish',
+    description:
+      'Metadata positioning cleanup (ecosystem messaging), canonical-ready docs metadata improvements, and refreshed favicons for consistent branding.',
+    status: 'Shipped',
+    milestone: 'Jan 2026',
+    tags: ['SEO', 'Brand', 'Trust'],
+  },
+  {
+    title: 'Distribution loop v1',
+    description:
+      'Repeatable launch routine: demo links, screenshot kit, “What’s new” posts, and a publish checklist.',
+    status: 'Shipped',
+    milestone: 'Jan 2026',
+    tags: ['Growth', 'Launch'],
+  },
+  {
+    title: 'NA-AI landing page integration',
+    description:
+      'Published NA-AI as a Template on PyColors site + demo/purchase links + license section + cross-links from docs.',
+    status: 'Shipped',
+    milestone: 'Jan 2026',
+    tags: ['Template', 'Sales'],
+    href: '/templates/na-ai',
+  },
+  {
+    title: 'UI Advanced v1',
+    description:
+      'First complete set of advanced, dashboard-grade UI primitives: Dialog/Modal, Dropdown/Menu, Tabs, Tooltip, and Toast. Each component ships with a stable, aligned API, accessibility-first behavior.',
+    status: 'Shipped',
+    milestone: 'Feb 2026',
+    tags: [
+      'Advanced',
+      'Components',
+      'Accessibility',
+      'Docs',
+      'Dashboards',
+    ],
+    href: '/docs/ui',
+  },
+  {
+    title: 'February 2026 — dashboard-grade UI unlock',
+    description:
+      'Shipped advanced UI + patterns required for dashboard-grade product UX (Overlays, Async actions, Data Table) and aligned component docs.',
+    status: 'Shipped',
+    milestone: 'Feb 2026',
+    tags: ['Shipped', 'Advanced', 'Patterns', 'Dashboards', 'Docs'],
+  },
+  {
+    title: 'Stability patch (v1.1.x)',
+    description:
+      'Fix edge cases, polish docs, align tokens + class naming, reduce inconsistencies discovered after weekly releases.',
+    status: 'Shipped',
     milestone: 'Jan 2026',
     tags: ['Quality', 'Consistency'],
   },
@@ -138,51 +204,27 @@ const items: RoadmapItem[] = [
   {
     title: 'Brand & legal baseline',
     description:
-      'Logo v1, domain hygiene, and lightweight legal placeholders (license, privacy, terms) to support trust and early sales.',
-    status: 'Next',
+      'Logo v1, domain hygiene, and lightweight legal pages (license, privacy, terms) to support trust and early sales.',
+    status: 'Now',
     milestone: 'Jan 2026',
     tags: ['Brand', 'Trust', 'Legal'],
   },
   {
-    title: 'Brand baseline',
+    title: 'Monetization readiness v1',
     description:
-      'Logo v1 + domain hygiene. Add basic legal placeholders (terms/privacy) to increase buyer trust.',
+      'Pricing + license clarity, packaging checklist, demo stability, and a minimal purchase funnel (Gumroad) aligned with weekly releases.',
     status: 'Next',
-    milestone: 'Jan 2026',
-    tags: ['Brand', 'Legal'],
-  },
-  {
-    title: 'Distribution loop v1',
-    description:
-      'Set a repeatable launch routine: demo links, screenshot kit, “What’s new” posts, and a publish checklist.',
-    status: 'Next',
-    milestone: 'Jan 2026',
-    tags: ['Growth', 'Launch'],
-  },
-  {
-    title: 'NA-AI landing page integration',
-    description:
-      'Publish NA-AI as a Template on PyColors site + add demo/purchase links + license section + cross-links from docs.',
-    status: 'Next',
-    milestone: 'Jan 2026',
-    tags: ['Template', 'Sales'],
-    href: '/templates/na-ai',
-  },
-  {
-    title: 'UI Advanced v1',
-    description:
-      'Dialog/Modal, Dropdown/Menu, Tabs, Tooltip, Toast — aligned API + docs + examples.',
-    status: 'Later',
     milestone: 'Feb 2026',
-    tags: ['Advanced', 'Components'],
+    tags: ['Sales', 'Trust', 'Packaging'],
   },
   {
-    title: 'Table (Data UI) direction',
+    title: 'Issue triage + public feedback loop',
     description:
-      'Practical data table: loading/empty states, density, pagination, selection. Keep API minimal.',
-    status: 'Later',
+      'Public “good first issue”, bug bash cadence, and roadmap grooming based on real user feedback from docs + templates.',
+    status: 'Next',
     milestone: 'Feb 2026',
-    tags: ['Data UI', 'Dashboards'],
+    tags: ['Community', 'Quality', 'DX'],
+    href: 'https://github.com/pycolors-io/pycolors-ui/issues',
   },
   {
     title: 'Blocks library (marketing + SaaS)',
@@ -289,8 +331,9 @@ export default function RoadmapPage() {
             <p className="mx-auto mt-3 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
               A realistic plan focused on shipping. This roadmap is
               aligned with the v1.0 release week (Fri 9 Jan 2026) and
-              the next steps to grow PyColors UI into a sellable
-              ecosystem.
+              outlines the next steps to grow PyColors UI into a
+              stable, production-ready foundation for the broader
+              PyColors ecosystem.
             </p>
 
             <div className="mt-6 flex flex-wrap justify-center gap-2">
