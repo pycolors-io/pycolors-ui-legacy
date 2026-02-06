@@ -58,7 +58,7 @@ function StepCard({
   variant?: 'default' | 'outline' | 'secondary';
 }) {
   return (
-    <Card className="p-5">
+    <Card bordered className="p-5">
       <div className="space-y-2">
         <div className="text-xs text-muted-foreground">{step}</div>
         <div className="text-sm font-medium">{title}</div>
@@ -93,7 +93,10 @@ function ProductCard({
   ctaVariant?: 'default' | 'outline' | 'secondary';
 }) {
   return (
-    <Card className="flex h-full flex-col justify-between p-6">
+    <Card
+      bordered
+      className="flex h-full flex-col justify-between p-6"
+    >
       <div className="space-y-3">
         <div className="flex items-center gap-2">
           <h3 className="font-brand text-lg font-semibold tracking-tight">
@@ -214,7 +217,7 @@ export default function HomePage() {
           </div>
 
           <div className="mx-auto mt-6 w-full max-w-5xl">
-            <Card className="p-6 sm:p-7">
+            <Card bordered className="p-6 sm:p-7">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center gap-2">
@@ -345,7 +348,7 @@ export default function HomePage() {
         </section>
 
         <section className="py-10 sm:py-14">
-          <Card className="p-6 sm:p-7">
+          <Card bordered className="p-6 sm:p-7">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
                 <h3 className="font-brand text-lg font-semibold tracking-tight">
