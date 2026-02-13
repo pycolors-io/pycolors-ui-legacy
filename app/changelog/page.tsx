@@ -54,6 +54,44 @@ type ChangelogItem = {
 
 const CHANGELOG: ChangelogItem[] = [
   {
+    version: 'v1.2.0',
+    title:
+      'Ecosystem public launch: Tokens + ESLint + Release Engine',
+    dateLabel: 'Fri 13 Feb 2026',
+    dateISO: '2026-02-13',
+    status: 'Stable',
+    releaseWeekLabel: 'Feb 2026 (weekly release)',
+    summary:
+      'This release marks a major ecosystem milestone: PyColors is now a structured developer platform with public packages (UI, Tokens, ESLint) and a hardened weekly release engine. The focus shifts from “components” to “shipping infrastructure”.',
+    highlights: [
+      {
+        title: 'New public packages',
+        items: [
+          '@pycolors/tokens published on npm: light/dark themes + semantic variables + Tailwind v4 bridge.',
+          '@pycolors/eslint-config v1.0.0 released: base, Next.js, and React internal flat configs (ESLint v9 ready).',
+          'Improved peer dependency clarity and ecosystem alignment across packages.',
+        ],
+      },
+      {
+        title: 'Release & distribution engine',
+        items: [
+          'Stabilized Changesets publish workflow.',
+          'Subtree sync strategy hardened (monorepo = source of truth, mirrors = distribution).',
+          'GitHub Releases automated for public packages.',
+        ],
+      },
+      {
+        title: 'Marketing alignment',
+        items: [
+          'Changelog and roadmap updated to reflect ecosystem positioning.',
+          'Clearer messaging: PyColors as a SaaS shipping platform (UI → Starter → Templates).',
+          'Weekly release cadence formalized as a trust-building mechanism.',
+        ],
+      },
+    ],
+    cta: { label: 'Explore ecosystem', href: '/docs' },
+  },
+  {
     version: 'v1.1.2',
     title: 'Starter foundations + release engine',
     dateLabel: 'Fri 6 Feb 2026',
