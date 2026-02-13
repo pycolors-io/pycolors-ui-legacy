@@ -83,117 +83,140 @@ const milestones: Array<{
 ];
 
 const items: RoadmapItem[] = [
-  {
-    title: 'Ship v1.0 — UI Core',
+    {
+      title: 'Ship v1.0 — UI Core',
+      description:
+        'Button, Input, Badge, Card, Alert: consistent variants + sizing + docs (Preview / Usage / Code / Props).',
+      status: 'Shipped',
+      milestone: 'Release Week',
+      tags: ['Core', 'Docs'],
+      href: '/docs/ui',
+    },
+    {
+      title: 'Docs quality pass (minimum bar)',
+      description:
+        'Unify Related guides, add missing Preview/Code tabs, fix footer consistency between docs & marketing, quick navigation cleanup.',
+      status: 'Shipped',
+      milestone: 'Release Week',
+      tags: ['Docs', 'DX'],
+      href: '/docs',
+    },
+    {
+      title: 'Release hygiene',
+      description:
+        'Changelog page + Roadmap page + version bump + release notes format. Ensure “v1.0” looks serious.',
+      status: 'Shipped',
+      milestone: 'Release Week',
+      tags: ['Release', 'Trust'],
+      href: '/changelog',
+    },
+    {
+      title: 'Marketing site baseline (pycolors.io)',
+      description:
+        'Home page v2 + dedicated pages: Templates, License, About. Trust-first baseline for distribution.',
+      status: 'Shipped',
+      milestone: 'Jan 2026',
+      tags: ['Marketing', 'Trust'],
+      href: '/',
+    },
+    {
+      title: 'Patterns docs v1 (Overlays, Async actions, Data Table)',
+      description:
+        'New “Patterns” section with production UX rules + interactive demos: overlays decision matrix, async mutation UX, and data table states (loading/empty/error/filtering/row actions).',
+      status: 'Shipped',
+      milestone: 'Jan 2026',
+      tags: ['Docs', 'Patterns', 'DX'],
+      href: '/docs/patterns',
+    },
+    {
+      title: 'Table (Data UI) direction',
+      description:
+        'Production-ready data table patterns and previews: loading/empty/error states, filtering, and row actions. Minimal, practical approach for dashboards.',
+      status: 'Shipped',
+      milestone: 'Jan 2026',
+      tags: ['Data UI', 'Dashboards', 'Docs'],
+      href: '/docs/patterns/data-table',
+    },
+    {
+      title: 'SEO & branding polish',
+      description:
+        'Metadata positioning cleanup (ecosystem messaging), canonical-ready docs metadata improvements, and refreshed favicons for consistent branding.',
+      status: 'Shipped',
+      milestone: 'Jan 2026',
+      tags: ['SEO', 'Brand', 'Trust'],
+    },
+    {
+      title: 'Distribution loop v1',
+      description:
+        'Repeatable launch routine: demo links, screenshot kit, “What’s new” posts, and a publish checklist.',
+      status: 'Shipped',
+      milestone: 'Jan 2026',
+      tags: ['Growth', 'Launch'],
+    },
+    {
+      title: 'NA-AI landing page integration',
+      description:
+        'Published NA-AI as a Template on PyColors site + demo/purchase links + license section + cross-links from docs.',
+      status: 'Shipped',
+      milestone: 'Jan 2026',
+      tags: ['Template', 'Sales'],
+      href: '/templates/na-ai',
+    },
+    {
+      title: 'UI Advanced v1',
+      description:
+        'First complete set of advanced, dashboard-grade UI primitives: Dialog/Modal, Dropdown/Menu, Tabs, Tooltip, and Toast. Each component ships with a stable, aligned API, accessibility-first behavior.',
+      status: 'Shipped',
+      milestone: 'Feb 2026',
+      tags: [
+        'Advanced',
+        'Components',
+        'Accessibility',
+        'Docs',
+        'Dashboards',
+      ],
+      href: '/docs/ui',
+    },
+    {
+      title: 'February 2026 — dashboard-grade UI unlock',
+      description:
+        'Shipped advanced UI + patterns required for dashboard-grade product UX (Overlays, Async actions, Data Table) and aligned component docs.',
+      status: 'Shipped',
+      milestone: 'Feb 2026',
+      tags: ['Shipped', 'Advanced', 'Patterns', 'Dashboards', 'Docs'],
+    },
+    {
+      title: 'Stability patch (v1.1.x)',
+      description:
+        'Fix edge cases, polish docs, align tokens + class naming, reduce inconsistencies discovered after weekly releases.',
+      status: 'Shipped',
+      milestone: 'Jan 2026',
+      tags: ['Quality', 'Consistency'],
+    },
+    {
+    title: 'Public packages (Tokens + ESLint)',
     description:
-      'Button, Input, Badge, Card, Alert: consistent variants + sizing + docs (Preview / Usage / Code / Props).',
-    status: 'Shipped',
-    milestone: 'Release Week',
-    tags: ['Core', 'Docs'],
-    href: '/docs/ui',
-  },
-  {
-    title: 'Docs quality pass (minimum bar)',
-    description:
-      'Unify Related guides, add missing Preview/Code tabs, fix footer consistency between docs & marketing, quick navigation cleanup.',
-    status: 'Shipped',
-    milestone: 'Release Week',
-    tags: ['Docs', 'DX'],
-    href: '/docs',
-  },
-  {
-    title: 'Release hygiene',
-    description:
-      'Changelog page + Roadmap page + version bump + release notes format. Ensure “v1.0” looks serious.',
-    status: 'Shipped',
-    milestone: 'Release Week',
-    tags: ['Release', 'Trust'],
-    href: '/changelog',
-  },
-  {
-    title: 'Marketing site baseline (pycolors.io)',
-    description:
-      'Home page v2 + dedicated pages: Templates, License, About. Trust-first baseline for distribution.',
-    status: 'Shipped',
-    milestone: 'Jan 2026',
-    tags: ['Marketing', 'Trust'],
-    href: '/',
-  },
-  {
-    title: 'Patterns docs v1 (Overlays, Async actions, Data Table)',
-    description:
-      'New “Patterns” section with production UX rules + interactive demos: overlays decision matrix, async mutation UX, and data table states (loading/empty/error/filtering/row actions).',
-    status: 'Shipped',
-    milestone: 'Jan 2026',
-    tags: ['Docs', 'Patterns', 'DX'],
-    href: '/docs/patterns',
-  },
-  {
-    title: 'Table (Data UI) direction',
-    description:
-      'Production-ready data table patterns and previews: loading/empty/error states, filtering, and row actions. Minimal, practical approach for dashboards.',
-    status: 'Shipped',
-    milestone: 'Jan 2026',
-    tags: ['Data UI', 'Dashboards', 'Docs'],
-    href: '/docs/patterns/data-table',
-  },
-  {
-    title: 'SEO & branding polish',
-    description:
-      'Metadata positioning cleanup (ecosystem messaging), canonical-ready docs metadata improvements, and refreshed favicons for consistent branding.',
-    status: 'Shipped',
-    milestone: 'Jan 2026',
-    tags: ['SEO', 'Brand', 'Trust'],
-  },
-  {
-    title: 'Distribution loop v1',
-    description:
-      'Repeatable launch routine: demo links, screenshot kit, “What’s new” posts, and a publish checklist.',
-    status: 'Shipped',
-    milestone: 'Jan 2026',
-    tags: ['Growth', 'Launch'],
-  },
-  {
-    title: 'NA-AI landing page integration',
-    description:
-      'Published NA-AI as a Template on PyColors site + demo/purchase links + license section + cross-links from docs.',
-    status: 'Shipped',
-    milestone: 'Jan 2026',
-    tags: ['Template', 'Sales'],
-    href: '/templates/na-ai',
-  },
-  {
-    title: 'UI Advanced v1',
-    description:
-      'First complete set of advanced, dashboard-grade UI primitives: Dialog/Modal, Dropdown/Menu, Tabs, Tooltip, and Toast. Each component ships with a stable, aligned API, accessibility-first behavior.',
+      'Published @pycolors/tokens and @pycolors/eslint-config on npm. Ecosystem-level consistency: UI + Tokens + Linting aligned under a single architecture.',
     status: 'Shipped',
     milestone: 'Feb 2026',
-    tags: [
-      'Advanced',
-      'Components',
-      'Accessibility',
-      'Docs',
-      'Dashboards',
-    ],
-    href: '/docs/ui',
+    tags: ['Ecosystem', 'NPM', 'DX', 'Trust'],
   },
   {
-    title: 'February 2026 — dashboard-grade UI unlock',
+    title: 'Monorepo → Mirrors sync engine',
     description:
-      'Shipped advanced UI + patterns required for dashboard-grade product UX (Overlays, Async actions, Data Table) and aligned component docs.',
+      'Hardened subtree strategy: monorepo as source of truth, public repos as distribution mirrors with automated PR sync.',
     status: 'Shipped',
     milestone: 'Feb 2026',
-    tags: ['Shipped', 'Advanced', 'Patterns', 'Dashboards', 'Docs'],
+    tags: ['Architecture', 'CI/CD', 'Release'],
   },
   {
-    title: 'Stability patch (v1.1.x)',
+    title: 'Weekly release protocol',
     description:
-      'Fix edge cases, polish docs, align tokens + class naming, reduce inconsistencies discovered after weekly releases.',
+      'Formalized weekly marketing releases aligned with versioning and public roadmap updates.',
     status: 'Shipped',
-    milestone: 'Jan 2026',
-    tags: ['Quality', 'Consistency'],
+    milestone: 'Feb 2026',
+    tags: ['Release', 'Trust', 'Brand'],
   },
-
   // NOW
   {
     title: 'Search & analytics baseline',
